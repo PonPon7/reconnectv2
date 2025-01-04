@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Secretele Adevăratei Alchimii</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #2c3e50, #3498db);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        .content {
+            z-index: 2;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            max-width: 80%;
+        }
+
+        h1 {
+            font-size: 5rem;
+            text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: neon-glow 2s infinite alternate;
+            letter-spacing: 3px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin: 20px 0;
+            color: #e74c3c;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            background: linear-gradient(90deg, #f39c12, #e74c3c);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0px 5px 15px rgba(255, 0, 150, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 10px 20px rgba(255, 0, 150, 0.7);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes neon-glow {
+            from {
+                text-shadow: 0 0 20px #f39c12, 0 0 40px #e74c3c;
+            }
+            to {
+                text-shadow: 0 0 40px #f39c12, 0 0 80px #e74c3c;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Secretele Adevăratei Alchimii</h1>
+        <h2>Transformă Suferința În Vitalitate</h2>
+        <p>O singură dată e suficient să transformi suferința în sănătate, și vei simți că presupusa schimbare a metalului în aur pălește în fața acestei experiențe.</p>
+        <p>Acea relaxare după accidentare, acea respirație profundă după un virus puternic, acel sistem digestiv calm după dezechilibre — sunt mai valoroase decât orice mit despre aur. ✨</p>
+        <p>Orice durere cronică ai avea — de la dureri de spate, nemulțumiri, lipsă de energie, lipsă de direcție, lipsa acelui "chef" de viață, dezorientare — toate pot fi înțelese și vindecate.</p>
+        <p><strong>Cum?</strong> Prin Re-Conectarea Minții cu Corpul, vei învăța ritmul natural al vindecării interioare. 🔑</p>
+        <p>Descoperă arta subtilă a Alchimiei Interioare, unde corpul și mintea nu mai luptă unul împotriva celuilalt, ci lucrează împreună pentru a crea sănătate autentică și o viață cu sens și bucurie — fără suferință.</p>
+        <p>Nu mai e vorba de metode forțate, extreme sau soluții pe termen scurt. Este vorba despre vindecare reală, care vine atunci când corpul și mintea devin aliați.</p>
+        <a href="#" class="btn">Începe Călătoria</a>
+    </div>
+    <canvas id="background"></canvas>
+
+    <script>
+        let scene, camera, renderer, stars, starGeo;
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.z = 1;
+            camera.rotation.x = Math.PI / 2;
+
+            starGeo = new THREE.BufferGeometry();
+            let starVertices = [];
+            for (let i = 0; i < 8000; i++) {
+                let x = (Math.random() - 0.5) * 2000;
+                let y = (Math.random() - 0.5) * 2000;
+                let z = -Math.random() * 2000;
+                starVertices.push(x, y, z);
+            }
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+
+            let sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png');
+            let starMaterial = new THREE.PointsMaterial({
+                color: 0xf39c12,
+                size: 1.5,
+                map: sprite,
+                blending: THREE.AdditiveBlending,
+                transparent: true
+            });
+
+            stars = new THREE.Points(starGeo, starMaterial);
+            scene.add(stars);
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            animate();
+        }
+
+        function animate() {
+            starGeo.attributes.position.array.forEach((v, i) => {
+                if (i % 3 === 2) {
+                    starGeo.attributes.position.array[i] += 0.5;
+                    if (starGeo.attributes.position.array[i] > 200) {
+                        starGeo.attributes.position.array[i] = -200;
+                    }
+                }
+            });
+            starGeo.attributes.position.needsUpdate = true;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        init();
+    </script>
+</body>
+</html>

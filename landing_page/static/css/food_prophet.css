@@ -1,0 +1,569 @@
+/* ========== BASIC RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html
+{
+     background: none;
+}
+
+nav {
+    width: 100%;
+    padding: 0.3rem;
+}
+
+.nav-center {
+    margin-right: 3.33rem;
+}
+
+/* Background active after scrolling */
+body.background-active {
+    background-image: linear-gradient(
+        to bottom,
+        rgba(51, 51, 51, 1),
+        rgba(51, 51, 51, 0.7),
+        rgba(0, 0, 0, 0.7)
+    ),
+    url('/static/ReactPage_FoodProphet/white_lotus.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    filter: brightness(1) blur(0px);
+}
+
+
+/* Apply zoom when the threshold is crossed */
+body.zoom-active {
+    zoom: 0.73; /* Zoomed-in effect for React app integration */
+}
+
+/* Reset the zoom for the interactive video container */
+body.zoom-active .interactive-paragraphs {
+  transform: scale(1.059);
+}
+
+
+body {
+     color: black;
+      overflow-y: hidden; /* Enable vertical scrolling */
+      min-height: max-content;
+      position: relative;
+    background: #000;
+    transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
+    zoom: 1;
+
+}
+
+/* ========== FADE-IN ANIMATION ========== */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-section {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+  margin-bottom: 0px;
+  margin-top: 2rem;
+  position: relative; /* Required for z-index to take effect */
+  z-index: 10; /* Default stacking value */
+}
+
+.fade-in-section.delay-1 {
+  animation-delay: 0.5s;
+  z-index: 12; /* Higher stack value */
+}
+
+.fade-in-section.delay-2 {
+  animation-delay: 1.17s;
+  z-index: 11;
+}
+
+.fade-in-section.delay-3 {
+  animation-delay: 2.8s;
+  z-index: 10;
+}
+
+/* ========== TEXT STYLES ========== */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffa500;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #add8e6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.45rem;
+  color: #ffa500;
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 1rem;
+  color: #f0f8ff;
+  line-height: 1.8;
+}
+
+
+/***********************
+Interactive List Setup
+***********************/
+.interactive-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.interactive-list li {
+    margin: 7px 0;
+    position: relative;
+    font-size: 16.5px;
+    display: block;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+.interactive-list li i {
+  margin-right: 10px;
+  font-size: 24px;
+  color: #4CAF50;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.interactive-list li:hover i {
+  transform: scale(1.2);
+  color: #8BC34A;
+}
+
+.hover-effect {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  font-family: "Courier New", Courier, monospace;
+  color: green;
+  z-index: 10;
+  width: 80%;
+  max-width: 470px;
+  opacity: 0;
+  text-align: center;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-effect pre {
+  white-space: pre-wrap;
+  font-size: 16px;
+  font-weight: bold;
+  animation: typing 3s steps(30, end) 1;
+}
+
+.interactive-list li:hover .hover-effect {
+  display: block;
+  opacity: 1;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+ul {
+  margin-left: 20px;
+  list-style-type: disclosure-closed;
+  color: #f0f8ff;
+}
+
+ul li strong {
+  color: #add8e6;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: #add8e6;
+  opacity: 0.5;
+  margin: 20px 0;
+}
+
+/* Container Centering */
+.content-wrapper {
+  max-width: 900px;
+  margin: 50px auto 0px;
+  padding: 20px 0 0;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+
+
+.invisible {
+  opacity: 0; /* Make it transparent */
+  visibility: hidden; /* Prevent interaction */
+  pointer-events: none; /* Prevent clicks */
+  transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+}
+
+.visible {
+  opacity: 1; /* Fully visible */
+  visibility: visible; /* Allow interaction */
+  pointer-events: auto; /* Allow clicks */
+  transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+}
+
+
+/************************************************************
+ * MINIMALIST PULSE GRID (OPTIONAL)
+ ************************************************************/
+.pulse-web {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 3px),
+              linear-gradient(45deg, transparent 10%, #08c 10%, transparent 20%),
+              linear-gradient(-45deg, transparent 10%, #08c 10%, transparent 20%);
+  background-size: 80px 80px, 120px 120px, 120px 120px;
+  background-blend-mode: screen;
+  opacity: 0.05;
+  z-index: 10;
+  animation: pulse-web 10s ease-in-out infinite;
+}
+
+@keyframes pulse-web {
+  0%, 100% {
+    background-size: 80px 80px, 120px 120px, 120px 120px;
+    opacity: 0.12;
+    transform: scale(0.9) rotate(0deg);
+  }
+  25% {
+    background-size: 90px 90px, 140px 140px, 140px 140px;
+    opacity: 0.15;
+    transform: scale(1) rotate(15deg);
+  }
+  50% {
+    background-size: 100px 100px, 160px 160px, 160px 160px;
+    opacity: 0.25;
+    transform: scale(1.07) rotate(25deg);
+  }
+  75% {
+    background-size: 90px 90px, 140px 140px, 140px 140px;
+    opacity: 0.15;
+    transform: scale(1) rotate(15deg);
+  }
+}
+
+
+    .scroll-indicator {
+      position: static;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ccc;
+      opacity: 0;
+      animation: fadeIn 2.5s ease 1.2s forwards;
+    }
+    .scroll-indicator span {
+    font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+    .scroll-indicator svg {
+      width: 24px;
+      height: 24px;
+      fill: #08c;
+      animation: arrowBounce 2s infinite;
+    }
+        @keyframes arrowBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+
+
+
+
+/************************************************************
+ * Visualize. Simulate. Transform.
+
+ ************************************************************/
+
+
+/* General Styling for Paragraphs */
+.interactive-paragraphs {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 28px;
+    text-align: center;
+    margin: 30px 0 0;
+}
+
+/* General Styling for Paragraphs */
+.interactive-paragraphs p{
+    font-size: 1.2rem;
+      cursor: pointer; /* Ensures cursor is a pointer, not text-edit */
+
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+
+/* Pulsate Animation */
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+}
+
+
+/* Neon Blue for Visualize */
+.visualize {
+  color: #00bfff;
+  text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 20px #00bfff;
+}
+.visualize:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 15px #00bfff, 0 0 30px #00bfff, 0 0 45px #00bfff;
+}
+
+/* Neon Green for Simulate */
+.simulate {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+}
+.simulate:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00, 0 0 45px #00ff00;
+}
+
+/* Red-Gold for Transform */
+.transform {
+  color: #ff4500;
+  text-shadow: 0 0 5px #ff4500, 0 0 10px #ff8c00, 0 0 20px #ff8c00;
+}
+.transform:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 15px #ff4500, 0 0 30px #ff8c00, 0 0 45px #ff8c00;
+}
+
+
+
+
+/* Hover Video Styling */
+
+/* Styling for Hover Item */
+.hover-item {
+  position: relative;
+  padding: 3px 0 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hover-item p {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.hover-item:hover {
+  transform: scale(1.1);
+}
+
+/* Hover Video Styling */
+.hover-video {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  overflow: hidden;
+}
+
+.hover-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Show Video on Hover */
+.hover-item:hover .hover-video {
+  display: block;
+}
+
+
+/* Matrix line styling */
+.matrix-line {
+  display: inline-block;
+  width: 120%;
+
+  color: green;
+  font-family: monospace, sans-serif;
+  font-size: 13.5px;
+  white-space: pre; /* Preserve spaces */
+  text-align: left;
+  font-weight: bolder;
+  line-height: 0.5;
+  z-index: 100;
+
+}
+
+
+/************************************************************
+ * MOBILE SETUP
+ ************************************************************/
+
+@media only screen and (max-width: 768px) {
+
+  .pulse-grid {
+  pointer-events: none; /* Prevent interaction */
+  position: absolute; /* Ensure it covers the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Fullscreen coverage */
+  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 2px);
+  background-size: 60px 60px;
+  opacity: 0.07;
+  z-index: 10; /* Ensure it’s below content but above background */
+  animation: pulse-grid 8s ease-in-out infinite;
+}
+
+/******************************/
+/* Some Final Responsive Design Adjustments */
+/******************************/
+
+
+    /* Text adjustments */
+    p {
+        font-size: 0.93rem; /* Scale down paragraphs */
+        margin: 0.2rem 1rem; /* Decrease horizontal margins */
+    }
+
+    h1 {
+        font-size: 1.63rem; /* Scale down main titles */
+        margin-bottom: 0rem;
+        margin-top: 0rem;
+    }
+
+    h2 {
+        font-size: 1.45rem; /* Adjust subheadings */
+        margin-bottom: 1rem;
+    }
+
+
+    section {
+        padding: 2rem 1rem; /* Adjust padding for narrower screens */
+    }
+
+    .text-container {
+        padding: 0 0.4rem; /* Reduce container padding */
+    }
+
+    .page-title h1 {
+        font-size: 1.8rem; /* Scale page titles */
+        margin-bottom: 1rem;
+    }
+
+    .hover-item p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.interactive-list li {
+    margin: 7px 0;
+    position: relative;
+    font-size: 15px;
+
+}
+
+.interactive-list li i {
+    margin-right: 5.5px;
+    font-size: 20px;
+    }
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 23px 8px 0px;
+}
+
+nav {
+padding: 0.3rem 2rem;
+}
+
+}
+
+
+
+
+
+
+/* Fine-Tuning */
+
+.custom-modal .modal {
+    top: 17%;
+    }

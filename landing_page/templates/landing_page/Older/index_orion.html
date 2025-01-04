@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Secretele Adevăratei Alchimii</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            font-family: 'Poppins', sans-serif;
+            background: #000; /* Blacksmith darkness */
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(5px);
+        }
+        nav a {
+            color: #ff9c00;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        /* Sections */
+        section {
+            position: relative;
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.25) contrast(1.2);
+        }
+
+        /* Sparks Canvas */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Anvil Icon */
+        .anvil-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Anvil_icon.svg/1024px-Anvil_icon.svg.png') no-repeat center center;
+            background-size: contain;
+            opacity: 0.7;
+            animation: flickerIcon 3s infinite;
+        }
+        @keyframes flickerIcon {
+            0%, 100% {opacity: 0.7;}
+            50% {opacity: 1;}
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ff4500, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ff4500; }
+            100% { text-shadow: 0 0 20px #ff8c00; }
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+
+        /* Smaller Heading for second page */
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #ff4500, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(255,140,0,0.8);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            color: #ff9c00;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%,100% {transform: translate(-50%,0);}
+            50% {transform: translate(-50%,-10px);}
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            p {
+                font-size: 1.05rem;
+            }
+
+            nav a {
+                margin: 0 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Optional Forging Sound -->
+    <!-- <audio src="YOUR_FORGING_SOUND.mp3" autoplay loop></audio> -->
+
+    <nav>
+        <a href="#page1">Re-Connect V2</a>
+        <a href="#page1">Despre noi</a>
+        <a href="#page1">Bibliografie</a>
+        <a href="#page1">Contact</a>
+    </nav>
+
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="YOUR_FORGE_SPARKS_VIDEO.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <section id="page1">
+        <div class="anvil-icon"></div>
+        <h1>Secretele Adevăratei Alchimii</h1>
+        <p><strong>O singură dată e suficient să transformi suferința în sănătate, și vei simți că presupusa schimbare a metalului în aur pălește în fața acestei experiențe.</strong></p>
+
+        <p>Acea relaxare după accidentare, acea respirație profundă după un virus puternic, acel sistem digestiv calm după dezechilibre — sunt mai valoroase decât orice mit despre aur. ✨</p>
+
+        <p>Orice durere cronică ai avea — de la dureri de spate, nemulțumiri, lipsă de energie, lipsă de direcție, lipsa acelui "chef" de viață, dezorientare — toate pot fi înțelese și vindecate.</p>
+
+        <div class="scroll-indicator">▼ Scroll ▼</div>
+    </section>
+
+    <section id="page2">
+        <h2>Re-Connect V2.0 - Editia 2 din Cursul Re-Connect</h2>
+        <p>Prin Re-Conectarea Minții cu Corpul, vei învăța ritmul natural al vindecării interioare. 🔑</p>
+
+        <p>Descoperă arta subtilă a Alchimiei Interioare, unde corpul și mintea nu mai luptă unul împotriva celuilalt, ci lucrează împreună pentru a crea sănătate autentică și o viață cu sens și bucurie — fără suferință.</p>
+
+        <p>Nu mai e vorba de metode forțate, extreme sau soluții pe termen scurt.<br>
+        Este vorba despre vindecare reală, care vine atunci când corpul și mintea devin aliați.</p>
+
+        <p><strong>Re-Connect V2.0</strong> — Mai mult decât o metodă, e drumul spre Legenda ta Personală. 🚀</p>
+    </section>
+
+    <canvas id="background"></canvas>
+
+    <script>
+        // Particle background - slower sparks with line-like dissipation
+        let scene, camera, renderer, sparks;
+        const sparkCount = 15000;
+        let sparkGeo, sparkMaterial;
+        const heightLimit = 600; // height where they vanish
+        const sizeIncreaseThreshold = 300; // start changing size/color after this height
+
+        function init() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 3000);
+            camera.position.set(0, 0, 700);
+            camera.lookAt(0,0,0);
+
+            const positions = new Float32Array(sparkCount * 3);
+            const sizes = new Float32Array(sparkCount);
+            const colors = new Float32Array(sparkCount * 3);
+
+            for (let i = 0; i < sparkCount; i++) {
+                const i3 = i * 3;
+                // Distribute sparks
+                positions[i3 + 0] = (Math.random() - 0.5) * 2000;
+                positions[i3 + 1] = (Math.random() - 1) * 1000;
+                positions[i3 + 2] = (Math.random() - 0.5) * 2000;
+
+                sizes[i] = Math.random() * 1.5 + 0.5;
+
+                // Slight variation in orange hues
+                let r = 1.0;
+                let g = 0.4 + Math.random() * 0.3; // 0.4 to 0.7
+                let b = 0.0 + Math.random() * 0.2; // 0.0 to 0.2
+                colors[i3 + 0] = r;
+                colors[i3 + 1] = g;
+                colors[i3 + 2] = b;
+            }
+
+            sparkGeo = new THREE.BufferGeometry();
+            sparkGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            sparkGeo.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+            sparkGeo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            const sprite = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png');
+            sparkMaterial = new THREE.PointsMaterial({
+                size: 1.2,
+                map: sprite,
+                vertexColors: true,
+                blending: THREE.AdditiveBlending,
+                transparent: true,
+                depthWrite: false
+            });
+
+            sparks = new THREE.Points(sparkGeo, sparkMaterial);
+            scene.add(sparks);
+
+            renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            animate();
+        }
+
+        function animate() {
+            const positions = sparkGeo.attributes.position.array;
+            const colors = sparkGeo.attributes.color.array;
+            const sizes = sparkGeo.attributes.size.array;
+            const count = sparkCount * 3;
+
+            for (let i = 0; i < count; i += 3) {
+                positions[i + 1] += 0.7; // slower upward movement
+                positions[i + 0] += (Math.random() - 0.5) * 0.05; // slight horizontal jitter
+
+                const y = positions[i + 1];
+                const index = i / 3;
+
+                if (y > sizeIncreaseThreshold && y < heightLimit) {
+                    // Near top portion, transform spark appearance
+                    let factor = (y - sizeIncreaseThreshold) / (heightLimit - sizeIncreaseThreshold);
+                    sizes[index] = 1.2 + factor * 5.0;
+                    // Fade color slightly
+                    colors[i + 0] = 1.0;
+                    colors[i + 1] = 0.7 - factor * 0.7;
+                    colors[i + 2] = 0.2 - factor * 0.2;
+                } else if (y >= heightLimit) {
+                    // Reset spark at bottom
+                    positions[i + 0] = (Math.random() - 0.5) * 2000;
+                    positions[i + 1] = (Math.random() - 1) * 1000;
+                    positions[i + 2] = (Math.random() - 0.5) * 2000;
+
+                    sizes[index] = Math.random() * 1.5 + 0.5;
+
+                    let r = 1.0;
+                    let g = 0.4 + Math.random() * 0.3;
+                    let b = 0.0 + Math.random() * 0.2;
+                    colors[i + 0] = r;
+                    colors[i + 1] = g;
+                    colors[i + 2] = b;
+                }
+
+            }
+
+            sparkGeo.attributes.position.needsUpdate = true;
+            sparkGeo.attributes.color.needsUpdate = true;
+            sparkGeo.attributes.size.needsUpdate = true;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        init();
+    </script>
+</body>
+</html>

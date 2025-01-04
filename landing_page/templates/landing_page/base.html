@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* Dropdown Styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 100;
+}
+
+.dropdown:hover
+{
+    transform: scale(1.07); /* Slightly enlarge the link on hover */
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.dropdown-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-button:hover {
+    color: #90ee90;
+    transform: scale(1.1);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    background: linear-gradient(120deg, rgba(45, 52, 54, 0.95), rgba(34, 47, 62, 0.88));
+    min-width: 200px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+.dropdown-content a {
+font-size: 1rem;
+    display: block;
+    color: white;
+    padding: 0px 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    color: #90ee90;
+    padding-left: 2px;
+    box-shadow: 0 0 8px rgba(34, 47, 62, 0.3); /* Neon glow effect */
+}
+
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    }
+
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+       /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(51, 51, 51, 0.2); /* Increased transparency */
+            display: flex;
+            flex-direction: column; /* Align items vertically */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #loading-screen img {
+            width: 100px; /* Adjust size as needed */
+            animation: spin 2s linear infinite, fadeInOut 2s ease-in-out infinite;
+        }
+
+        /* Spin Animation */
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Fade In-Out Animation */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+            #loading-screen p {
+            margin-top: 20px; /* Add space between image and text */
+            font-size: 1.2em;
+            color: white;
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+
+    </style>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Secretele Alchimiei Adevărate{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Django Static CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+</head>
+<body>
+  <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="{% static 'images/logo.png' %}" alt="Loading...">
+        <p>Loading...</p>
+    </div>
+
+  <!-- Link to Font Awesome (CDN) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+/>
+
+    <!-- Lord Icon (CDN) -->
+<script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+
+    <!-- Font Awesome Link (CDN) -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+/>
+
+    <!-- Navbar -->
+    <nav class="visible">
+        <div class="nav-center">
+        <a href="/">Re-Connect V2</a>
+        <div class="dropdown">
+            <a href="#page1">Explore Projects</a>
+            <div class="dropdown-content">
+                <a href="/ylf">YLF</a>
+                <a href="/food-prophet">Food Prophet</a>
+                <a href="/coming_soon">Air Quality AI</a>
+                <a href="/coming_soon">Ending Pain</a>
+                <a href="/bibliography">Bibliography</a>
+            </div>
+        </div>
+        <a href="/contact">Contact</a>
+        </div>
+
+        <!-- User Login/Register Modal -->
+    <button id="loginBtn" class="login-btn">Login</button>
+    </nav>
+
+
+
+<div class="custom-modal">
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div class="tabs">
+                <button class="tab-btn active" id="loginTab">Login</button>
+                <button class="tab-btn" id="registerTab">Register</button>
+            </div>
+            <div id="loginForm" class="form active">
+                <form id="loginAjaxForm" method="post" action="/ajax/login/">
+                    {% csrf_token %}
+                    <label for="loginUsername">Username:</label>
+                    <input type="text" id="loginUsername" name="username" required>
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                    <button type="submit" class="form-btn">Login</button>
+                </form>
+            </div>
+            <div id="registerForm" class="form hidden">
+                <form id="registerAjaxForm" method="post" action="/ajax/register/">
+                    {% csrf_token %}
+                    <label for="registerUsername">Username:</label>
+                    <input type="text" id="registerUsername" name="username" required>
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                    <label for="registerPassword">Password:</label>
+                    <input type="password" id="registerPassword" name="password1" required>
+                    <label for="registerPassword2">Confirm Password:</label>
+                    <input type="password" id="registerPassword2" name="password2" required>
+                    <button type="submit" class="form-btn">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Audio Button -->
+    <!-- Mute/Unmute Button and Vertical Volume Slider -->
+    <div id="audio-controls">
+        <button id="mute-btn">🔈</button>
+        <input id="volume-slider" type="range" min="0" max="100" value="100">
+    </div>
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Background Music -->
+    <!-- The Alchemy of Sounds JS - integarated in HTML cause importing from js file had rendering issues -->
+    <audio id="background-music" loop>
+        <source src="{% static 'audio/background-music.mp3' %}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const audio = document.getElementById("background-music");
+        const muteButton = document.getElementById("mute-btn");
+        const volumeSlider = document.getElementById("volume-slider");
+
+        let isPlaying = false; // Track play/pause state
+
+        muteButton.addEventListener("click", () => {
+            if (!isPlaying) {
+                audio.currentTime = 0; // Reset audio to the beginning
+                audio.play().then(() => {
+                    console.log("Audio started from the beginning.");
+                    muteButton.textContent = "🔊"; // Update icon to unmuted
+                }).catch((error) => {
+                    console.error("Audio playback failed:", error);
+                });
+            } else {
+                audio.pause();
+                console.log("Audio paused.");
+                muteButton.textContent = "🔈"; // Update icon to muted
+            }
+            isPlaying = !isPlaying; // Toggle isPlaying state
+        });
+
+        // Volume slider controls the audio volume
+        volumeSlider.addEventListener("input", () => {
+            const volumeValue = volumeSlider.value / 100; // Scale from 0 to 1
+            audio.volume = volumeValue;
+            console.log(`Volume set to: ${volumeValue}`);
+        });
+
+        // Sync slider position with audio volume
+        audio.addEventListener("volumechange", () => {
+            volumeSlider.value = audio.volume * 100; // Sync slider with audio volume
+        });
+
+        // Debugging Events
+        audio.addEventListener("error", (e) => console.error("Audio playback error:", e));
+        audio.addEventListener("canplay", () => console.log("Audio is ready to play."));
+        audio.addEventListener("play", () => console.log("Audio is playing..."));
+        audio.addEventListener("pause", () => console.log("Audio is paused..."));
+    });
+
+    // JavaScript to control the loading screen
+    document.addEventListener("DOMContentLoaded", () => {
+        const loadingScreen = document.getElementById("loading-screen");
+        const content = document.getElementById("content");
+
+        // Wait for the entire page (including images, CSS, JS) to load
+        window.onload = () => {
+            loadingScreen.style.display = "none";
+        };
+    });
+
+    </script>
+
+
+    <!-- Scripts -->
+
+    <!-- Canvas for Effects -->
+    <canvas id="background"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    {% if request.path != '/contact/' %}
+        <script src="{% static 'sparks.js' %}"></script>
+    {% endif %}
+
+      <!-- Cookie CSRF token -->
+    <script>
+        document.cookie = "csrftoken={{ csrf_token }}";
+    </script>
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BH19MJ8ZP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0BH19MJ8ZP');
+    </script>
+
+<!-- Login&Register Forms & Exchanges-->
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM Elements
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    const loginForm = document.getElementById('loginAjaxForm');
+    const registerForm = document.getElementById('registerAjaxForm');
+
+    // Utility Function to Display Messages
+    const fadeMessage = (message, isSuccess) => {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `fade-message ${isSuccess ? 'success' : 'error'}`;
+        messageDiv.textContent = message;
+        document.body.appendChild(messageDiv);
+        setTimeout(() => {
+            messageDiv.classList.add('fade-out');
+            setTimeout(() => messageDiv.remove(), 500);
+        }, 2000);
+    };
+
+    // Utility Function to Get CSRF Token
+    const getCSRFToken = () => {
+        let csrfToken = null;
+        const cookies = document.cookie.split(';');
+        cookies.forEach(cookie => {
+            const [name, value] = cookie.trim().split('=');
+            if (name === 'csrftoken') csrfToken = value;
+        });
+        return csrfToken;
+    };
+
+    // Check Login Status on Page Load
+    const checkLoginStatus = () => {
+        fetch('/ajax/check-login/', {
+            method: 'GET',
+            headers: {
+                'X-CSRFToken': getCSRFToken(),
+            },
+        })
+        .then(async response => {
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                return data;
+            } else {
+                const text = await response.text();
+                console.error('Unexpected Response (HTML?):', text);
+                throw new Error('Unexpected response format');
+            }
+        })
+        .then(data => {
+            console.log('Login Status:', data);
+            if (data.logged_in) {
+                loginBtn.textContent = 'Logout'; // User is logged in
+            } else {
+                loginBtn.textContent = 'Login'; // User is not logged in
+            }
+        })
+        .catch(error => {
+            console.error('Error checking login status:', error);
+        });
+    };
+
+    // Call checkLoginStatus on page load
+    checkLoginStatus();
+
+    // Handle Login/Logout Button Click
+    loginBtn.addEventListener('click', () => {
+        if (loginBtn.textContent === 'Logout') {
+            // Logout logic
+            fetch('/ajax/logout/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': getCSRFToken(),
+                },
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Logout successful');
+                    fadeMessage('You have been logged out.', true);
+                    loginBtn.textContent = 'Login'; // Reset to "Login"
+                } else {
+                    throw new Error('Logout failed.');
+                }
+            })
+            .catch(error => {
+                console.error('Logout Error:', error);
+                fadeMessage('An error occurred during logout.', false);
+            });
+        } else {
+            // Login modal logic
+            loginModal.classList.remove('hidden');
+        }
+    });
+
+    // Close Modal
+    closeModal.addEventListener('click', () => {
+        loginModal.classList.add('hidden');
+    });
+
+        // Close Modal when pressing "Escape"
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            loginModal.classList.add('hidden');
+        }
+    });
+
+
+    // Tab Switching
+    loginTab.addEventListener('click', () => {
+        loginTab.classList.add('active');
+        registerTab.classList.remove('active');
+        loginForm.parentElement.classList.add('active');
+        registerForm.parentElement.classList.remove('active');
+    });
+
+    registerTab.addEventListener('click', () => {
+        registerTab.classList.add('active');
+        loginTab.classList.remove('active');
+        registerForm.parentElement.classList.add('active');
+        loginForm.parentElement.classList.remove('active');
+    });
+
+    // AJAX Login Form Submission
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(loginForm);
+
+        fetch('/ajax/login/', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': getCSRFToken(),
+            },
+        })
+        .then(async response => {
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                return data;
+            } else {
+                const text = await response.text();
+                throw new Error('Unexpected response format in login');
+            }
+        })
+        .then(data => {
+            if (data.success) {
+                loginModal.classList.add('hidden');
+                fadeMessage(data.message, true);
+                loginBtn.textContent = 'Logout'; // Change button to "Logout"
+            } else {
+                fadeMessage(data.message, false);
+            }
+        })
+        .catch(error => {
+            console.error('Login Error:', error);
+            fadeMessage('An unexpected error occurred during login', false);
+        });
+    });
+
+    // AJAX Register Form Submission
+registerForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Create a FormData object from the registration form
+    const formData = new FormData(registerForm);
+
+    // Send the registration data to the server
+    fetch('/ajax/register/', {
+        method: 'POST', // HTTP POST method for submitting data
+        body: formData, // Include the form data
+        headers: {
+            'X-CSRFToken': getCSRFToken(), // Add the CSRF token for security
+        },
+    })
+    .then(async response => {
+        // Check if the response is JSON
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const data = await response.json(); // Parse the JSON response
+            return data; // Pass the parsed JSON to the next `.then()`
+        } else {
+            const text = await response.text(); // If not JSON, log the raw response
+            throw new Error('Unexpected response format in register'); // Throw an error for unexpected formats
+        }
+    })
+    .then(data => {
+        // Handle the registration success or failure
+        if (data.success) {
+            console.log('Registration successful:', data); // Log the success response
+            fadeMessage(data.message, true); // Show a success message
+            loginModal.classList.add('hidden'); // Close the login/register modal
+
+            // Prepare login data using the same credentials
+            const loginFormData = new FormData();
+            loginFormData.append('username', registerForm.querySelector('[name="username"]').value); // Get the username
+            loginFormData.append('password', registerForm.querySelector('[name="password1"]').value); // Get the password
+
+            // Automatically log in the user
+            return fetch('/ajax/login/', {
+                method: 'POST', // HTTP POST method for login
+                body: loginFormData, // Include the login data
+                headers: {
+                    'X-CSRFToken': getCSRFToken(), // Add the CSRF token for security
+                },
+            });
+        } else {
+            fadeMessage(data.message, false); // Show an error message if registration fails
+            throw new Error('Registration failed.'); // Stop further execution
+        }
+    })
+    .then(async response => {
+        // Check the response from the login request
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+            const loginData = await response.json(); // Parse the login JSON response
+            if (loginData.success) {
+                console.log('Auto-login successful:', loginData); // Log the successful auto-login
+                fadeMessage('Registration and login successful!', true); // Show a combined success message
+                loginBtn.textContent = 'Logout'; // Update the button to say "Logout"
+            } else {
+                fadeMessage('Registration successful, but login failed.', false); // Handle login failure
+            }
+        } else {
+            const text = await response.text(); // Log unexpected non-JSON responses
+            throw new Error('Unexpected response format in auto-login'); // Throw an error for unexpected formats
+        }
+    })
+    .catch(error => {
+        console.error('Register Error:', error); // Log any errors encountered
+        fadeMessage('An unexpected error occurred during registration or login.', false); // Show a general error message
+    });
+});
+
+});
+</script>
+
+</body>
+</html>

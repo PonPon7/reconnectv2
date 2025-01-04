@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "landing_page/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Page - Food Prophet</title>
+  <link rel="stylesheet" href="{{ react_assets.css }}">
+  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}">
+</head>
+
+<body>
+
+  <div class="pulse-web"></div> <!-- Optional grid for subtle depth -->
+
+  <div class="content-wrapper">
+    <!-- Welcome Section -->
+    <div class="fade-in-section">
+      <h1>Welcome to <strong>The Food Prophet</strong></h1>
+      <p class="subtitle">
+        <em>Your Personalized Digestive Health Simulator</em>
+      </p>
+      <hr>
+    </div>
+
+    <!-- What is The Food Prophet Section -->
+    <div class="fade-in-section delay-1">
+      <h2>What is The Food Prophet?</h2>
+      <p>
+        <strong>A tool powered by <em>Machine Learning</em> to simulate your Digestion, revealing Patterns and Insights.</strong><br>By combining user inputs and
+        natural digestion patterns, it provides a personalized journey into <br>better
+        Eating and Health habits.
+      </p>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="fade-in-section delay-2">
+      <h2>How It Works:</h2>
+      <p>
+        By Mathematically modelling a person's habits around <strong>Food</strong>,
+        <strong>Activity</strong> and <strong>Time</strong>, we can observe an <span class="underline">Emotionless representation
+        of One's <em>Digestive System Balance</em></span>.<br>Beyond emotions, we can begin to truly understand
+        the Engine of our body. <br>The simple observance, becoming aware of how entangled is
+        The Digestive Balance with our <em>Mood, Feelings and Sufferings</em> - is enough for an
+        effortless change to begin to happen.
+      </p>
+      <p>
+        <br>Our Algorithm integrates:
+      </p>
+
+      <ul class="interactive-list">
+        <li>
+          <i class="fa-solid fa-clock"></i>
+          <strong>Your Inputs:</strong> Sleep schedules, meal timings, and sedentary intervals.
+          <div class="hover-effect">
+            <pre id="hover-text-1" class="hidden"></pre>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-leaf"></i>
+          <strong>Natural Patterns:</strong> Circadian rhythms, digestion rates, and time dimensions.
+          <div class="hover-effect">
+            <pre id="hover-text-2" class="hidden"></pre>
+          </div>
+        </li>
+        <li>
+          <i class="fa-solid fa-chart-line"></i>
+          <strong>Dynamic Interactions:</strong> Food quantity, timing, and logistics for realistic simulation.
+          <div class="hover-effect">
+            <pre id="hover-text-3" class="hidden"></pre>
+          </div>
+        </li>
+      </ul>
+
+
+      <p>
+        <br>The Result? <br>A detailed, interactive model that reflects how your body processes
+        <strong>food</strong> and responds to your lifestyle.
+      </p>
+    </div>
+
+
+        <!-- Scroll Down Indicator -->
+    <div class="scroll-indicator">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 16.5l-6-6 1.41-1.42L12 13.67l4.59-4.59L18 10.5z"></path>
+      </svg>
+    </div>
+
+    <!-- Key Features Section -->
+    <div class="fade-in-section delay-3">
+            <hr>
+      <h2>Key Features:</h2>
+        <ul class="interactive-list">
+          <li>
+            <i class="fa-solid fa-user"></i>
+            <strong>Custom Simulations:</strong> Explore archetypes like Modern Man or Monk, or build your unique profile.
+            <div class="hover-effect">
+              <pre id="hover-text-4" class="hidden"></pre>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-chart-area"></i>
+            <strong>Realistic Visuals:</strong> See your digestive balance shift across time in a clear <em>React graph</em>.
+            <div class="hover-effect">
+              <pre id="hover-text-5" class="hidden"></pre>
+            </div>
+          </li>
+          <li>
+            <i class="fa-solid fa-lightbulb"></i>
+            <strong>Actionable Insights:</strong> Understand how small changes in your routine affect overall digestive health.
+            <div class="hover-effect">
+              <pre id="hover-text-6" class="hidden"></pre>
+            </div>
+          </li>
+        </ul>
+
+      <p>
+        <strong><br>The Food Prophet</strong> empowers you to connect with your body's needs,
+        identify patterns, and cultivate healthier habits.
+      </p>
+
+      <p>Turn the page to see your personal digestive graph.<br></p>
+
+  <!-- Video Container -->
+  <div class="interactive-paragraphs">
+    <div class="hover-item">
+      <p class="visualize"><i>Visualize</i></p>
+      <div class="hover-video">
+        <video autoplay muted loop playsinline>
+          <source src="{% static 'images/visualize.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <div class="hover-item">
+      <p class="simulate"><i>Simulate</i></p>
+      <div class="hover-video">
+        <video autoplay muted loop playsinline>
+          <source src="{% static 'images/simulate.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <div class="hover-item">
+      <p class="transform"><i>Transform</i></p>
+      <div class="hover-video">
+        <video autoplay muted loop playsinline>
+          <source src="{% static 'images/transform.mp4' %}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+
+  </div>
+
+  <!-- React App Mount Point -->
+  <div id="root" class="invisible"></div>
+  <script src="{{ react_assets.js }}"></script>
+
+
+<script>
+
+<!-- Matrix Machine Writing Script -->
+  document.addEventListener("DOMContentLoaded", () => {
+  const textData = [
+    "INIT_SYSTEM_LOAD...\nAnalyzing Sleep Schedules...\nSleep Cycles Mapping to existing Datasets...\nIntegrating Meal Timings Information...\nAdding Variance & Normalization...\nMapping Sedentary Intervals and Levels...\nSedentary Level: HIGH\nPeak Inactivity: 4:00 PM - 7:00 PM\nActivity Score: LOW\nDetecting Behavioral Patterns...\nDaytime vs Nighttime Activity Levels: 75% Variance\nOptimal Adjustment Recommendation: READY\nSystem Scan: COMPLETE",
+    "Integrating Natural Circadian Rhythms (CR)...\nDetecting Sleep-Wake-Eat Cycles Alignment...\nCR Phase Shift: -2 Hours\nAdjusting Optimal Digestion Windows...\nCalculating Initial Digestion Rate...\nBaseline Rate: 32% Efficiency\nAdjusted for Chronotype: NIGHT OWL\nIntegrating Time Dimension with CR...\nMapping Time-Sensitive Digestion Variations...\nTime Dimension Overlap Factor: MEDIUM\nCalculating Geographical Location...\nLatitude: 40.7128° N\nLongitude: 74.0060° W\nSunrise/Sunset Data: SYNCED\nAdjusting New Digestion Rate & Decay...\nRate: +13%\nDecay Factor: Stabilized at 0.87\nSystem Dynamics: SYNCHRONIZED",
+    "Gathering Meal Quantity Data...\nCalculating Meals Probabilistic Models...\nProbability of Overeating: LOW\nMeal Variance Score: MEDIUM\nPredictive Weight Gain Impact: MINIMAL\nCreating Sedentarism Patterns...\nPeriod 1: Sedentary ({time_interval_1}) - High\nPeriod 2: Active ({time_interval_2}) - Low\nPattern Confidence: 89%\nComputing Final Probability Distributions...\nHealthy Digestion Cycle: 74%\nDigestive Stress Events: 3 Potential\nAligning Results with Historical Data...\nGenerating Insights for Adjustments...\nFinal Probability Distribution: COMPLETE",
+    "INIT_SYSTEM_LOAD...\nGathering Input Data...\nScanning User Preferences...\nRetrieving Historical User Data…\nValidating Input Sources...\nNormalizing Probabilities...\nAdjusting Multivariate Distributions...\nStandardizing User Metrics...\nCompiling Statistical Weightage...\nSyncing Timeline across Web Workers...\nWeb Workers: ACTIVE\nLoading Custom Archetype...\nSimulation Seed: 0x7F3E1A\nProbability Weights: ADJUSTED\nGenerating Predictive Model...\nBayesian Estimation: COMPLETE\nSystem Status: OK",
+    "INITIALIZE_GRAPH_ENGINE...\nRendering Dynamic Graphing...\nEdge Complexity: HIGH\nGraph Type: Multi-Line Time Series\nRunning Parallelism Workflows...\nIntegrating UI Components...\nSynchronizing Graph Animations...\nApplying Real-Time Data Rendering...\nEnsuring Responsive Design...\nViewport: Desktop | Tablet | Mobile\nPreparing Time Dimension Alteration Threads...\nAdjusting Time Granularity...\nSimulating Probabilistic Models...\nConfidence Interval: 93%\nAdjusting Scenarios Dynamically...\nVisual Optimization Complete",
+    "INIT_ANALYSIS_ENGINE...\nCalculating Digestive Health Score...\nRunning Impact Assessment...\nGenerating Insights Timeline...\nTimestamps: Day 1 -> Day 14\nScenario Predictions: YES\nCompiling Recommendations...\nMerging with User Data History...\nLogging Interactive Summary...\nActionable Points: 7\nPersonalized Insight Ready\nPreparing Insight Export...\nAnalysis Cycle: COMPLETE"
+  ];
+
+  const hoverEffects = document.querySelectorAll(".hover-effect pre");
+
+  hoverEffects.forEach((hoverEffect, index) => {
+    const parent = hoverEffect.closest("li");
+    let typingInterval; // Store the interval reference to clear properly
+    let lineIndex = 0; // Track the current line being written
+    let charIndex = 0; // Track the current character being written
+    let lines = []; // Dynamically add lines
+
+   parent.addEventListener("mouseover", () => {
+  if (typingInterval) clearInterval(typingInterval); // Clear any previous intervals
+  hoverEffect.textContent = ""; // Clear any residual text
+  lineIndex = 0;
+  charIndex = 0;
+  lines = [""]; // Start with one empty line
+
+  typingInterval = setInterval(() => {
+    if (charIndex < textData[index].length) {
+      const char = textData[index][charIndex];
+      if (char === "\n" || lines[lineIndex]?.length >= 50) {
+        // Move to the next line only when necessary
+        if (lines[lineIndex]?.trim().length > 0) {
+          lineIndex++;
+          lines.push(""); // Add a new line
+          hoverEffect.appendChild(document.createElement("br")); // Add a break
+        }
+        charIndex++; // Skip the newline character
+      } else {
+        lines[lineIndex] += char;
+        let currentLineElement = hoverEffect.querySelectorAll(".matrix-line")[lineIndex];
+        if (!currentLineElement) {
+          currentLineElement = document.createElement("span");
+          currentLineElement.className = "matrix-line";
+          hoverEffect.appendChild(currentLineElement);
+        }
+        currentLineElement.textContent = lines[lineIndex];
+        charIndex++;
+      }
+    } else {
+      clearInterval(typingInterval); // Stop once all text is written
+    }
+  }, 11); // Typing speed
+});
+
+    parent.addEventListener("mouseout", () => {
+      clearInterval(typingInterval); // Ensure interval is stopped
+      hoverEffect.textContent = ""; // Clear text on hover out
+    });
+  });
+});
+
+
+</script>
+
+
+
+
+
+<script>
+// Override the spark count before the main script
+const sparkCount = 200; // Custom spark count
+
+
+// Dynamic Elements, Zoom, transition between Django & React
+
+document.addEventListener('DOMContentLoaded', () => {
+
+window.addEventListener('scroll', () => {
+    console.log('Window scroll event triggered:', window.scrollY);
+});
+
+document.querySelector('.content-wrapper').addEventListener('scroll', () => {
+    console.log('Content-wrapper scroll event triggered');
+});
+
+      // Disable scroll restoration
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    // Ensure page always loads at the top
+    window.scrollTo(0, 0);
+
+
+    const contentWrapper = document.querySelector('.content-wrapper');
+    const nav = document.querySelector('nav');
+    const reactApp = document.getElementById('root');
+
+
+    if (!contentWrapper || !nav || !reactApp) {
+        console.error('Required elements not found!');
+        return;
+    }
+
+       // Listen for scroll events
+    window.addEventListener('scroll', () => {
+        const contentWrapperTop = contentWrapper.getBoundingClientRect().top + window.scrollY;
+        const scrollPosition = window.scrollY;
+
+        // Debugging
+        console.log(`Scroll Position: ${scrollPosition}, Content Wrapper Top: ${contentWrapperTop}`);
+
+        let threshold = 677
+        const mobile = window.innerWidth <= 768; // Detecting mobile devices
+        // Adjust the threshold for mobile devices
+        if (mobile) {
+            threshold = 1.44 * threshold; // No need for `set`, just reassign
+        }
+
+        // Hide navbar and show root if scrolled past the content-wrapper top
+        if (scrollPosition > contentWrapperTop + threshold) {
+            document.body.classList.add('background-active', 'zoom-active');
+            nav.classList.remove('visible');
+            nav.classList.add('invisible');
+            reactApp.classList.remove('invisible');
+            reactApp.classList.add('visible');
+        } else {
+            // Remove background and zoom from body
+            document.body.classList.remove('background-active', 'zoom-active');
+            nav.classList.remove('invisible');
+            nav.classList.add('visible');
+            reactApp.classList.remove('visible');
+            reactApp.classList.add('invisible');
+        }
+        if(mobile)
+        {
+        // Show or hide login button based on scroll position
+        if (scrollPosition >= contentWrapperTop + 255 && scrollPosition < contentWrapperTop + 777) {
+            loginBtn.style.display = 'block'; // Ensure the button is displayed
+            loginBtn.style.opacity = '1'; // Fade in (CSS transition applies)
+            loginBtn.style.transform = `translateY(${scrollPosition}px)`;
+
+        } else {
+            loginBtn.style.opacity = '0'; // Fade out
+        }
+        }
+    });
+
+});
+
+</script>
+
+<!-- Dynamic Login Button - JS scroll tracking to adjust position -->
+<!-- WindowY (Document) Scroll Triggered -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const loginBtn = document.getElementById("loginBtn");
+   const contentWrapper = document.querySelector('.content-wrapper');
+
+  container.addEventListener("scroll", () => {
+    // Get the container's scroll position
+    const scrollTop = contentWrapper.getBoundingClientRect().top + window.scrollY;
+
+    // Dynamically update the button's top position based on scroll
+    loginBtn.style.transform = `translateY(${scrollTop}px)`;
+  });
+});
+
+</script>
+
+
+
+</body>
+
+{% endblock %}
+</html>

@@ -1,0 +1,1016 @@
+
+       /* Reset / Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+    }
+
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1f1f1f;
+      color: #fefefe;
+      min-height: 173vh; /* just to allow scrolling for demo */
+      overflow-x: hidden;
+      position: relative;
+      overflow: hidden; /* Prevent scrolling if unnecessary */
+       transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
+    }
+
+
+/************************************************************
+ * NEURAL-INSPIRED STATIC LINES WITH COLOR SHIFT
+ ************************************************************/
+
+.animated-neural {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  background: none; /* Ensures only the lines are visible */
+}
+
+.animated-neural::before,
+.animated-neural::after {
+  content: "";
+  position: absolute;
+  width: 150%; /* Slightly larger for coverage */
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent 10%,
+    #08c,
+    #6b0eff,
+    #08c,
+    transparent 90%
+  );
+  top: 0; /* Positioned relative to viewport */
+  left: -25%;
+  transform: rotate(45deg); /* Diagonal orientation */
+  opacity: 0.5;
+  animation: color-shift 10s ease-in-out infinite alternate; /* Smooth gradient transition */
+}
+
+.animated-neural::after {
+  top: -5%; /* Create a second static line */
+  animation-delay: 5s; /* Stagger color shift for visual variety */
+  opacity: 0.4;
+}
+
+/************************************************************
+ * COLOR SHIFT ANIMATION
+ ************************************************************/
+@keyframes color-shift {
+  0% {
+    background: linear-gradient(
+      to right,
+      transparent 10%,
+      #08c,
+      #6b0eff,
+      #08c,
+      transparent 90%
+    );
+  }
+  50% {
+    background: linear-gradient(
+      to right,
+      transparent 10%,
+      #6b0eff,
+      #08c,
+      #6b0eff,
+      transparent 90%
+    );
+  }
+  100% {
+    background: linear-gradient(
+      to right,
+      transparent 10%,
+      #08c,
+      #6b0eff,
+      #08c,
+      transparent 90%
+    );
+  }
+}
+
+/************************************************************
+ * LIGHTNING SPARKLES - NEURAL ENERGY PULSES (Enhanced)
+ * Description:
+ * - Added more variation in colors (blue/purple glow).
+ * - Introduced additional keyframe steps to randomize paths.
+ * - Increased box-shadow for a more vibrant glow.
+ * - Staggered delays more heavily to make the motion less predictable.
+ ************************************************************/
+
+.neural-sparkles {
+  pointer-events: none;
+  position: fixed;
+  top: 7rem;       /* Ensure it spans entire container */
+  left: 5rem;      /* Ensure it spans entire container */
+  width: 100%;
+  height: 100vh;
+  overflow: none;
+  z-index: 2;
+}
+
+.neural-sparkles span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  /* A default bright gradient for the sparkles */
+  background: radial-gradient(circle, #ffffff 30%, rgba(255, 255, 255, 0));
+  /* Give them a bigger glow */
+  box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.9);
+  /* Slightly faster total animation time for more liveliness */
+  animation: sparkles 2.5s ease-in-out infinite;
+}
+
+/* Odd sparkles: swirl of purple shades */
+.neural-sparkles span:nth-child(odd) {
+  animation-delay: calc(0.15s * var(--i));
+  background: radial-gradient(circle, #d400ff 30%, rgba(212, 0, 255, 0));
+  /* More intense glow for variety */
+  box-shadow: 0 0 20px 10px rgba(165, 0, 255, 0.8);
+}
+
+/* Even sparkles: swirl of blue shades */
+.neural-sparkles span:nth-child(even) {
+  animation-delay: calc(0.25s * var(--i));
+  background: radial-gradient(circle, #08c 30%, rgba(8, 204, 255, 0));
+  box-shadow: 0 0 20px 10px rgba(8, 204, 255, 0.8);
+}
+
+/* Make sparkles move in a more unpredictable path:
+   - More keyframe steps
+   - Scale in and out at random points
+   - Use multiple translate directions for a “zigzag” effect
+   - Animate opacity to create blinking or vanishing illusions
+*/
+@keyframes sparkles {
+  0% {
+    transform: translate(
+      calc(var(--i) * 0.5vw),
+      calc(var(--i) * 0.5vh)
+    ) scale(0.6);
+    opacity: 0.9;
+  }
+
+  25% {
+    transform: translate(
+      calc(var(--i) * -0.7vw),
+      calc(var(--i) * 0.8vh)
+    ) scale(1.3);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translate(
+      calc(var(--i) * 1.2vw),
+      calc(var(--i) * -1.1vh)
+    ) scale(1.0);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translate(
+      calc(var(--i) * -1vw),
+      calc(var(--i) * -0.5vh)
+    ) scale(1.4);
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translate(
+      calc(var(--i) * 0.3vw),
+      calc(var(--i) * 1vh)
+    ) scale(0.8);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+/************************************************************
+ * CURVED FLOW LINES - NEURAL CONNECTION ANIMATIONS
+ ************************************************************/
+.curved-lines {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  will-change: transform, opacity;
+}
+
+.curved-lines::before,
+.curved-lines::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #08c,
+    #6b0eff,
+    transparent
+  );
+  border-radius: 10%;
+  animation: curved-flow 12s linear infinite;
+}
+
+.curved-lines::after {
+  animation-delay: 6s;
+  opacity: 0.2;
+}
+
+@keyframes curved-flow {
+  0% {
+    transform: rotate(0deg) translateY(0px) scale(0.7);
+    opacity: 0.2;
+  }
+  50% {
+    transform: rotate(180deg) translateY(20px) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(360deg) translateY(-20px) scale(0.7);
+    opacity: 0.2;
+  }
+}
+
+
+/************************************************************
+ * MINIMALIST PULSE GRID (OPTIONAL)
+ ************************************************************/
+.pulse-grid {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 2px);
+  background-size: 60px 60px;
+  opacity: 0.07;
+  z-index: 20;
+  animation: pulse-grid 8s ease-in-out infinite;
+}
+
+@keyframes pulse-grid {
+  0%, 100% {
+    opacity: 0.075;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+}
+
+.invisible {
+  opacity: 0; /* Make it transparent */
+  visibility: hidden; /* Prevent interaction */
+  transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+}
+
+
+
+    /************************************************************
+     * HERO / PRESENTATION SECTION
+     ************************************************************/
+    .presentation-container {
+      position: relative;
+      width: 100%;
+      min-height: 80vh; /* full viewport height */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* center vertically & horizontally */
+      text-align: center;
+      padding: 8rem 0 3rem; /* reduce top/bottom padding so text is more centered */
+      z-index: 2; /* above the background lines */
+    }
+
+    .presentation-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #08c;
+      margin-top: 1.85rem;
+      margin-bottom: 1.2rem;
+      animation: fadeDown 2s ease forwards !important;
+      opacity: 1;
+      transform: translateY(-30px);
+    }
+
+    .presentation-subtitle {
+      font-size: 1.10rem;
+      max-width: 700px;
+      margin: 1.5rem auto 1.5rem auto;
+      line-height: 1.6;
+      animation: fadeUp 1.55s ease 0.2s forwards;
+      opacity: 0;
+      transform: translateY(30px);
+
+    }
+    .presentation-details {
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 3s ease 0.4s forwards;
+      font-weight: normal;
+    }
+
+        .presentation-details2{
+      font-size: 1rem;
+      max-width: 700px;
+      margin: 1rem auto;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 8s ease 0.4s forwards;
+      font-weight: normal;
+    }
+
+    /* Fade-down / Fade-up animations */
+    @keyframes fadeDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /************************************************************
+     * SCROLL DOWN INDICATOR
+     ************************************************************/
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      color: #ccc;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.2s forwards;
+      gap: 33px;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+    .scroll-indicator svg {
+      width: 24px;
+      height: 24px;
+      fill: #08c;
+      animation: arrowBounce 2s infinite;
+    }
+    @keyframes arrowBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(5px);
+      }
+    }
+
+    /************************************************************
+     * “SECOND SECTION” or Next content to show after scrolling
+     ************************************************************/
+    .second-section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      background: #2e2e2e url("https://www.transparenttextures.com/patterns/dark-fish-skin.png");
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      z-index: 2;
+    }
+
+
+    /************************************************************
+     * PAGE CONTAINER (Chat & Sidebar)
+     ************************************************************/
+    /* We’ll keep most of your existing styling but remove
+       the ‘display: flex; height: 100vh;’ from body and
+       let the sections flow naturally. */
+
+    .page-container {
+      display: flex;
+      margin: 0;
+      /* Instead of forcing the entire viewport, just let content flow. */
+      min-height: 100vh;
+      margin-top: 0rem;
+      margin-left: 0rem;
+      opacity: 0; /* Start hidden, we’ll fade it in with JS once scrolled */
+      transition: opacity 0.8s ease;
+    }
+
+    .page-container.visible {
+      opacity: 1;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: linear-gradient(135deg, #242424, #2e2e2e);
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      padding: 1rem;
+      border-bottom: 1px solid #444;
+    }
+
+    .sidebar-header h2 {
+      margin: 0;
+      color: #08c;
+      font-weight: 500;
+      font-size: 1.25rem;
+    }
+
+    .new-chat-btn {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      margin-top: 0.75rem;
+      border: none;
+      background: #08c;
+      color: #fff;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .new-chat-btn:hover {
+      background: #07a;
+    }
+
+    .sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+    .sidebar-content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .sidebar-content::-webkit-scrollbar-thumb {
+      background-color: #444;
+      border-radius: 4px;
+    }
+    .sidebar-content::-webkit-scrollbar-track {
+      background-color: #222;
+    }
+
+    .sidebar-chat-entry {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      background: #333;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.95rem;
+      user-select: none;
+    }
+    .sidebar-chat-entry:hover {
+      background: #444;
+    }
+    .sidebar-chat-entry.active-conversation {
+      background: #555 !important;
+    }
+
+    .sidebar-chat-title {
+      flex-grow: 1;
+    }
+    .chat-options-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+    }
+    .chat-options-btn:hover {
+      opacity: 1;
+      background: #555;
+    }
+    .chat-options-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: #ccc;
+    }
+    .chat-options-dropdown {
+      position: absolute;
+      top: 42px;
+      right: 8px;
+      background: #2e2e2e;
+      border: 1px solid #444;
+      border-radius: 4px;
+      display: none;
+      flex-direction: column;
+      min-width: 100px;
+      z-index: 999;
+    }
+    .chat-options-dropdown.show {
+      display: flex;
+    }
+    .chat-options-dropdown button {
+      background: none;
+      border: none;
+      color: #fff;
+      text-align: left;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .chat-options-dropdown button:hover {
+      background: #444;
+    }
+
+    .chat-outer-container {
+      position: relative;
+      flex: 1;
+      max-width: 100%;
+      height: 100%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      background: rgba(32, 32, 32, 0.85);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      height: 60px;
+      background: linear-gradient(45deg, #282828, #2f2f2f);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      border-bottom: 1px solid #444444;
+    }
+    .chat-header h4 {
+      margin: 0;
+      padding: 0;
+      color: #08c;
+      font-weight: 500;
+    }
+
+
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      max-height: 79.3vh;
+
+
+
+    }
+
+    .chat-messages p {
+    font-size: 0.9rem;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 8px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background-color: #444;
+      border-radius: 4px;
+    }
+    .chat-messages::-webkit-scrollbar-track {
+      background-color: #222;
+    }
+
+    .chat-bubble {
+  display: flex; /* Ensure it is a flex container */
+      align-items: center; /* Vertically aligns text and button */
+      max-width: 75%;
+      margin-bottom: 0.75rem;
+      border-radius: 16px;
+      line-height: 0;
+      position: relative;
+      animation: fadeIn 0.25s ease;
+      font-size: 0.95rem;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      user-select: text;
+      padding: 0.75rem 1rem 0.75rem 1rem;
+    }
+
+    /* Reset the default behavior of <p> inside the bubble */
+.chat-bubble p {
+ margin: 0.5rem 0rem;
+     line-height: 1.3;
+  padding: 0; /* Remove default paddings */
+  display: block; /* Make it behave like inline text */
+  font-weight: 500;
+  text-indent: 0.7em;      /* indent the first line by 1.5em (adjust as you like) */
+
+}
+
+.chat-bubble h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.18rem;
+    line-height: 1;
+    margin: 0.5rem 0rem 1rem; /* or margin: 0 auto if you like */
+
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    animation: glow 2s ease-in-out infinite alternate !important;
+    display: inline-block; /* Ensures consistent rendering */
+}
+
+.chat-bubble h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.02rem;
+    margin-bottom: 0.3rem;
+      text-indent: 1em;      /* indent the first line by 1.5em (adjust as you like) */
+    margin-top: 1rem;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255,140,0,0.8);
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    animation: glow 2s ease-in-out infinite alternate !important;
+}
+
+
+.chat-bubble h3 {
+    font-size: 0.94rem;
+    font-family: 'Cinzel', serif;
+    margin-bottom: 0.15rem;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(255,140,0,0.8);
+    text-shadow: 0 0 15px rgba(255,140,0,0.8), 0 0 30px rgba(255,69,0,0.5);
+    animation: glow 2s ease-in-out infinite alternate !important;
+}
+
+.chat-bubble ul {
+  list-style-type: disc;       /* Ensure bullet points */
+  margin: 0em 0;              /* Vertical spacing before/after the list */
+  padding-left: 2em;          /* Indent bullets from the left */
+}
+
+.chat-bubble li {
+  margin: 0.1em 0;            /* Space out each list item vertically */
+  line-height: 1;           /* Make it more readable */
+}
+
+.chat-bubble.user p {
+text-indent: 0em;
+}
+
+    .chat-bubble.user {
+      align-self: flex-end;
+      background-color: #08c;
+      color: #fff;
+      border-bottom-right-radius: 0;
+      padding: 0.1rem 1rem;
+    }
+    .chat-bubble.llm {
+      align-self: flex-start;
+      background-color: #2b2b2b;
+      color: #ddd;
+      border-bottom-left-radius: 0;
+    }
+
+    /* Content container for text and button */
+.chat-bubble .content-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Text message styling */
+.chat-bubble span {
+  flex: 1; /* Take all available space */
+  margin-right: 10px;
+  line-height: 0; /* Adjust as needed to reduce height */
+}
+
+
+    .copy-btn {
+      position: inherit;
+      top: 0px;
+      right: 08px;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      line-height: 0;
+    }
+    .copy-btn:hover {
+      opacity: 1;
+    }
+    .copy-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: #bbb;
+      transition: fill 0.2s;
+    }
+    .copy-btn:hover svg {
+      fill: #fff;
+    }
+
+    .chat-input {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      background: #222222cc;
+      border-top: 1px solid #444444;
+    }
+    .chat-input textarea {
+      flex-grow: 1;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      margin-right: 0.5rem;
+      border: none;
+      outline: none;
+      background: #3c3c3c;
+      color: #fefefe;
+      transition: background 0.25s ease, color 0.25s ease;
+      resize: none;
+      height: 50px;
+    }
+    .chat-input textarea::placeholder {
+      color: #999999;
+    }
+    .chat-input textarea:focus {
+      background: #4f4f4f;
+    }
+    .chat-input button {
+      border-radius: 12px;
+      border: none;
+      padding: 0.5rem 1rem;
+      background-color: #08c;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.25s ease, transform 0.1s ease;
+    }
+    .chat-input button:hover {
+      background-color: #049;
+      transform: scale(1.03);
+    }
+
+    /* Audio Controls */
+    #audio-controls {
+      position: fixed;
+      bottom: 8px;
+      left: 2px;
+      z-index: 10;
+      display: inline-table;
+      align-items: center;
+    }
+    #audio-controls button {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+
+
+
+
+ /************************************************************
+ * Media Query for Mobile Devices
+ ************************************************************/
+
+@media only screen and (max-width: 768px) {
+  /* Body adjustments */
+  body {
+    font-size: 14px; /* Reduce base font size */
+    min-height: max-content;
+  }
+
+
+  /* Chat Container */
+  .page-container {
+    flex-direction: column; /* Stack sidebar and chat vertically */
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 100%; /* Sidebar takes full width */
+    box-shadow: none; /* Remove shadow for simplicity */
+  }
+.sidebar-header {
+    display: flex; /* Use flexbox to align items horizontally */
+    justify-content: space-between; /* Space out text and button */
+    align-items: center; /* Center items vertically */
+        margin-top: 1.3rem;
+}
+
+.sidebar-header h2 {
+    margin: 0; /* Ensure no extra space around the heading */
+    font-size: 1rem; /* Adjust font size if needed */
+    margin-top: 1rem;
+}
+
+.new-chat-btn {
+    font-size: 0.85rem; /* Maintain reduced button size */
+    padding: 0.3rem 0.6rem;
+    margin: 0; /* Remove any default margin */
+}
+  .sidebar-content {
+    padding: 0.25rem;
+  }
+
+  /* Chat Outer Container */
+  .chat-outer-container {
+    flex: 1;
+    width: 100%; /* Ensure full width */
+    height: auto; /* Adjust height to content */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      background: rgba(32, 32, 32, 0.85);
+      backdrop-filter: unset;
+  }
+
+  /* Chat Header */
+  .chat-header h4 {
+    font-size: 1rem; /* Reduce header font size */
+  }
+
+  /* Chat Messages */
+  .chat-messages {
+    padding: 0.5rem; /* Reduce padding */
+    max-height: 65vh; /* Restrict the height to 60% of the viewport */
+
+  }
+  .chat-bubble {
+    font-size: 0.85rem; /* Reduce font size of messages */
+    padding: 0.5rem 1.5rem; /* Adjust padding */
+  }
+
+  /* Chat Input */
+  .chat-input {
+    flex-direction: column; /* Stack input and button vertically */
+    padding: 0.5rem;
+  }
+  .chat-input textarea {
+    width: 100%; /* Full width for text area */
+    height: 40px; /* Reduce height */
+    font-size: 0.9rem;
+    padding: 0.65rem 1rem;
+    margin-right: 0rem;
+  }
+  .chat-input button {
+    margin-top: 0.5rem;
+    padding: 0.5rem; /* Smaller button */
+    width: 100%; /* Full width button */
+  }
+
+  /* Adjust Scroll Indicator */
+  .scroll-indicator {
+    bottom: -0.5rem; /* Adjust bottom positioning */
+  }
+  .scroll-indicator span {
+    font-size: 0.75rem; /* Smaller text */
+  }
+  .scroll-indicator svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Presentation Section */
+  .presentation-container {
+    padding: 3rem 1rem; /* Reduce padding */
+  }
+    .presentation-title {
+        font-size: 1.5rem;
+        margin-top: 4rem;
+    }
+  .presentation-subtitle {
+    font-size: 0.9rem; /* Adjust subtitle size */
+    margin-top: 0.25rem;
+  }
+  .presentation-details {
+    font-size: 0.8rem; /* Adjust details font size */
+  }
+
+    .presentation-details2 {
+    font-size: 0.8rem; /* Adjust details font size */
+  }
+
+
+  /* Second Section */
+  .second-section {
+    padding: 1rem; /* Adjust padding */
+    text-align: left; /* Align text left */
+  }
+
+  /* Sidebar Chat Entry */
+  .sidebar-chat-entry {
+    font-size: 0.85rem; /* Smaller entry font */
+    padding: 0.3rem 0.6rem; /* Adjust padding */
+  }
+
+  /* Neural Sparkles */
+  .neural-sparkles {
+    top: 5rem; /* Adjust for better positioning */
+    left: 3rem;
+  }
+
+  /* Audio Controls */
+  #audio-controls {
+    bottom: 16px;
+    left: 8px; /* Keep it compact */
+    transform: scale(0.8); /* Make smaller */
+  }
+
+  .pulse-grid {
+  pointer-events: none; /* Prevent interaction */
+  position: absolute; /* Ensure it covers the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Fullscreen coverage */
+  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 2px);
+  background-size: 60px 60px;
+  opacity: 0.07;
+  z-index: 10; /* Ensure it’s below content but above background */
+  animation: pulse-grid 8s ease-in-out infinite;
+}
+
+
+    .chat-options-dropdown {
+      position: absolute;
+      top: 0px;
+      right: 8px;
+      background: #2e2e2e;
+      border: 1px solid #444;
+      border-radius: 4px;
+      display: none;
+      flex-direction: row;
+      min-width: 100px;
+      z-index: 999;
+    }
+
+    .chat-bubble .content-container {
+    display: block; }
+
+    .copy-btn svg {
+    display: none;
+    }
+
+
+
+}
+
+nav {
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(31, 31, 31, 0.8));
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease-in-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Optional */
+}
+
+.nav-center {
+    margin-right: 3rem;
+
+}
+

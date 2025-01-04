@@ -1,0 +1,395 @@
+
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Updated Body Styles */
+body {
+    background: linear-gradient(to bottom, #1a1a1a, #000); /* Fallback for unsupported browsers */
+    color: #ddd;
+    font-size: 0.95rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+    /* Container to center the main content */
+    .bibliography-container {
+      width: 100%;
+      min-height: 50vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 80px; /* Extra space at bottom if needed */
+    }
+
+    /* === TOP-LEFT BOOK ICON === */
+    .icon-container {
+      position: fixed;
+      top: 13px;
+      left: 20px;
+      z-index: 1000;
+    }
+    .icon-container i {
+      font-size: 2.5rem;
+      color: #7ec8e3;
+      text-shadow: 0 0 6px #7ec8e3;
+    }
+
+    /* === PRESENTATION SECTION (Hero-like) === */
+    .presentation-container {
+      max-width: 900px;
+      margin: 5rem auto;
+      text-align: center;
+    }
+
+    .presentation-container .h2 {
+    font-size: 1.3rem;
+}
+    /* Title in the hero section */
+    .presentation-title {
+      font-size: 2.2rem;
+      color: #7ec8e3;
+      margin-bottom: 20px;
+    }
+
+    /* Subtitle text */
+    .presentation-subtitle {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .presentation-details {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .presentation-details2 {
+      font-size: 1rem;
+      font-style: bold;
+      margin-bottom: 25px;
+    }
+    .presentation-details4 {
+      font-size: 1.1rem;
+      font-style: bold;
+    }
+
+    /* OPTIONAL: highlight pseudo-class */
+    highlight {
+      color: #7ec8e3;
+      background-color: #333;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    /* === BIBLIOGRAPHY INTRO SECTION === */
+    .bibliography-intro {
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+      text-align: center;
+      padding: 20px;
+      background-color: #2e2e2e;
+      border-radius: 8px;
+      box-shadow:
+        inset 0 0 15px rgba(126,200,227,0.2),
+        0 0 15px rgba(126,200,227,0.2);
+    }
+    .bibliography-intro h2 {
+      color: #7ec8e3;
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+    }
+    .bibliography-intro p {
+      line-height: 1.5;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+
+/* === ACTUAL BIBLIOGRAPHY LIST WRAPPER === */
+
+.scrolling-list {
+    width: 70%;
+    max-width: 900px;
+    height: 60vh;
+    overflow-y: auto;
+    background-color: #2e2e2e;
+    border-radius: 8px;
+    box-shadow: inset 0 0 15px rgba(126, 200, 227, 0.2), 0 0 15px rgba(126, 200, 227, 0.2);
+    position: relative;
+}
+
+/* Custom scrollbar styling */
+.scrolling-list::-webkit-scrollbar {
+    width: 12px;
+}
+
+.scrolling-list::-webkit-scrollbar-thumb {
+    background: rgba(126, 200, 227, 0.5); /* Semi-transparent blue */
+    border-radius: 6px;
+    border: 2px solid #2e2e2e; /* Matches background for a smooth look */
+}
+
+.scrolling-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(126, 200, 227, 0.8); /* Slightly darker on hover */
+}
+
+.scrolling-list::-webkit-scrollbar-track {
+    background: transparent; /* Fully transparent */
+}
+
+.scrolling-list:hover::-webkit-scrollbar {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.scrolling-list:not(:hover)::-webkit-scrollbar {
+    opacity: 0; /* Invisible when not interacting */
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+    .reference-item {
+      position: relative;
+      padding: 10px;
+      line-height: 1.3;
+      text-align: center;
+      transition: background-color 0.3s;
+    }
+    .reference-item:hover {
+      background-color: #3b3b3b;
+    }
+
+/* Gradient line between items */
+.reference-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, #5aaac8, #7ec8e3, #a8e1f2);
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(126, 200, 227, 0.8), 0 0 20px rgba(126, 200, 227, 0.5);
+    overflow: hidden;
+    animation: pulseLine 6s ease-in-out infinite, shimmerEffect 6s linear infinite;
+}
+
+/* Subtle glow effect to make it alive */
+@keyframes pulseLine {
+    0%, 100% {
+        transform: scaleX(0.8);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scaleX(1); /* Slightly stretch the line */
+        opacity: 1;
+    }
+}
+
+/* Shimmer movement across the line */
+@keyframes shimmerEffect {
+    0% {
+        background-position: -150% 0;
+    }
+    100% {
+        background-position: 150% 0;
+    }
+}
+
+
+    .reference-item a {
+      color: #7ec8e3;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .reference-item a:hover {
+      color: #a8e1f2;
+      text-decoration: underline;
+    }
+/* === SUMMARY POPUP === */
+.summary-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(34, 34, 34, 0.95);
+    color: #a8e1f2;
+    border: 1px solid #7ec8e3;
+    border-radius: 8px;
+    padding: 20px;
+    display: none;
+    z-index: 9999;
+    width: 570px;
+    height: 300px; /* Increased height for image and text */
+    box-shadow: 0 0 10px #7ec8e3, 0 0 20px rgba(126, 200, 227, 0.3);
+    transform: scale(0.8);
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    opacity: 0;
+    display: flex; /* Flexbox for layout */
+    flex-direction: row; /* Image on left, text on right */
+    gap: 20px; /* Space between image and text */
+}
+
+/* Popup visible state */
+.summary-popup.show {
+    display: flex;
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Book image styling */
+.summary-popup img {
+    width: auto; /* Adjust size as needed */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Text container styling */
+.summary-popup .text-content {
+    flex: 1;
+    overflow: hidden;
+    font-size: 0.8rem;
+    line-height: 1.3;
+    white-space: pre-wrap; /* Preserve whitespace for typing effect */
+}
+
+
+    hr {
+    border: none;
+    height: 1px;
+    background: #add8e6;
+    opacity: 0.5;
+    margin: 20px 0;
+}
+
+    .nav-center {
+    margin-right: 4rem;
+}
+
+
+
+
+/* Footer Video Styling */
+
+/* Modern video container styling */
+.video-container {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    margin: 50px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(126, 200, 227, 0.5));
+    opacity: 0; /* Hidden initially for fade-in effect */
+    transform: translateY(50px); /* Initial offset for animation */
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+/* Video styling */
+.video-content {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.8); /* Slight darkening effect for modern look */
+    transition: filter 0.3s ease-in-out;
+}
+
+/* Hover effect on video */
+.video-content:hover {
+    filter: brightness(1); /* Brighten on hover */
+}
+
+/* Gradient edges around the video */
+.video-container::before,
+.video-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+}
+
+/* Overlay for enabling sound */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 3; /* Ensure it overlays the video */
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.video-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Redirect message styling */
+.redirect-message {
+    position: fixed;
+    bottom: 57px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+/* Mute/Unmute Icon Styling */
+.mute-icon {
+    position: absolute;
+    top: 15px; /* Position it in the top-left corner */
+    left: 15px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    border-radius: 50%; /* Circle icon */
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10; /* Ensure it overlays the video */
+    box-shadow: 0 0 15px rgba(126, 200, 227, 0.5), 0 0 30px rgba(126, 200, 227, 0.3);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Icon Inside */
+.mute-icon i {
+    font-size: 1.5rem;
+    color: #7ec8e3; /* Light blue */
+}
+
+/* Hover Effect */
+.mute-icon:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0 0 20px rgba(126, 200, 227, 0.8), 0 0 40px rgba(126, 200, 227, 0.6);
+}

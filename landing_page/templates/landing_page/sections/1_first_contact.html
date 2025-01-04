@@ -1,0 +1,390 @@
+<div class="anvil-icon"></div>
+<h1>Secretele Alchimiei Adevărate</h1>
+<p><br></br>
+    <strong>O singură dată e suficient să transformi <strong><span class="underline">Suferința în Sănătate</span>, și vei simți că presupusa schimbare a metalului în aur pălește în fața acestei experiențe.</strong></p>
+
+<p><em><br>Acea relaxare după accidentare, acea respirație profundă după un virus puternic, acel sistem digestiv calm după dezechilibre</em> —
+    <strong><span class="underline">sunt mai valoroase decât orice Mit despre Aur.</span></strong></p>
+
+<!-- Mystical Alchemy Symbol -->
+<div class="mystical-symbol">
+    <div class="triangle"></div>
+    <div class="radiation"></div>
+</div>
+
+<div class="hover-text">Breath In</div>
+<div class="hover-text2">Breath Out</div>
+
+<p><strong><br>Orice durere cronică ai avea </strong> — de la dureri de spate, nemulțumiri, lipsă de energie, lipsă de direcție, lipsa acelui "chef" de viață, dezorientare —
+    <strong><span class="underline">toate pot fi înțelese și vindecate.</span></strong></p>
+
+
+<!-- Embedded YouTube Section -->
+<div class="video-container">
+    <iframe
+        width="100%"
+        height="315"
+        src="https://www.youtube.com/embed/KDi793OZNyo?start=5176"
+        title="Vezi Ultimul Webinar Re-Connect"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+    <h3 class="video-subtitle">🎥 Vezi Ultimul Webinar Re-Connect</h3>
+</div>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator">▼ Scroll ▼</div>
+
+<style>
+
+    /* Existing styles for video container */
+    .video-container {
+        margin: 40px 0;
+        text-align: center;
+        background: #1a1a1a;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        color: #fff;
+    }
+
+    .video-container iframe {
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 15px;
+    }
+
+    .video-subtitle {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffc107;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .scroll-indicator {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #888;
+        margin: 20px 0;
+    }
+
+    /* ====================================
+       Mystical Symbol (Neon Triangle)
+       ==================================== */
+
+/* Center parent container */
+.mystical-symbol {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    margin: 15px auto; /* Center horizontally */
+    position: relative;
+    width: 100px; /* Base size */
+    height: 100px;
+    text-align: center; /* Align content inside */
+        transition: transform 2.5s ease-in-out; /* Smooth rotation */
+
+}
+
+
+/* Rotate all elements on hover */
+.mystical-symbol:hover {
+    animation: none; /* Temporarily stop animations on hover */
+    transform: rotate(360deg); /* Smooth rotation */
+}
+
+/* Hover Effect: Rotate Smoothly */
+.triangle:hover {
+
+
+    transform:  rotate(360deg); /* Rotate while staying centered */
+}
+
+/* Triangle styling */
+.triangle {
+    position: absolute;
+    top: 20px;
+    left: 0%;
+    transform: translateX(-50%); /* Offset horizontally to center */
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 75px solid #ff7733; /* Gold with a reddish tint */
+    animation: colorPulse 6s ease-in-out infinite, scalePulse 6s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 12px rgba(255, 119, 51, 0.8)); /* Stronger reddish glow */
+        transition: transform 1.5s ease-in-out; /* Smooth rotation */
+
+}
+
+
+
+/* Soft, subtle glow background */
+.soft-glow {
+    position: absolute;
+    width: 480px; /* Increased 50% */
+    height: 480px; /* Increased 50% */
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.15), transparent 70%);
+    animation: glowPulse 6s ease-in-out infinite alternate;
+    z-index: -1;
+    opacity: 1; /* More transparent blue glow */
+}
+
+
+/* Triangle color pulse */
+@keyframes colorPulse {
+    0%, 100% {
+        border-bottom-color: #ffaa00; /* Reddish gold */
+        filter: drop-shadow(0 0 20px rgba(255, 119, 51, 0.9));
+    }
+    50% {
+        border-bottom-color: #40e0d0; /* Light Blue */
+        filter: drop-shadow(0 0 30px rgba(0, 212, 255, 0.8)); /* More transparent blue */
+    }
+}
+
+/* Subtle scaling pulse */
+@keyframes scalePulse {
+    0%, 100% {
+        transform: scale(0.88);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Soft pulsating glow animation */
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.75; /* Slightly stronger glow */
+        transform: scale(1.4); /* Larger radius pulse */
+    }
+}
+
+
+
+
+
+/* Hover-triggered text container */
+.hover-text {
+    position: absolute;
+    top: 45.5%;
+    left: 30%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0);
+    white-space: nowrap;
+    pointer-events: none; /* Prevent interaction */
+    opacity: 0; /* Initially invisible */
+    animation: none; /* No animation until hover */
+    font-style: italic; /* Make the text italic */
+
+}
+
+
+
+/* Hover-triggered text container */
+.hover-text2 {
+    position: absolute;
+    top: 45.5%;
+    left: 58%; /* Position text to the right of the mystical-symbol */
+    transform: translateY(-50%);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0);
+    white-space: nowrap;
+    pointer-events: none; /* Prevent interaction */
+    opacity: 0; /* Initially invisible */
+    animation: none; /* No animation until hover */
+    font-style: italic; /* Make the text italic */
+}
+
+
+/* Activate text animation on hover */
+.mystical-symbol:hover + .hover-text{
+    animation: textCycle 6s ease-in-out infinite;
+}
+
+.mystical-symbol:hover ~ .hover-text2 {
+    animation: textCycle2 6s ease-in-out infinite;
+}
+
+
+/* Keyframes for text animation */
+@keyframes textCycle {
+    0% {
+        opacity: 0;
+        content: "Breath In";
+        color: rgba(255, 255, 255, 0.9); /* Visible white */
+    }
+    30% {
+            content: "Breath In";
+        opacity: 1; /* Text appears quickly */
+    }
+
+    45% {
+                content: "Breath In";
+        opacity: 0.77; /* Text appears quickly */
+    }
+    52% {
+        content: "Breath Out";
+        opacity: 0.4;
+    }
+
+    58% {
+        content: "Breath Out";
+        opacity: 0;
+    }
+
+    75% {
+
+        content: "Breath Out";
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+    /* Keyframes for text animation */
+@keyframes textCycle2 {
+    0% {
+        opacity: 0;
+        content: "Breath Out";
+        color: rgba(255, 255, 255, 0.9); /* Visible white */
+    }
+
+    40% {
+        content: "Breath Out";
+        opacity: 0;
+    }
+
+     58% {
+        content: "Breath Out";
+        opacity: 0.2;
+    }
+
+
+    65% {
+        content: "Breath Out";
+        opacity: 0.5;
+        color: rgba(255, 255, 255, 0.9); /* Visible white */
+    }
+
+
+    75% {
+
+        content: "Breath Out";
+        opacity: 1;
+        color: rgba(255, 255, 255, 0.9); /* Visible white */
+    }
+
+    88% {
+
+        content: "Breath Out";
+        opacity: 1;
+        color: rgba(255, 255, 255, 0.9); /* Visible white */
+    }
+
+    95% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+</style>
+
+
+<script>
+
+<!-- Dynamic Login Button -->
+<!-- Body Scroll Triggered -->
+document.addEventListener("DOMContentLoaded", () => {
+    // Check for mobile screen size (<768px)
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        const loginBtn = document.getElementById('loginBtn');
+
+        // Ensure the login button is hidden initially
+        loginBtn.style.display = 'none';
+
+        // Add scroll event listener to toggle login button visibility
+        document.body.addEventListener("scroll", () => {
+            const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+
+            if (scrollPosition >= 1200 && scrollPosition <= 2800) {
+                loginBtn.style.display = 'block'; // Ensure the button is displayed
+                                setTimeout(() => {
+                    loginBtn.style.opacity = '1'; // Fade in (CSS transition applies)
+                }, 0); // Immediate opacity change after display
+            } else {
+                loginBtn.style.opacity = '0'; // Fade out
+            }
+        });
+    }
+});
+
+
+
+    <!-- Debugging & Exploring Scroll behavior -->
+
+    document.querySelectorAll('*').forEach((el) => {
+    const style = getComputedStyle(el);
+    if (style.overflowY === 'scroll' || style.overflowY === 'auto') {
+        console.log('Scrollable Element:', el);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Add scroll event listener for the <body> element
+    document.body.addEventListener("scroll", () => {
+        console.log("Body scroll event triggered. Scroll Top:", document.body.scrollTop);
+    });
+
+    // Add scroll event listener for the <html> element
+    document.documentElement.addEventListener("scroll", () => {
+        console.log("HTML scroll event triggered. Scroll Top:", document.documentElement.scrollTop);
+    });
+
+    // Add scroll event listener for the window to observe window.scrollY
+    window.addEventListener("scroll", () => {
+        console.log("Window scroll event triggered. Scroll Y:", window.scrollY);
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Scroll Y:", window.scrollY);
+    console.log("Inner Width:", window.innerWidth);
+    console.log("Inner Height:", window.innerHeight);
+    console.log("Document Body Offset Height:", document.body.offsetHeight);
+
+   // Add scroll event listener to print the current scroll position
+    document.addEventListener('scroll', () => {
+        console.log('Scroll event triggered. Scroll Y:', window.scrollY);
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+
+window.addEventListener("load", () => {
+ console.log("Using Load Listener: \nScroll Y:");
+    console.log("Scroll Y:", window.scrollY);
+    console.log("Inner Width:", window.innerWidth);
+    console.log("Inner Height:", window.innerHeight);
+    console.log("Document Body Offset Height:", document.body.offsetHeight);
+});
+});
+
+</script>

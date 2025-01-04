@@ -1,0 +1,469 @@
+
+/* Air - The Breath of Life */
+
+.symbols-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 6rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+.symbol {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+/* ---------------------------------------------------------- */
+/* AIR SYMBOL */
+/* ---------------------------------------------------------- */
+
+.symbol.air {
+    overflow: visible;
+}
+
+.air-core {
+    position: absolute;
+    width: 27px; /* Size of the air-core */
+    height: 27px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(173,216,230,1), rgba(135,206,250,0.5));
+    border-radius: 50%;
+    animation: breathing 4s infinite ease-in-out;
+    box-shadow: 0 0 11.25px rgba(173,216,230,0.7), inset 0 0 4.5px rgba(135,206,250,0.5);
+    z-index: 5; /* Lower than the video */
+    overflow: visible; /* Ensures video visibility */
+}
+
+.heartbeat-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 55px;
+    height: 55px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    object-fit: cover;
+    mix-blend-mode: screen; /* Makes black areas transparent */
+    opacity: 1; /* Keep the heartbeat fully visible */
+    pointer-events: none;
+}
+
+
+.airwave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 111px;
+    height: 111px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(135,206,250,0.3), rgba(0,191,255,0));
+    transform: translate(-50%, -50%) scale(0.45);
+    animation: airwaveExpand 4s infinite ease-in-out;
+    mix-blend-mode: screen;
+    opacity: 0.7;
+    z-index: 10; /* Behind the video */
+}
+
+
+.wave1 { animation-delay: 0s; }
+.wave2 { animation-delay: 1s; }
+.wave3 { animation-delay: 2s; }
+.wave4 { animation-delay: 3s; }
+
+@keyframes breathing {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.15); }
+}
+
+@keyframes airwaveExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0.45); /* Increased 1.5x from 0.3 */
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.8); /* Increased 1.5x from 1.2 */
+        opacity: 0;
+    }
+}
+
+
+
+
+@keyframes video-breathing {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+
+/* Heartbeat - To be Further Developed */
+
+/*
+
+.heartbeat-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;   */
+/* Adjusted container width *//*
+
+    height: 40px;   */
+/* Slightly taller for a more natural heartbeat look *//*
+
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    background: transparent;
+}
+
+.heartbeat-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 200%; */
+/* Extra width for continuous flow *//*
+
+    height: 2px;
+    background: black; */
+/* Single clean line *//*
+
+    animation: lineMove 4s linear infinite;
+}
+
+@keyframes lineMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.heartbeat-line::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2px;
+    height: 2px; */
+/* Base size of the spike *//*
+
+    background: black;
+    transform: translate(-50%, -50%) scaleY(1);
+    transform-origin: center bottom;
+    z-index: 2; */
+/* Above the main line *//*
+
+    opacity: 0; */
+/* Hidden by default *//*
+
+}
+
+@keyframes beatAnimation {
+    0%   { transform: translate(-50%, -50%) scaleY(1); opacity: 0; }
+    20%  { transform: translate(-50%, -50%) scaleY(15); opacity: 1; } */
+/* Spike up *//*
+
+    50%  { transform: translate(-50%, -50%) scaleY(7); opacity: 0.8; } */
+/* Start fading *//*
+
+    100% { transform: translate(-50%, -50%) scaleY(1); opacity: 0; } */
+/* Fade out *//*
+
+}
+
+.heartbeat-line.beat::after {
+    animation: beatAnimation 2s ease-out;
+}
+
+*/
+
+
+
+/* ---------------------------------------------------------- */
+/* FOOD SYMBOL */
+/* ---------------------------------------------------------- */
+
+.symbol.food {
+    position: relative;
+    overflow: visible;
+    width: 78px;    /* 60px*1.3 */
+    height: 104px;  /* 80px*1.3 */
+    animation: containerScale 12s linear infinite;
+}
+
+@keyframes containerScale {
+    0%   { transform: scale(0.8); }
+    50%  { transform: scale(1.2); }
+    77%  { transform: scale(1.2); }
+    90%  { transform: scale(0.8); }
+    100% { transform: scale(0.8); }
+}
+
+/* Soil */
+.soil {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;     /* 20px*1.3 */
+    height: 6.5px;   /* 5px*1.3 */
+    background: linear-gradient(to top, #3e2c00, #5b3d00, #8b5a2b);
+    border-radius: 50%;
+    box-shadow: inset 0 0 2.6px rgba(0,0,0,0.5); /* 2px*1.3 */
+}
+
+/* Seed */
+.seed {
+    position: absolute;
+    bottom: 5.2px;   /* 4px*1.3 */
+    left: 50%;
+    width: 10.4px;   /* 8px*1.3 */
+    height: 10.4px;  /* 8px*1.3 */
+    background: radial-gradient(circle at 30% 30%, #ffd700, #ff8c00);
+    border-radius: 50%;
+    box-shadow: 0 0 3.9px rgba(255,215,0,0.7); /* 3px*1.3 */
+    transform: translateX(-50%);
+    opacity: 1;
+    animation: seedCycle 12s linear infinite;
+}
+
+@keyframes seedCycle {
+    0%   { transform: translateX(-50%) scale(0.8); opacity:1; }
+    10%  { transform: translateX(-50%) scale(1);   opacity:1; }
+    20%  { transform: translateX(-50%) scale(1);   opacity:1; }
+    30%  { transform: translateX(-50%) scale(1);   opacity:1; }
+    90%  { transform: translateX(-50%) scale(0.8); opacity:0; }
+    100% { transform: translateX(-50%) scale(0.8); opacity:1; }
+}
+
+/* Sprout */
+.sprout {
+    position: absolute;
+    bottom: 15.6px;  /* 12px*1.3 */
+    left: 50%;
+    width: 2.6px;    /* 2px*1.3 */
+    background: linear-gradient(to top, #3CB371, #98FB98);
+    border-radius: 2.6px; /* 2px*1.3 */
+    transform: translateX(-50%) scaleY(0);
+    animation: sproutCycle 12s linear infinite;
+}
+
+@keyframes sproutCycle {
+    0%,10% { height:0; transform: translateX(-50%) scaleY(0); }
+    20% { height:13px; transform: translateX(-50%) scaleY(1); } /* 10px*1.3 */
+    77% { height:13px; transform: translateX(-50%) scaleY(1); }
+    83% { height:0; transform: translateX(-50%) scaleY(0); }
+    100%{ height:0; transform: translateX(-50%) scaleY(0); }
+}
+
+/* Trunk */
+.trunk {
+    position: absolute;
+    bottom: 15.6px; /* 12px*1.3 */
+    left: 50%;
+    width: 5.2px;   /* 4px*1.3 */
+    background: linear-gradient(to top, #6B8E23, #ADFF2F);
+    border-radius: 2.6px; /* 2px*1.3 */
+    transform: translateX(-50%) scaleY(0);
+    animation: trunkCycle 12s linear infinite;
+}
+
+@keyframes trunkCycle {
+    0%,20% { height:0; transform: translateX(-50%) scaleY(0); }
+    30% { height:39px; transform: translateX(-50%) scaleY(1); } /* 30px*1.3 */
+    77% { height:39px; transform: translateX(-50%) scaleY(1); }
+    83% { height:0; transform: translateX(-50%) scaleY(0); }
+    100%{ height:0; transform: translateX(-50%) scaleY(0); }
+}
+
+/* Branch Layers */
+.branch-layer, .layer2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+/* First layer branches */
+.branch-layer {
+    bottom: 32.5px; /* 25px*1.3 */
+    animation: branchLayerCycle 12s linear infinite;
+}
+
+@keyframes branchLayerCycle {
+    0%,30% {opacity:0;}
+    40% {opacity:1;}
+    77% {opacity:1;}
+    83% {opacity:0;}
+    100%{opacity:0;}
+}
+
+.branch {
+    position: absolute;
+    height: 2.6px;   /* 2px*1.3 */
+    background: linear-gradient(to right, #3CB371, #7FFF00);
+    border-radius: 2.6px; /* 2px*1.3 */
+    transform-origin: center left;
+    width: 0;
+    opacity: 0;
+    animation: branchCycle 12s linear infinite;
+}
+
+@keyframes branchCycle {
+    0%,30% { width:0; transform: scaleX(0); opacity:0; }
+    40% { width:19.5px; transform: scaleX(1); opacity:1; } /* 15px*1.3 */
+    77% { width:19.5px; transform: scaleX(1); opacity:1; }
+    83% { width:0; transform: scaleX(0); opacity:0; }
+    100%{ width:0; transform: scaleX(0); opacity:0; }
+}
+
+.branch-left {
+    top: 0;
+    left: 0;
+    transform: rotate(-30deg) scaleX(0);
+}
+
+.branch-right {
+    top: 0;
+    transform: rotate(30deg) scaleX(0);
+}
+
+/* Second layer branches */
+.layer2 {
+    bottom: 45.5px; /* 35px*1.3 */
+    animation: branchLayer2Cycle 12s linear infinite;
+}
+
+@keyframes branchLayer2Cycle {
+    0%,40% {opacity:0;}
+    50% {opacity:1;}
+    77% {opacity:1;}
+    83% {opacity:0;}
+    100%{opacity:0;}
+}
+
+.branch-left-2 {
+    top: 0;
+    left: -3.9px; /* -3px*1.3 */
+    transform: rotate(-25deg) scaleX(0);
+}
+
+.branch-right-2 {
+    top: 0;
+    right: -3.9px; /* -3px*1.3 */
+    transform: rotate(25deg) scaleX(0);
+}
+
+/* Canopy */
+.leaf-canopy {
+    position: absolute;
+    left: 50%;
+    bottom: 42.9px; /* 33px*1.3 */
+    width: 52px;    /* 40px*1.3 */
+    height: 52px;   /* 40px*1.3 */
+    background: radial-gradient(circle, #7FFF00 30%, #32CD32 80%);
+    border-radius: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    animation: canopyCycle 12s linear infinite;
+}
+
+@keyframes canopyCycle {
+    0%,50% {opacity:0; transform: translateX(-50%) scale(0);}
+    60% {opacity:1; transform: translateX(-50%) scale(1);}
+    77% {opacity:1; transform: translateX(-50%) scale(1);}
+    83% {opacity:0; transform: translateX(-50%) scale(0);}
+    100%{opacity:0; transform: translateX(-50%) scale(0);}
+}
+
+/* Heart symbol */
+.heart-symbol {
+    position: absolute;
+    width: 13px;   /* 10px*1.3 */
+    height: 13px;  /* 10px*1.3 */
+    left: 50%;
+    bottom: 42.9px; /* 33px*1.3 */
+    background: radial-gradient(circle, #ff0000 30%, #8b0000 80%);
+    border-radius: 50%;
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+    animation: heartFall 12s linear infinite;
+}
+
+@keyframes heartFall {
+    0%,83% { opacity:0; transform: translateX(-50%) translateY(0) scale(0); }
+    90% { opacity:1; transform: translateX(-50%) translateY(52px) scale(1); } /* 40px*1.3=52px */
+    100% { opacity:0; transform: translateX(-50%) translateY(52px) scale(0); }
+}
+
+
+
+
+
+/* ---------------------------------------------------------- */
+/* MOVEMENT SYMBOL */
+/* ---------------------------------------------------------- */
+
+.symbol.movement {
+    position: relative;
+    width: 90px;
+    height: 90px;
+}
+
+.symbol.movement .cosmic-center {
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #FFD700, #FF8C00);
+    border-radius: 50%;
+    position: absolute;
+    top: 26px;
+    left: 26px;
+    z-index: 2;
+    box-shadow: 0 0 5px rgba(255,215,0,0.8);
+}
+
+.symbol.movement .spiral {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border: 1px dashed rgba(255, 165, 0, 0.5);
+    border-radius: 50%;
+    animation: spin-spiral 6s infinite linear;
+}
+
+.symbol.movement .orbit {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 2px solid rgba(255,140,0,0.5);
+    border-radius: 50%;
+    animation: orbit-dance 4s infinite linear;
+}
+.symbol.movement .orbit::after {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: #FF4500;
+    border-radius: 50%;
+    position: absolute;
+    top: -3px;
+    left: 16px;
+    box-shadow: 0 0 4px rgba(255,69,0,0.7);
+}
+
+@keyframes spin-spiral {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes orbit-dance {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}

@@ -1,0 +1,499 @@
+{% extends "landing_page/base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>Bibliography</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'css/bibliography.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <style>
+
+    /* Background Image Container */
+.bibliography-image {
+    position: fixed;
+    right: 15.5px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+
+    /* Add the wood logs image as the background */
+    background: url("{% static 'images/wood-logs.jpg' %}") no-repeat center center;
+
+    background-size: cover;
+
+    /* Apply a natural gradient towards the edges */
+    mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0) 100%);
+
+    /* Overlay filters for reduced brightness and enhanced contrast */
+    filter: brightness(0.33) contrast(1.2) opacity(0.8);
+}
+
+
+.bibliography-image:hover {
+    filter: brightness(1) contrast(1);
+    transition: filter 0.5s ease-in-out;
+}
+
+.bibliography-image {
+    background-attachment: fixed;
+}
+
+    #audio-controls button
+    {
+    display: none;
+    }
+
+ /************************************************************
+ * Media Query for Mobile Devices
+ ************************************************************/
+
+@media only screen and (max-width: 768px) {
+      .icon-container i {
+        margin-top: 2.3rem;
+    }
+
+    .scrolling-list {
+    width: 92%;
+    }
+
+    .summary-popup {
+    width: 280px;
+    }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Background Container -->
+  <div class="bibliography-image"></div>
+
+  <div class="bibliography-container">
+    <!-- Icon in top-left -->
+    <div class="icon-container">
+      <i class="fas fa-book-open"></i>
+    </div>
+
+    <!-- Presentation / Hero Section -->
+    <div class="presentation-container">
+      <!-- Adapted Title & Intro Text (no references to YLF) -->
+      <h2>Bibliography</h2>
+      <p class="presentation-subtitle">
+        ~The Beauty and Limitation of Words~
+      </p>
+      <hr>
+      <p class="presentation-details">
+        True lessons are carved when Theory meets Experience, and the teachings become a unique convergence
+        of One's personal life paths and scholarly works.
+      </p>
+      <p class="presentation-details2">
+        <em>That is why you should not view this bibliography as a set of rigid laws or direct extracts,
+        but rather as treasured experiences of individuals who have dedicated their lives
+        to understanding the delicate interplay of the Body, Mind, and Nature.</em>
+        <br>These Readings are to be truly understood when they all merge—beyond the confines of words,<br> Alchemizing into <em>The Art of Life</em>.
+      </p>
+      <p class="presentation-details2">
+
+      </p>
+      <p class="presentation-details4">
+        <strong><em>Browse, learn, and let the words spark meaningful transformations.</em></strong>
+      </p>
+    </div>
+
+
+    <!-- Scrolling list of bibliography items -->
+    <div class="scrolling-list">
+      <div class="scrolling-list-content">
+        <!-- Example items with data-summary for popup on hover -->
+        <div class="reference-item" data-summary="Short summary about Lieberman's book." data-cover="">
+          <a href="#">Daniel E. Lieberman - Exercised...</a>
+        </div>
+        <div class="reference-item" data-summary="Short summary about Thomas Myers' book.">
+          <a href="#">Thomas Myers - Anatomy Trains...</a>
+        </div>
+        <div class="reference-item" data-summary="Short summary about Gray Cook's approach.">
+          <a href="#">Gray Cook - Movement...</a>
+        </div>
+        <div class="reference-item" data-summary="Short summary about Vladimir Janda."  data-cover="{% static 'images/books/janda.png' %}">
+          <a href="#">Vladimir Janda - Assessment and Treatment...</a>
+        </div>
+        <div class="reference-item" data-summary="Short summary about The Yoga Sutras of Patanjali.">
+        <a href="#">The Yoga Sutras of Patanjali - The Yoga Sutras of Patanjali</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Art of Salvation.">
+        <a href="#">Parintele Efrem – The Art of Salvation, Counsels from The Holy Mountain</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about TRX Training.">
+        <a href="#">Randy Hetrick - TRX Training: The Revolutionary Movement-Based Approach to Complete Fitness</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Oxygen Advantage.">
+        <a href="#">Patrick McKeown - The Oxygen Advantage: Simple, Scientifically Proven Breathing Techniques</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Art of Living.">
+        <a href="#">Epictetus - The Art of Living: The Classical Manual on Virtue, Happiness, and Effectiveness</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Tripitaka.">
+        <a href="#">The Tripitaka - The Tripitaka</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Manipulative Therapy.">
+        <a href="#">Karel Lewit - Manipulative Therapy in Rehabilitation of the Locomotor System</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Jung's work.">
+        <a href="#">Carl G. Jung - The Archetypes and The Collective Unconscious, Man and His Symbols, Modern Man in Search of a Soul</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Freud's work.">
+        <a href="#">Sigmund Freud - The Interpretation of Dreams, Civilization and Its Discontents, Beyond the Pleasure Principle</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about When the Body Says No.">
+        <a href="#">Gabor Maté - When the Body Says No: The Cost of Hidden Stress, Scattered Minds: The Origins and Healing</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Becoming Supernatural.">
+        <a href="#">Joe Dispenza - Becoming Supernatural: How Common People Are Doing the Uncommon</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Tao Te Ching.">
+        <a href="#">Lao Tzu - Tao Te Ching: The Book of the Way</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Miracle of Mindfulness.">
+        <a href="#">Thich Nhat Hanh - The Miracle of Mindfulness: An Introduction to the Practice of Meditation</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Breath.">
+        <a href="#">James Nestor - Breath: The New Science of a Lost Art</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Letting Go.">
+        <a href="#">David Hawkins - Letting Go: The Pathway of Surrender</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Healing Back Pain.">
+        <a href="#">John Sarno - Healing Back Pain: The Mind-Body Connection</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Willpower Instinct.">
+        <a href="#">Kelly McGonigal - The Willpower Instinct: How Self-Control Works, Why It Matters, and What You Can Do to Get More of It</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Body Keeps the Score.">
+        <a href="#">Bessel van der Kolk - The Body Keeps the Score: Brain, Mind, and Body in the Healing of Trauma</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Anatomy of the Spirit.">
+        <a href="#">Caroline Myss - Anatomy of the Spirit: The Seven Stages of Power and Healing</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Flow.">
+        <a href="#">Mihaly Csikszentmihalyi - Flow: The Psychology of Optimal Experience</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The UltraMind Solution.">
+        <a href="#">Mark Hyman - The UltraMind Solution: Fix Your Broken Brain by Healing Your Body First</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Brain That Changes Itself.">
+        <a href="#">Norman Doidge - The Brain That Changes Itself: Stories of Personal Triumph from the Frontiers of Brain Science</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Biology of Belief.">
+        <a href="#">Bruce Lipton - The Biology of Belief: Unleashing the Power of Consciousness, Matter & Miracles</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about The Spectrum.">
+        <a href="#">Dean Ornish - The Spectrum: A Scientifically Proven Program to Feel Better, Live Longer, Lose Weight, and Gain Health</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Spontaneous Healing.">
+        <a href="#">Andrew Weil - Spontaneous Healing: How to Discover and Enhance Your Body's Natural Ability to Maintain and Heal Itself</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Why Zebras Don't Get Ulcers.">
+        <a href="#">Robert Sapolsky - Why Zebras Don't Get Ulcers: The Acclaimed Guide to Stress, Stress-Related Diseases, and Coping</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Inner Engineering.">
+        <a href="#">Sadhguru - Inner Engineering: A Yogi’s Guide to Joy</a>
+      </div>
+      <div class="reference-item" data-summary="Short summary about Emotional Intelligence.">
+        <a href="#">Daniel Goleman - Emotional Intelligence: Why It Can Matter More Than IQ</a>
+      </div>
+
+        <!-- Add as many items as needed -->
+      </div>
+    </div>
+
+    <!-- Hidden popup for summaries -->
+    <div class="summary-popup" id="summaryPopup"></div>
+
+
+<div class="video-container">
+    <video id="senecaVideo" class="video-content" muted autoplay loop>
+        <source src="{% static 'images/seneca-advice.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div id="videoOverlay" class="video-overlay">Click to Enable Sound</div>
+    <div id="muteVideo" class="mute-icon">
+        <i class="fa fa-volume-mute"></i>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+  <script>
+
+<!------------------------------------------------->
+<!-- Initial Load & Data Summary for Books Slide -->
+<!------------------------------------------------->
+
+  // Override the spark count before the main script
+  const sparkCount = 200; // Custom spark count
+
+document.addEventListener('DOMContentLoaded', function () {
+    const items = document.querySelectorAll('.reference-item');
+    const summaryPopup = document.getElementById('summaryPopup');
+
+    // Function to simulate typing effect
+    function typeText(element, text) {
+        element.textContent = ''; // Clear existing content
+        let index = 0;
+
+        const interval = setInterval(() => {
+            if (index < text.length) {
+                element.textContent += text[index];
+                index++;
+            } else {
+                clearInterval(interval); // Stop the typing effect
+            }
+        }, 33); // Adjust speed of typing
+    }
+
+    items.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            const summaryText = item.getAttribute('data-summary') || 'No summary available.';
+            const bookCover = item.getAttribute('data-cover') || '';
+
+            // Create image and text content
+            summaryPopup.innerHTML = `
+                <img src="${bookCover}" alt="Book Cover">
+                <div class="text-content"></div>
+            `;
+
+            // Set position
+            const rect = item.getBoundingClientRect();
+            // Check if the device is mobile (screen width < 768px)
+            if (window.innerWidth < 768) {
+                // Mobile-specific positioning
+                summaryPopup.style.top = (rect.top + window.scrollY + 30) + 'px';
+                summaryPopup.style.left = '50px'; // 50px offset from the left edge
+            }
+            else {
+            summaryPopup.style.top = (document.body.scrollTop + document.body.offsetHeight/3 + 30) + 'px';
+            summaryPopup.style.left = (rect.left - document.body.offsetWidth / 8) + 'px';
+            }
+
+            // Start typing effect
+            const textElement = summaryPopup.querySelector('.text-content');
+            typeText(textElement, summaryText);
+
+            // Show popup
+            summaryPopup.classList.add('show');
+        });
+
+        item.addEventListener('mouseout', () => {
+            summaryPopup.classList.remove('show');
+        });
+    });
+
+
+
+
+
+
+
+
+<!----------------------------------------->
+<!-- Bibliography Container auto-scroll  -->
+<!----------------------------------------->
+
+
+
+
+    // Smooth auto-scroll when not interacting
+    let isInteracting = false;
+    let goingDown = true;
+    let autoScrollInterval;
+   const scrollContainer = document.querySelector('.scrolling-list');
+
+
+    // Detect interaction
+    scrollContainer.addEventListener('mouseenter', () => {
+        isInteracting = true;
+        clearInterval(autoScrollInterval);
+    });
+
+    scrollContainer.addEventListener('mouseleave', () => {
+        isInteracting = false;
+        startAutoScroll();
+    });
+
+function startAutoScroll() {
+
+    autoScrollInterval = setInterval(() => {
+        if (!isInteracting) {
+            //console.log(`Scroll Container Value: `,scrollContainer.scrollTop)
+            if (goingDown) {
+                scrollContainer.scrollBy({
+                    top: 1,
+                    behavior: 'smooth'
+                });
+
+                // If bottom edge is reached, switch direction
+                if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight) {
+                    goingDown = false;
+                }
+            } else {
+                scrollContainer.scrollBy({
+                    top: -1,
+                    behavior: 'smooth'
+                });
+
+                // If top edge is reached, switch direction
+                if (scrollContainer.scrollTop <= 0) {
+                    goingDown = true;
+                }
+            }
+        }
+    }, 10); // Adjust speed as needed
+}
+
+    startAutoScroll();
+});
+
+
+
+  </script>
+
+
+<script>
+
+<!----------------------------------------->
+<!-- Footer Video JS  -->
+<!----------------------------------------->
+document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('senecaVideo');
+    const overlay = document.getElementById('videoOverlay');
+    const muteIcon = document.getElementById('muteVideo');
+    const icon = muteIcon.querySelector('i');
+
+    let overlayHidden = false; // Track if the overlay is hidden
+    let messageShown = false; // Track if the redirection message is shown
+
+
+    // Create and style the message element
+    const message = document.createElement('div');
+    message.textContent = "Click again to be redirected to YouTube's original video";
+    message.classList.add('redirect-message');
+    document.body.appendChild(message);
+
+    // Hide the message by default
+    message.style.opacity = '0';
+
+    // Enable sound and remove overlay on first click
+    overlay.addEventListener('click', () => {
+        video.muted = false; // Enable sound
+        icon.classList.remove('fa-volume-mute');
+        icon.classList.add('fa-volume-up');
+        overlay.classList.add('hidden'); // Hide overlay
+        overlayHidden = true; // Mark overlay as hidden
+    });
+
+<!--    // Enable sound on hover-->
+<!--    video.addEventListener('mouseover', () => {-->
+<!--        video.muted = false;-->
+<!--    });-->
+
+<!--    // Mute sound when not hovering-->
+<!--    video.addEventListener('mouseout', () => {-->
+<!--        video.muted = true;-->
+<!--    });-->
+
+    // Show message and redirect if video is clicked
+    video.addEventListener('click', () => {
+        if (overlayHidden) {
+
+            if (!messageShown) {
+                // Show the transparent message
+                message.style.opacity = '1';
+                messageShown = true;
+
+                // Hide the message after 3 seconds
+                setTimeout(() => {
+                    message.style.opacity = '0';
+                    messageShown = false
+                }, 3000);
+            } else {
+
+
+                // Open YouTube in a new tab - Only if Message is active
+                if (message.style.opacity == '1')
+                {
+                  window.open("https://www.youtube.com/watch?v=FQhdf3Q8IKM", "_blank");
+                }
+            }
+        }
+    });
+
+      // Toggle mute/unmute on icon click
+    muteIcon.addEventListener('click', () => {
+        video.muted = !video.muted; // Toggle mute state
+
+        // Change icon based on mute state
+        if (video.muted) {
+            icon.classList.remove('fa-volume-up');
+            icon.classList.add('fa-volume-mute');
+        } else {
+            icon.classList.remove('fa-volume-mute');
+            icon.classList.add('fa-volume-up');
+        }
+    });
+});
+
+
+</script>
+
+
+
+
+<script>
+
+
+<!-- JavaScript to handle the viewport detection and trigger the fade-in animation -->
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const videoContainer = document.querySelector('.video-container');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Add fade-in effect when the container is in the viewport
+                videoContainer.style.opacity = '1';
+                videoContainer.style.transform = 'translateY(0)';
+                observer.unobserve(videoContainer); // Stop observing once faded in
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger when 10% of the container is visible
+    });
+
+    observer.observe(videoContainer);
+});
+
+
+
+</script>
+
+</body>
+
+</html>
+{% endblock %}
