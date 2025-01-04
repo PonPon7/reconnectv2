@@ -7,8 +7,8 @@ app = Flask(__name__)
 DB_CONFIG = {
     'dbname': 'reconnectv2',
     'user': 'postgres',
-    'password': '222www',  # Replace with your Cloud SQL PostgreSQL password
-    'host': '34.32.88.37',  # Replace with your Cloud SQL instance's public IP
+    'password': 'dummytest',  # Replace with your Cloud SQL PostgreSQL password
+    'host': 'dummy',  # Replace with your Cloud SQL instance's public IP
     'port': 5432
 }
 
