@@ -27,6 +27,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
+
+# CSRF Setup
 CSRF_TRUSTED_ORIGINS = [
     'https://reconnectv2.com',
     'https://www.reconnectv2.com'
@@ -189,7 +191,9 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# User & Google Login Integration
+###################################
+# User Models & Google Login Integration #
+###################################
 
 AUTH_USER_MODEL = 'landing_page.CustomUser'
 
@@ -206,7 +210,6 @@ LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-
 
 
 # Google OAuth Configuration
