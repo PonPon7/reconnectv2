@@ -358,3 +358,24 @@ def export_database(request):
         response['Content-Disposition'] = 'attachment; filename="db.sqlite3"'
         return response
 
+
+# Mobile Debugging Scroll Behavior
+
+def log_scroll(request):
+    if request.method == 'POST':
+        try:
+            import json
+            data = json.loads(request.body)
+            scroll_top = data.get('scrollTop', 'Unknown')
+            threshold = data.get('threshold', 'Unknown')
+
+            # Log the data to the console
+            logger.info(f"Scroll Top: {scroll_top}, Threshold: {threshold}")
+            print(f"Scroll Top: {scroll_top}, Threshold: {threshold}")  # For direct console output
+
+            return JsonResponse({'status': 'success', 'scrollTop': scroll_top, 'threshold': threshold})
+        except Exception as e:
+            logger.error(f"Error processing scroll data: {e}")
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+

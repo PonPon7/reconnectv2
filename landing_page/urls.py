@@ -36,6 +36,8 @@ urlpatterns = [
     # Exporting sqlLite3 database from Deployment (GC) to Local for syncinc.
     path('export-database/', views.export_database, name='export_database'),
 
+    path('log-scroll/', views.log_scroll, name='log_scroll'),
+
 ]
 
 

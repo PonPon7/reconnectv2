@@ -14,6 +14,37 @@ from pathlib import Path
 import environ
 
 
+#####################
+## Security Setup ###
+#####################
+
+# CSRF Setup
+CSRF_TRUSTED_ORIGINS = [
+    'https://reconnectv2.com',
+    'https://www.reconnectv2.com'
+]
+
+# Secure cookies
+CSRF_COOKIE_SECURE = True  # Ensures CSRF cookies are sent only over HTTPS
+CSRF_USE_SESSIONS = False  # Or True if you want to store in session
+# SESSION_COOKIE_SECURE = True
+
+
+# SSL Certificate
+# Setup & SECURE_SSL_REDIRECT is not essential for HTTPS enforcement—App Engine is already doing this in context of GC.
+# Enforce HTTPS in Django
+# SECURE_SSL_REDIRECT = True
+
+# Enable HTTP Strict Transport Security (HSTS)
+# SECURE_HSTS_SECONDS = 3600  # Adjust to a higher value once you're sure it's safe
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+
+
+############################
+### Environments & Paths ###
+############################
+
 
 # Initialize environment variables
 env = environ.Env()
@@ -28,18 +59,8 @@ EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 
-# CSRF Setup
-CSRF_TRUSTED_ORIGINS = [
-    'https://reconnectv2.com',
-    'https://www.reconnectv2.com'
-]
-CSRF_COOKIE_SECURE = True  # Ensures CSRF cookies are sent only over HTTPS
-CSRF_USE_SESSIONS = False  # Or True if you want to store in session
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "landing_page/static"),  # Path to the correct static folder
@@ -57,9 +78,9 @@ STATIC_URL = '/static/'  # Already present
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-oxq8+vn*7^wamua)%^=3zer^dlf3ttioh68rg)f+c0uwndjx5*'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.0.196', '*', '100.94.146.172']
 ALLOWED_HOSTS = ['*']
@@ -84,7 +105,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',  # Security & SSL
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

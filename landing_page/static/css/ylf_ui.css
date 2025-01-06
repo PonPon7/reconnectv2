@@ -824,6 +824,9 @@ text-indent: 0em;
   body {
     font-size: 14px; /* Reduce base font size */
     min-height: max-content;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+
   }
 
 
@@ -922,7 +925,7 @@ text-indent: 0em;
   }
     .presentation-title {
         font-size: 1.5rem;
-        margin-top: 4rem;
+        margin-top: 2.8rem;
     }
   .presentation-subtitle {
     font-size: 0.9rem; /* Adjust subtitle size */
