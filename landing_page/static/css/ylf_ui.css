@@ -16,7 +16,7 @@
       overflow-x: hidden;
       position: relative;
       overflow: hidden; /* Prevent scrolling if unnecessary */
-       transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
+      transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
     }
 
 

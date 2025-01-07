@@ -39,11 +39,13 @@ body.background-active {
 /* Apply zoom when the threshold is crossed */
 body.zoom-active {
     zoom: 0.73; /* Zoomed-in effect for React app integration */
+
 }
 
 /* Reset the zoom for the interactive video container */
 body.zoom-active .interactive-paragraphs {
-  transform: scale(1.059);
+    transform: scale(1.059);
+
 }
 
 
@@ -228,11 +230,30 @@ hr {
   margin: 50px auto 0px;
   padding: 20px 0 0;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 15px;h
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
 }
 
+
+/* React Container Font Adjustment */
+#root h2 {
+    font-family: 'Poppins', serif;
+    font-size: 1.5rem;
+    color: rgb(85, 85, 85);
+    margin-bottom: 1.5rem;
+    background: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: darkslategray;
+    animation: none !important;
+    text-shadow: none;
+}
+
+
+@keyframes root-glow2 {
+    0% { text-shadow: 0 0 2px #00bfff; }
+    100% { text-shadow: 0 0 3px 0 0 0px #00bfff; }
+}
 
 
 .invisible {
@@ -244,7 +265,7 @@ hr {
 
 .visible {
   opacity: 1; /* Fully visible */
-  visibility: visible; /* Allow interaction */
+  visibility: visible ; /* Allow interaction */
   pointer-events: auto; /* Allow clicks */
   transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
 }
@@ -259,7 +280,7 @@ hr {
   top: 0;
   left: 0;
   width: 100%;
-  height: 50%;
+  height: 43%;
   background: radial-gradient(circle, transparent, #08c 1.5px, transparent 3px),
               linear-gradient(45deg, transparent 10%, #08c 10%, transparent 20%),
               linear-gradient(-45deg, transparent 10%, #08c 10%, transparent 20%);
@@ -279,17 +300,17 @@ hr {
   25% {
     background-size: 90px 90px, 140px 140px, 140px 140px;
     opacity: 0.15;
-    transform: scale(1) rotate(15deg);
+    transform: scale(1) rotate(11deg);
   }
   50% {
-    background-size: 100px 100px, 160px 160px, 160px 160px;
+    background-size: 100px 100px, 160px 160px, 135px 135px;
     opacity: 0.25;
-    transform: scale(1.07) rotate(25deg);
+    transform: scale(1.07) rotate(13deg);
   }
   75% {
     background-size: 90px 90px, 140px 140px, 140px 140px;
     opacity: 0.15;
-    transform: scale(1) rotate(15deg);
+    transform: scale(1) rotate(11deg);
   }
 }
 
@@ -443,6 +464,9 @@ hr {
   overflow: hidden;
 }
 
+
+
+
 .hover-video video {
   width: 100%;
   height: 100%;
@@ -479,7 +503,14 @@ hr {
 
 @media only screen and (max-width: 768px) {
 
+  /* Body adjustments */
+  html, body {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
   .pulse-grid {
+  display: none;
   pointer-events: none; /* Prevent interaction */
   position: absolute; /* Ensure it covers the screen */
   top: 0;
@@ -487,10 +518,40 @@ hr {
   width: 100%;
   height: 100%; /* Fullscreen coverage */
   background: radial-gradient(circle, transparent, #08c 1.5px, transparent 2px);
-  background-size: 60px 60px;
+  background-size: 300px 60px;
   opacity: 0.07;
   z-index: 10; /* Ensure it’s below content but above background */
-  animation: pulse-grid 8s ease-in-out infinite;
+
+
+
+}
+
+.pulse-web {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 145%;
+  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 3px),
+              linear-gradient(45deg, transparent 10%, #08c 10%, transparent 20%),
+              linear-gradient(-45deg, transparent 10%, #08c 10%, transparent 20%);
+  background-size: 80px 80px, 120px 120px, 120px 120px;
+  background-blend-mode: screen;
+  opacity: 0.08;
+  z-index: 10;
+  animation: pulse-web 10s ease-in-out infinite;
+}
+
+
+/* Hover Video Styling */
+.hover-video.left {
+  left: 90%;
+}
+
+/* Hover Video Styling */
+.hover-video.right {
+  left: 12.7%;
 }
 
 /******************************/
@@ -566,4 +627,9 @@ padding: 0.3rem 2rem;
 
 .custom-modal .modal {
     top: 17%;
+    }
+
+
+    button {
+    padding: 10px 10px;
     }

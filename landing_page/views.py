@@ -370,8 +370,8 @@ def log_scroll(request):
             threshold = data.get('threshold', 'Unknown')
 
             # Log the data to the console
-            logger.info(f"Scroll Top: {scroll_top}, Threshold: {threshold}")
-            print(f"Scroll Top: {scroll_top}, Threshold: {threshold}")  # For direct console output
+            # logger.info(f"Scroll Top: {scroll_top}, Threshold: {threshold}")
+            # print(f"Scroll Top: {scroll_top}, Threshold: {threshold}")  # For direct console output
 
             return JsonResponse({'status': 'success', 'scrollTop': scroll_top, 'threshold': threshold})
         except Exception as e:
