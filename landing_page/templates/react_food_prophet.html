@@ -10,7 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>React Page - Food Prophet</title>
   <link rel="stylesheet" href="{{ react_assets.css }}">
-  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}">
   <meta name="csrf-token" content="{{ csrf_token }}">
 
   {% csrf_token %}
@@ -171,10 +170,13 @@
   <div id="root" class="invisible"></div>
   <script src="{{ react_assets.js }}"></script>
 
+  <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}">
 
 <script>
-
+<!----------------------------------->
 <!-- Matrix Machine Writing Script -->
+<!----------------------------------->
+
   document.addEventListener("DOMContentLoaded", () => {
   const textData = [
     "INIT_SYSTEM_LOAD...\nAnalyzing Sleep Schedules...\nSleep Cycles Mapping to existing Datasets...\nIntegrating Meal Timings Information...\nAdding Variance & Normalization...\nMapping Sedentary Intervals and Levels...\nSedentary Level: HIGH\nPeak Inactivity: 4:00 PM - 7:00 PM\nActivity Score: LOW\nDetecting Behavioral Patterns...\nDaytime vs Nighttime Activity Levels: 75% Variance\nOptimal Adjustment Recommendation: READY\nSystem Scan: COMPLETE",
@@ -247,10 +249,10 @@
 // Override the spark count before the main script
 const sparkCount = 200; // Custom spark count
 
-<!------------------------------------------------->
+<!------------------------------------------------------->
 <!-- JS for hiding & loading React elements on scroll  -->
-<!-- Handling PC & Mobile -->
-<!------------------------------------------------->
+<!-- Handling PC & Mobile ------------------------------->
+<!------------------------------------------------------->
 
 document.addEventListener('DOMContentLoaded', () => {
     // Disable scroll restoration
@@ -339,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const contentWrapperTop = contentWrapper.getBoundingClientRect().top + window.scrollY;
             const threshold = contentWrapperTop + 677 * normalizationFactor;
 
-            console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}, normalizationFactor: ${normalizationFactor}`);
+            // console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}, normalizationFactor: ${normalizationFactor}`);
 
             // Hide navbar and show React app if scrolled past the threshold
             // Past threshold - apply zoom effect to properly render React app
@@ -432,6 +434,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </script>
 
+
+
+<script src="{% static 'scroll_behavior.js' %}"></script>
 
 
 </body>

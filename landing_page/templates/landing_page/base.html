@@ -310,9 +310,10 @@ font-size: 1rem;
     <canvas id="background"></canvas>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-    {% if request.path != '/contact/' %}
-        <script src="{% static 'sparks.js' %}"></script>
-    {% endif %}
+
+{% if request.path != '/contact/' and request.path != '/ylf/' and request.path != '/bibliography/' and request.path != '/food-prophet/' %}
+    <script src="{% static 'sparks.js' %}"></script>
+{% endif %}
 
       <!-- Cookie CSRF token -->
     <script>

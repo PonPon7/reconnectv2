@@ -142,6 +142,60 @@ body {
         font-size: 18px;
         margin-bottom: 20px;
     }
+
+
+    /* Media query for mobile devices (adjust breakpoint as needed) */
+@media (max-width: 768px) { /* Example breakpoint for tablets and smaller */
+    body {
+        font-size: 16px; /* Adjust base font size for better readability */
+    }
+    .nav-center {
+        margin-right: 0; /* Remove right margin on mobile */
+    }
+
+    .contact-container {
+        max-width: 90%; /* Use percentage width for responsiveness */
+        padding-top: 40px; /* Adjust padding as needed */
+    }
+
+    .dropdown-content a {
+        font-size: 0.83em;
+    }
+    .form-section {
+        padding: 20px;
+        margin-top: 15px;
+    }
+
+    .logo {
+        margin-top: 1.5rem;
+        max-width: 107px; /* Adjust logo size */
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    button[type="submit"] {
+        width: 90%; /* Use percentage width for form elements */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    nav {
+    right: 3%;
+    }
+#loginBtn {
+    display: none;
+    }
+}
+
 </style>
 
 {% endblock %}

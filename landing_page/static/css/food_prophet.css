@@ -11,14 +11,6 @@ html
      background: none;
 }
 
-nav {
-    width: 100%;
-    padding: 0.3rem;
-}
-
-.nav-center {
-    margin-right: 3.33rem;
-}
 
 /* Background active after scrolling */
 body.background-active {
@@ -48,6 +40,15 @@ body.zoom-active .interactive-paragraphs {
 
 }
 
+nav {
+    width: 100%;
+    padding: 0.3rem;
+}
+
+.nav-center {
+    margin-right: 3.33rem;
+}
+
 
 body {
      color: black;
@@ -57,6 +58,7 @@ body {
     background: #000;
     transition: background 0.5s ease-in-out; /* Smooth transition for background changes */
     zoom: 1;
+    filter: none;
 
 }
 
@@ -633,3 +635,8 @@ padding: 0.3rem 2rem;
     button {
     padding: 10px 10px;
     }
+
+
+    #root p {
+  color: black !important; /* !important to override other styles */
+}

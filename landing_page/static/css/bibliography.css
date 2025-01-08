@@ -10,7 +10,7 @@
 /* Updated Body Styles */
 body {
     background: linear-gradient(to bottom, #1a1a1a, #000); /* Fallback for unsupported browsers */
-    color: #ddd;
+    color: #dfe;
     font-size: 0.95rem;
     font-family: "Poppins", sans-serif;
     font-weight: bold;
@@ -121,11 +121,14 @@ body {
     width: 70%;
     max-width: 900px;
     height: 60vh;
-    overflow-y: auto;
     background-color: #2e2e2e;
     border-radius: 8px;
     box-shadow: inset 0 0 15px rgba(126, 200, 227, 0.2), 0 0 15px rgba(126, 200, 227, 0.2);
     position: relative;
+    -webkit-overflow-scrolling: touch; /* Add this line */
+    overflow: scroll;
+    overflow-y: scroll;
+
 }
 
 /* Custom scrollbar styling */
@@ -153,7 +156,7 @@ body {
 }
 
 .scrolling-list:not(:hover)::-webkit-scrollbar {
-    opacity: 0; /* Invisible when not interacting */
+    opacity: 1; /* Invisible when not interacting */
     transition: opacity 0.3s ease-in-out;
 }
 
@@ -181,7 +184,7 @@ body {
     border-radius: 2px;
     box-shadow: 0 0 10px rgba(126, 200, 227, 0.8), 0 0 20px rgba(126, 200, 227, 0.5);
     overflow: hidden;
-    animation: pulseLine 6s ease-in-out infinite, shimmerEffect 6s linear infinite;
+    /* animation: pulseLine 6s ease-in-out infinite, shimmerEffect 6s linear infinite; */
 }
 
 /* Subtle glow effect to make it alive */
@@ -227,7 +230,7 @@ body {
     border-radius: 8px;
     padding: 20px;
     display: none;
-    z-index: 9999;
+    z-index: 80;
     width: 570px;
     height: 300px; /* Increased height for image and text */
     box-shadow: 0 0 10px #7ec8e3, 0 0 20px rgba(126, 200, 227, 0.3);
@@ -303,6 +306,8 @@ body {
     display: block;
     filter: brightness(0.8); /* Slight darkening effect for modern look */
     transition: filter 0.3s ease-in-out;
+    pointer-events: auto; /* Ensure interaction */
+    touch-action: manipulation; /* Prevent default touch behaviors like full-screen */
 }
 
 /* Hover effect on video */

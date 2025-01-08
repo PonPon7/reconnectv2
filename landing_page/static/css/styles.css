@@ -214,13 +214,11 @@ h3 {
 p {
     font-size: 1.2rem;
     font-family: 'Poppins', serif;
-    color: #FFF
+
     margin: 3rem 2rem 1rem;
     line-height: 1.7;
     opacity: 0.95;
     font-weight: bold;
-    text-shadow:
-    0 0 3px #FFD700,     /* Smaller, softer glow */
 
 }
 

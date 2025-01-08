@@ -12,6 +12,7 @@ import os
 from .models import CustomUser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
+
 User = get_user_model()
 
 from landing_page.utils.util import split_into_paragraphs, format_message_in_markdown, call_ylf_model, \
@@ -102,8 +103,6 @@ def submit_newsletter(request):
             print(f"Error: {e}")
             return JsonResponse({'error': 'Something went wrong'}, status=500)
     return JsonResponse({'error': 'Invalid method'}, status=405)
-
-
 
 
 ##########################
@@ -302,7 +301,6 @@ def ajax_login(request):
     return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=405)
 
 
-
 def ajax_register(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -378,4 +376,3 @@ def log_scroll(request):
             logger.error(f"Error processing scroll data: {e}")
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
-

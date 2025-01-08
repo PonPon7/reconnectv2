@@ -16,9 +16,8 @@
     /* Background Image Container */
 .bibliography-image {
     position: fixed;
-    right: 15.5px;
-    top: 0;
-    left: 0;
+    right: 0px;
+    margin-right: 0rem;
     width: 100%;
     height: 100%;
     z-index: 0;
@@ -33,12 +32,11 @@
     -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.7) 80%, rgba(0, 0, 0, 0) 100%);
 
     /* Overlay filters for reduced brightness and enhanced contrast */
-    filter: brightness(0.33) contrast(1.2) opacity(0.8);
+    filter: brightness(0.40) contrast(1.2) opacity(0.8);
 }
 
 
 .bibliography-image:hover {
-    filter: brightness(1) contrast(1);
     transition: filter 0.5s ease-in-out;
 }
 
@@ -67,7 +65,15 @@
     .summary-popup {
     width: 280px;
     }
+    #loginBtn {
+    display: none;
+    pointer-events: none;
+
+    }
+
 }
+
+
 
   </style>
 </head>
@@ -95,7 +101,7 @@
         of One's personal life paths and scholarly works.
       </p>
       <p class="presentation-details2">
-        <em>That is why you should not view this bibliography as a set of rigid laws or direct extracts,
+        <em>That is why you should not view this Bibliography as a set of rigid Laws or direct extracts,
         but rather as treasured experiences of individuals who have dedicated their lives
         to understanding the delicate interplay of the Body, Mind, and Nature.</em>
         <br>These Readings are to be truly understood when they all merge—beyond the confines of words,<br> Alchemizing into <em>The Art of Life</em>.
@@ -104,7 +110,7 @@
 
       </p>
       <p class="presentation-details4">
-        <strong><em>Browse, learn, and let the words spark meaningful transformations.</em></strong>
+        <strong><em>Browse, learn, and let the words spark meaningful Transformations.</em></strong>
       </p>
     </div>
 
@@ -114,7 +120,7 @@
       <div class="scrolling-list-content">
         <!-- Example items with data-summary for popup on hover -->
         <div class="reference-item" data-summary="Short summary about Lieberman's book." data-cover="">
-          <a href="#">Daniel E. Lieberman - Exercised...</a>
+          <a>Daniel E. Lieberman - Exercised...</a>
         </div>
         <div class="reference-item" data-summary="Short summary about Thomas Myers' book.">
           <a href="#">Thomas Myers - Anatomy Trains...</a>
@@ -219,7 +225,7 @@
 
 
 <div class="video-container">
-    <video id="senecaVideo" class="video-content" muted autoplay loop>
+    <video id="senecaVideo" class="video-content" autoplay muted loop playsinline>
         <source src="{% static 'images/seneca-advice.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -246,67 +252,80 @@
 <!-- Initial Load & Data Summary Pop-ups for Books Slide -->
 <!------------------------------------------------->
 
-  // Override the spark count before the main script
-  const sparkCount = 200; // Custom spark count
-
 document.addEventListener('DOMContentLoaded', function () {
-    const items = document.querySelectorAll('.reference-item');
-    const summaryPopup = document.getElementById('summaryPopup');
+  const items = document.querySelectorAll('.reference-item');
+  const summaryPopup = document.getElementById('summaryPopup');
+  let currentPopupItem = null;
 
-    // Function to simulate typing effect
-    function typeText(element, text) {
-        element.textContent = ''; // Clear existing content
-        let index = 0;
+  function typeText(element, text) {
+    element.textContent = '';
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        element.textContent += text[index++];
+      } else {
+        clearInterval(interval);
+      }
+    }, 33);
+  }
 
-        const interval = setInterval(() => {
-            if (index < text.length) {
-                element.textContent += text[index];
-                index++;
-            } else {
-                clearInterval(interval); // Stop the typing effect
-            }
-        }, 33); // Adjust speed of typing
+  function showPopup(item) {
+    if (currentPopupItem === item) return;
+    currentPopupItem = item;
+    const summaryText = item.getAttribute('data-summary') || 'No summary available.';
+    const bookCover = item.getAttribute('data-cover') || '';
+
+    summaryPopup.innerHTML = `
+      <img src="${bookCover}" alt="Book Cover">
+      <div class="text-content"></div>
+    `;
+
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const popupWidth = Math.min(windowWidth * 0.8, 300);
+    const popupHeight = Math.min(windowHeight * 0.6, 200);
+    const top = windowHeight / 3 - popupHeight / 2 + window.scrollY;
+    const left = windowWidth / 2 - popupWidth / 2;
+
+    summaryPopup.style.width = popupWidth + 'px';
+    summaryPopup.style.height = popupHeight + 'px';
+    summaryPopup.style.top = top + 'px';
+    summaryPopup.style.left = left + 'px';
+
+    const textElement = summaryPopup.querySelector('.text-content');
+    typeText(textElement, summaryText);
+
+    summaryPopup.classList.add('show');
+    document.addEventListener('touchstart', hidePopupOutside, { once: true });
+  }
+
+  function hidePopup() {
+    summaryPopup.classList.remove('show');
+    currentPopupItem = null;
+    document.removeEventListener('touchstart', hidePopupOutside);
+  }
+
+  function hidePopupOutside(event) {
+    if (summaryPopup.contains(event.target) || currentPopupItem.contains(event.target)) {
+      return;
     }
+    hidePopup();
+  }
 
-    items.forEach(item => {
-        item.addEventListener('mouseover', () => {
-            const summaryText = item.getAttribute('data-summary') || 'No summary available.';
-            const bookCover = item.getAttribute('data-cover') || '';
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-            // Create image and text content
-            summaryPopup.innerHTML = `
-                <img src="${bookCover}" alt="Book Cover">
-                <div class="text-content"></div>
-            `;
-
-            // Set position
-            const rect = item.getBoundingClientRect();
-            // Check if the device is mobile (screen width < 768px)
-            if (window.innerWidth < 768) {
-                // Mobile-specific positioning
-                summaryPopup.style.top = (rect.top + window.scrollY + 30) + 'px';
-                summaryPopup.style.left = '50px'; // 50px offset from the left edge
-            }
-            else {
-            summaryPopup.style.top = (document.body.scrollTop + document.body.offsetHeight/3 + 30) + 'px';
-            summaryPopup.style.left = (rect.left - document.body.offsetWidth / 8) + 'px';
-            }
-
-            // Start typing effect
-            const textElement = summaryPopup.querySelector('.text-content');
-            typeText(textElement, summaryText);
-
-            // Show popup
-            summaryPopup.classList.add('show');
-        });
-
-        item.addEventListener('mouseout', () => {
-            summaryPopup.classList.remove('show');
-        });
-    });
-
-
-
+  items.forEach(item => {
+    if (isTouchDevice) {
+      item.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        showPopup(item);
+      });
+    } else {
+      item.addEventListener('mouseover', () => showPopup(item));
+      item.addEventListener('mouseout', hidePopup);
+    }
+  });
+});
 
 
 
@@ -317,78 +336,106 @@ document.addEventListener('DOMContentLoaded', function () {
 <!----------------------------------------->
 
 
+ // Smooth auto-scroll for all devices (PC & Mobile)
+let isInteracting = false;
+let goingDown = true;
+let autoScrollRequest;
+const scrollContainer = document.querySelector('.scrolling-list');
+
+// Mobile detection flag
+const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 
-    // Smooth auto-scroll when not interacting
-    let isInteracting = false;
-    let goingDown = true;
-    let autoScrollInterval;
-   const scrollContainer = document.querySelector('.scrolling-list');
+
+// Detect mouse interaction
+scrollContainer.addEventListener('mouseenter', () => {
+    isInteracting = true;
+    cancelAutoScroll();
+});
+
+scrollContainer.addEventListener('mouseleave', () => {
+    isInteracting = false;
+    startAutoScroll();
+});
+
+// Detect touch interaction (for mobile)
+scrollContainer.addEventListener('touchstart', () => {
+    isInteracting = true;
+    cancelAutoScroll();
+}, { passive: true });
+
+scrollContainer.addEventListener('touchend', () => {
+    isInteracting = false;
+    startAutoScroll();
+}, { passive: true });
 
 
-    // Detect interaction
-    scrollContainer.addEventListener('mouseenter', () => {
-        isInteracting = true;
-        clearInterval(autoScrollInterval);
-    });
-
-    scrollContainer.addEventListener('mouseleave', () => {
-        isInteracting = false;
-        startAutoScroll();
-    });
-
+let lastTimestamp = 0;
+// Start auto-scroll
 function startAutoScroll() {
 
-    autoScrollInterval = setInterval(() => {
+     if (isMobile) return; // Disable auto-scroll on mobile devices for now, fix later
+
+
+    function scrollStep(timestamp) {
         if (!isInteracting) {
-            //console.log(`Scroll Container Value: `,scrollContainer.scrollTop)
-            if (goingDown) {
-                scrollContainer.scrollBy({
-                    top: 1,
-                    behavior: 'smooth'
-                });
-
-                // If bottom edge is reached, switch direction
-                if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight) {
-                    goingDown = false;
+            if (!lastTimestamp || timestamp - lastTimestamp > 30) { // 30ms delay
+                if (goingDown) {
+                    scrollContainer.scrollBy(0, 1);
+                    if (scrollContainer.scrollTop + scrollContainer.clientHeight >= scrollContainer.scrollHeight) {
+                        goingDown = false;
+                    }
+                } else {
+                    scrollContainer.scrollBy(0, -1);
+                    if (scrollContainer.scrollTop <= 0) {
+                        goingDown = true;
+                    }
                 }
-            } else {
-                scrollContainer.scrollBy({
-                    top: -1,
-                    behavior: 'smooth'
-                });
-
-                // If top edge is reached, switch direction
-                if (scrollContainer.scrollTop <= 0) {
-                    goingDown = true;
-                }
+                lastTimestamp = timestamp;
             }
         }
-    }, 10); // Adjust speed as needed
+        autoScrollRequest = requestAnimationFrame(scrollStep);
 }
 
+
+    cancelAutoScroll(); // Prevent multiple animations
+    autoScrollRequest = requestAnimationFrame(scrollStep);
+
+}
+
+// Cancel auto-scroll
+function cancelAutoScroll() {
+    if (autoScrollRequest) {
+        cancelAnimationFrame(autoScrollRequest);
+    }
+}
+
+// Start auto-scroll on page load
+document.addEventListener('DOMContentLoaded', () => {
     startAutoScroll();
 });
 
 
-
-  </script>
+</script>
 
 
 <script>
 
+
 <!----------------------------------------->
 <!-- Footer Video JS  -->
 <!----------------------------------------->
+
 document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('senecaVideo');
     const overlay = document.getElementById('videoOverlay');
     const muteIcon = document.getElementById('muteVideo');
     const icon = muteIcon.querySelector('i');
+    const adviceAudio = new Audio("{% static 'images/seneca-advice.mp3' %}");
 
     let overlayHidden = false; // Track if the overlay is hidden
     let messageShown = false; // Track if the redirection message is shown
-
+    let audioMuted = true;
 
     // Create and style the message element
     const message = document.createElement('div');
@@ -401,25 +448,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Enable sound and remove overlay on first click
     overlay.addEventListener('click', () => {
-        video.muted = false; // Enable sound
+        adviceAudio.play()
+        audioMuted = false;
         icon.classList.remove('fa-volume-mute');
         icon.classList.add('fa-volume-up');
         overlay.classList.add('hidden'); // Hide overlay
         overlayHidden = true; // Mark overlay as hidden
     });
 
-<!--    // Enable sound on hover-->
-<!--    video.addEventListener('mouseover', () => {-->
-<!--        video.muted = false;-->
-<!--    });-->
 
-<!--    // Mute sound when not hovering-->
-<!--    video.addEventListener('mouseout', () => {-->
-<!--        video.muted = true;-->
-<!--    });-->
 
     // Show message and redirect if video is clicked
     video.addEventListener('click', () => {
+
         if (overlayHidden) {
 
             if (!messageShown) {
@@ -446,18 +487,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Toggle mute/unmute on icon click
     muteIcon.addEventListener('click', () => {
-        video.muted = !video.muted; // Toggle mute state
 
         // Change icon based on mute state
-        if (video.muted) {
-            icon.classList.remove('fa-volume-up');
-            icon.classList.add('fa-volume-mute');
-        } else {
+        if (audioMuted) {
+            adviceAudio.play()
             icon.classList.remove('fa-volume-mute');
             icon.classList.add('fa-volume-up');
+        } else {
+            adviceAudio.pause()
+            icon.classList.remove('fa-volume-up');
+            icon.classList.add('fa-volume-mute');
         }
+
+        audioMuted = !audioMuted;
+
     });
 });
+
+
 
 
 </script>

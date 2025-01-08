@@ -215,7 +215,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const normalizationFactor = isMobile() ? mobileNorm : pcNorm;
             const threshold = chatContainer.offsetTop - 450 * normalizationFactor;
 
-            console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}`);
+            //Debugging scroll behavior
+            //console.log(`scrollTop: ${scrollTop}, threshold: ${threshold}`);
 
             if (scrollTop > threshold) {
                 sparkles.style.display = 'none';
@@ -270,13 +271,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  </script>
-
-
-<script>
-
-
 </script>
+
+
+<!--<script src="{% static 'scroll_behavior.js' %}"></script>-->
+
 
 </body>
 </html>
