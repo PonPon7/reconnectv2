@@ -63,8 +63,15 @@
     }
 
     .summary-popup {
-    width: 280px;
+    width: 245px;
+
     }
+
+    /* Book image styling */
+.summary-popup img {
+    width: 40%; /* Adjust size as needed */
+    }
+
     #loginBtn {
     display: none;
     pointer-events: none;
@@ -252,7 +259,13 @@
 <!-- Initial Load & Data Summary Pop-ups for Books Slide -->
 <!------------------------------------------------->
 
+// Mobile detection flag
+const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+
 document.addEventListener('DOMContentLoaded', function () {
+
+  let isInteracting = false;
   const items = document.querySelectorAll('.reference-item');
   const summaryPopup = document.getElementById('summaryPopup');
   let currentPopupItem = null;
@@ -282,15 +295,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    const popupWidth = Math.min(windowWidth * 0.8, 300);
-    const popupHeight = Math.min(windowHeight * 0.6, 200);
-    const top = windowHeight / 3 - popupHeight / 2 + window.scrollY;
-    const left = windowWidth / 2 - popupWidth / 2;
-
+    const popupWidth = Math.min(windowWidth * 0.8, 470);
+    const popupHeight = Math.min(windowHeight * 0.6, 300);
+    const top = windowHeight / 3 + window.scrollY;
+    const left = windowWidth / 2 - popupWidth * 1.5;
+    if(!isMobile) {
     summaryPopup.style.width = popupWidth + 'px';
     summaryPopup.style.height = popupHeight + 'px';
-    summaryPopup.style.top = top + 'px';
+    summaryPopup.style.top = top + document.body.scrollTop + 170 + 'px';
     summaryPopup.style.left = left + 'px';
+    }
+    else {
+    summaryPopup.style.width = popupWidth*0.8 + 'px';
+    summaryPopup.style.height = popupHeight*0.9 + 'px';
+    summaryPopup.style.top = (windowHeight / 4.2) + document.body.scrollTop + 'px';
+    summaryPopup.style.left = 10 + 'px';
+    }
 
     const textElement = summaryPopup.querySelector('.text-content');
     typeText(textElement, summaryText);
@@ -309,13 +329,14 @@ document.addEventListener('DOMContentLoaded', function () {
     if (summaryPopup.contains(event.target) || currentPopupItem.contains(event.target)) {
       return;
     }
+
     hidePopup();
   }
 
   const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   items.forEach(item => {
-    if (isTouchDevice) {
+    if (isTouchDevice && isInteracting) {
       item.addEventListener('touchstart', (event) => {
         event.preventDefault();
         showPopup(item);
@@ -341,10 +362,6 @@ let isInteracting = false;
 let goingDown = true;
 let autoScrollRequest;
 const scrollContainer = document.querySelector('.scrolling-list');
-
-// Mobile detection flag
-const isMobile = /iPhone|iPad|iPod|Android|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
 
 
 // Detect mouse interaction
@@ -539,6 +556,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </script>
+
+    <script src="{% static 'scroll_behavior.js' %}"></script>
 
 </body>
 
