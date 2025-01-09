@@ -145,6 +145,13 @@
         </button>
       </div>
     </div>
+
+    <template id="loading-indicator-template">
+  <div class="logo-container">
+    <img src="{% static 'images/ylf_first_logo.png' %}" alt="Thinking..." class="logo">
+  </div>
+  Thinking...
+</template>
   </div>
 
   <!-- Bootstrap JS (if needed) -->
@@ -158,11 +165,8 @@
 
 
 
-  <!-- Handling Interactive UI elements -->
-  <script>
-    // Override the spark count before the main script
-    const sparkCount = 200;
-
+<!-- Handling Interactive UI elements -->
+<script>
 //Navigation script - possible to manipulate in the future
 <!--    const nav = document.querySelector('nav');-->
 <!--    nav.classList.add('visible_custom');-->

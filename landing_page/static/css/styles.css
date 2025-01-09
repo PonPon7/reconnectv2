@@ -215,7 +215,7 @@ p {
     font-size: 1.2rem;
     font-family: 'Poppins', serif;
 
-    margin: 3rem 2rem 1rem;
+    margin: 1.3rem 2rem 1rem;
     line-height: 1.7;
     opacity: 0.95;
     font-weight: bold;
@@ -266,6 +266,7 @@ canvas {
     background-size: contain;
     opacity: 0.7;
     animation: flickerIcon 3s infinite;
+    display: none;
 }
 @keyframes flickerIcon {
     0%, 100% {opacity: 0.7;}

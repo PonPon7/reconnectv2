@@ -153,11 +153,46 @@ setupPage();
     // 4) Temporary "Thinking..." bubble
     let loadingBubble = addChatBubble('Thinking...', 'llm');
 
+//    // Create the spinner element - for LLM thinking effect
+//      const spinner = document.createElement('div');
+//      spinner.classList.add('spinner');
+//      spinner.innerHTML = `
+//        <svg viewBox="0 0 50 50" class="circular">
+//          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+//        </svg>
+//      `;
+//
+// ... your existing sendMessage function ...
+
+const logoContainer = document.createElement('div');
+logoContainer.classList.add('logo-container');
+
+// Use img tag and set src attribute dynamically with a fallback
+const logo = new Image();
+logo.src = "/static/images/ylf_first_logo.png"; // Use the /static/ prefix
+logo.alt = "Thinking...";
+logo.classList.add('logo');
+
+logo.onload = function() { // Handle image load success
+  logoContainer.appendChild(logo);
+  loadingBubble.insertBefore(logoContainer, loadingBubble.firstChild);
+  logoContainer.style.marginRight = '5px';
+};
+
+// Optional: Handle potential error loading the image
+logo.onerror = function() {
+  console.error("Failed to load logo image.");
+  // You can add alternative behavior here, like displaying an error message
+};
+
+// ... rest of your code
+
+
     // Set a timeout to change the bubble text after 5 seconds
     let timeoutId = setTimeout(() => {
       chatMessages.removeChild(loadingBubble);
       loadingBubble = addChatBubble('Analyzing Context...', 'llm'); // Change the text of the bubble
-    }, 5000);
+    }, 9000);
 
 
     // 5) POST to server
@@ -228,7 +263,6 @@ function addChatBubble(message, sender) {
   // Testing Markdown
   // message = "## Hello World\n\n**This is bold text** and *this is italic text*.";
   const renderedHtml = marked.parse(message); // Parse Markdown into HTML
-
 
   messageContent.innerHTML = renderedHtml;
   contentContainer.appendChild(messageContent);

@@ -1004,6 +1004,9 @@ text-indent: 0em;
 
 }
 
+
+
+/* Some Final Fine-Tuning adjustments */
 nav {
     width: 100%;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(31, 31, 31, 0.8));
@@ -1015,5 +1018,125 @@ nav {
 .nav-center {
     margin-right: 3rem;
 
+}
+
+
+/* LLM thiking Spinner */
+
+.spinner {
+  display: inline-block; /* Important for inline positioning */
+  width: 20px;
+  height: 20px;
+  animation: rotate 1s linear infinite;
+  margin-right: 5px;
+}
+
+.circular {
+  animation: rotate-circle 1.2s linear infinite;
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 150, 150; /* Adjusted for better circle */
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  stroke: #4285F4;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-circle {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes color {
+  0% {
+    stroke: #4285F4;
+  }
+  40% {
+    stroke: #EA4335;
+  }
+  66% {
+    stroke: #FBBC05;
+  }
+  80% {
+    stroke: #34A853;
+  }
+  100% {
+    stroke: #4285F4;
+  }
+}
+
+
+/* Trying with Logo */
+.logo-container {
+  display: inline-block;
+  width: 33px;
+  height: 40px;
+  position: relative;
+  margin-right: 5px;
+  perspective: 1000px; /* For 3D rotation effect */
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  opacity: 0; /* Still initially hidden */
+  animation: logo-appear-spin 4s linear infinite;
+  transform-style: preserve-3d; /* Important for 3D */
+}
+
+@keyframes logo-appear-spin {
+  0% {
+    opacity: 0;
+    transform: rotateY(0deg) scale(0.5); /* Start small and rotated */
+  }
+  25% {
+    opacity: 1;
+    transform: rotateY(180deg) scale(1.1); /* Overshoot slightly */
+  }
+    50% {
+    opacity: 1;
+    transform: rotateY(360deg) scale(1); /* Full rotation */
+  }
+  75% {
+    opacity: 1;
+    transform: rotateY(540deg) scale(1.1); /* Overshoot slightly */
+  }
+  100% {
+    opacity: 0;
+    transform: rotateY(720deg) scale(0.5); /* Fade out and return to start */
+  }
 }
 
