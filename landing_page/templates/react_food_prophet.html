@@ -377,15 +377,15 @@ document.addEventListener('DOMContentLoaded', () => {
 <!--                }-->
 <!--            }-->
 
-            // Log scroll data
-            fetch('/log-scroll/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken'), // Django CSRF token
-                },
-                body: JSON.stringify({ scrollTop, threshold }),
-            }).catch(error => console.error('Error logging scroll:', error));
+<!--            // Log scroll data-->
+<!--            fetch('/log-scroll/', {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json',-->
+<!--                    'X-CSRFToken': getCookie('csrftoken'), // Django CSRF token-->
+<!--                },-->
+<!--                body: JSON.stringify({ scrollTop, threshold }),-->
+<!--            }).catch(error => console.error('Error logging scroll:', error));-->
         }
 
         requestAnimationFrame(checkScroll);

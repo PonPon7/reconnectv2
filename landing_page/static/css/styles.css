@@ -215,7 +215,7 @@ p {
     font-size: 1.2rem;
     font-family: 'Poppins', serif;
 
-    margin: 1.3rem 2rem 1rem;
+    margin: 0.1rem 2rem 1rem;
     line-height: 1.7;
     opacity: 0.95;
     font-weight: bold;
@@ -495,7 +495,7 @@ canvas {
 
 /* Subtitles (H3) */
 .section h3 {
-    font-size: 1.037rem;
+    font-size: 1.047rem;
     font-family: 'Cinzel', serif;
     font-weight: bold;
     color: #FFA500; /* Same color as main title, no neon */
@@ -507,7 +507,7 @@ canvas {
 /* Paragraphs */
 .section p {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.83rem;
     margin-bottom: 0.3rem;
     color: #fff; /* Softer white for text */
 }
