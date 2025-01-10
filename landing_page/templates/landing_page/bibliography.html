@@ -668,6 +668,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const muteIcon = document.getElementById('muteVideo');
     const icon = muteIcon.querySelector('i');
     const adviceAudio = new Audio("{% static 'images/seneca-advice.mp3' %}");
+    adviceAudio.loop = true; // Enables looping
+
 
     let overlayHidden = false; // Track if the overlay is hidden
     let messageShown = false; // Track if the redirection message is shown

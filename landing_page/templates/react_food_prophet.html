@@ -297,24 +297,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    function smoothZoom(target, start, end, duration) {
-    const stepTime = 10; // Time between steps (10ms)
-    const stepCount = duration / stepTime; // Number of steps
-    const stepSize = (end - start) / stepCount; // Zoom change per step
 
-    let currentZoom = start;
-    let step = 0;
+  function smoothZoom(target, start, end, duration) {
+    const startTime = performance.now(); // Record the start time
+    const deltaZoom = end - start; // Total zoom change
+    const isMobileDevice = isMobile();
 
-    const interval = setInterval(() => {
-        if (step >= stepCount) {
-            clearInterval(interval); // Stop when done
+    // Define logic for mobile, skip incremental zoom in/outs as Mobile Browsers do not handle well
+    if(isMobileDevice) {
+    target.style.zoom = end;
+    }
+
+    function animateZoom(currentTime) {
+        const elapsed = currentTime - startTime; // Calculate elapsed time
+        const progress = Math.min(elapsed / duration, 1); // Normalize progress (0 to 1)
+        const currentZoom = start + deltaZoom * progress; // Calculate current zoom level
+
+        if (progress < 1) {
+           target.style.zoom = currentZoom; // Desktop can use zoom
+           requestAnimationFrame(animateZoom);
         } else {
-            currentZoom += stepSize;
-            target.style.zoom = currentZoom;
-            step++;
+            // Ensure final zoom level is set
+            target.style.zoom = end;
         }
-    }, stepTime);
+    }
+
+    requestAnimationFrame(animateZoom); // Start the animation
 }
+
+
+
+// Add flags to track the current zoom state
+let isZoomedIn = false;
 
     // Scroll handling logic
     function checkScroll() {
@@ -345,23 +359,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Hide navbar and show React app if scrolled past the threshold
             // Past threshold - apply zoom effect to properly render React app
-            if (lastScrollTop > threshold) {
-                document.body.classList.add('background-active', 'zoom-active');
-                if (!isMobile()) {
-                    nav.classList.remove('visible');
-                    nav.classList.add('invisible');
-                }
-                reactApp.classList.remove('invisible');
-                reactApp.classList.add('visible');
-            } else {
-                document.body.classList.remove('background-active', 'zoom-active');
-                if (!isMobile()) {
-                    nav.classList.remove('invisible');
-                    nav.classList.add('visible');
-                }
-                reactApp.classList.remove('visible');
-                reactApp.classList.add('invisible');
+
+      // Smooth zoom transition
+      if (lastScrollTop > threshold && !isZoomedIn) {
+            // Trigger zoom in only if not already zoomed in
+            isZoomedIn = true;
+
+            document.body.classList.add('background-active');
+            if (!isMobile()) {
+                nav.classList.remove('visible');
+                nav.classList.add('invisible');
             }
+            reactApp.classList.remove('invisible');
+            reactApp.classList.add('visible');
+            smoothZoom(document.body, 1, 0.73, 500); // Zoom in smoothly over 500ms
+        } else if (lastScrollTop <= threshold && isZoomedIn) {
+            // Trigger zoom out only if currently zoomed in
+            isZoomedIn = false;
+
+            document.body.classList.remove('background-active');
+            if (!isMobile()) {
+                nav.classList.remove('invisible');
+                nav.classList.add('visible');
+            }
+            reactApp.classList.remove('visible');
+            reactApp.classList.add('invisible');
+            smoothZoom(document.body, 0.73, 1, 500); // Zoom out smoothly over 500ms
+        }
+
 
 <!--            // Mobile-specific behavior for login button-->
 <!--            if (isMobile()) {-->
@@ -435,8 +460,8 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 
-
-<script src="{% static 'scroll_behavior.js' %}"></script>
+<!-- Trouble-shooting scroll behavior on different elements -->
+<!--<script src="{% static 'scroll_behavior.js' %}"></script>-->
 
 
 </body>
