@@ -185,13 +185,21 @@ logo.onerror = function() {
   // You can add alternative behavior here, like displaying an error message
 };
 
-// ... rest of your code
 
 
     // Set a timeout to change the bubble text after 5 seconds
     let timeoutId = setTimeout(() => {
       chatMessages.removeChild(loadingBubble);
       loadingBubble = addChatBubble('Analyzing Context...', 'llm'); // Change the text of the bubble
+        loadingBubble.insertBefore(logoContainer, loadingBubble.firstChild);
+    }, 7000);
+
+
+    // Set a timeout to change the bubble text after 5 seconds
+    timeoutId = setTimeout(() => {
+      chatMessages.removeChild(loadingBubble);
+      loadingBubble = addChatBubble('Formatting & Processing response...', 'llm'); // Change the text of the bubble
+        loadingBubble.insertBefore(logoContainer, loadingBubble.firstChild);
     }, 9000);
 
 

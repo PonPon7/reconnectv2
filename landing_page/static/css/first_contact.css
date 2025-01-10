@@ -322,6 +322,7 @@
 
 .sparks {
     position: absolute;
+    overflow: visible;
     bottom: 50px;
     left: 63%;
     top: 70%;
@@ -336,11 +337,10 @@
 
 .spark {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: radial-gradient(circle, #ffd700, transparent);
+    background-color: #ff4500;
     border-radius: 50%;
-    animation: spark-animation 1s ease-out forwards;
+    pointer-events: none;
+    filter: blur(0px); /* Adds a glowing effect */
 }
 
 @keyframes spark-animation {
