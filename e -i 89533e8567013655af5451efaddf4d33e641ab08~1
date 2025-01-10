@@ -1,0 +1,17 @@
+[33mcommit 89533e8567013655af5451efaddf4d33e641ab08[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32meditor-branch[m[33m)[m
+Author: PonPon7 <dreampoilt@gmail.com>
+Date:   Thu Jan 9 22:37:56 2025 +0800
+
+    Message about changes
+
+[33mcommit 3276d6c6a56b50e2c58460ba79b333c1d1e4a9da[m[33m ([m[1;31morigin/editor-branch[m[33m)[m
+Author: PonPon7 <dreampoilt@gmail.com>
+Date:   Sat Jan 4 18:37:22 2025 +0800
+
+    My First Commit
+
+[33mcommit 83cd612955cc904d2697e838f07a724345ce980a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: lao.water <baciu.raul555@gmail.com>
+Date:   Sat Jan 4 11:48:38 2025 +0200
+
+    Initial commit: Upload Django project
