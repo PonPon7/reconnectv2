@@ -134,7 +134,7 @@ body {
 
 /* Custom scrollbar styling */
 .scrolling-list::-webkit-scrollbar {
-    width: 12px;
+    width: 0px;
 }
 
 .scrolling-list::-webkit-scrollbar-thumb {
@@ -152,6 +152,7 @@ body {
 }
 
 .scrolling-list:hover::-webkit-scrollbar {
+    width: 12px;
     opacity: 1;
     transition: opacity 0.3s ease-in-out;
 }
@@ -277,7 +278,8 @@ body {
 }
 
     .nav-center {
-    margin-right: 4rem;
+    margin-right: 1.84rem;
+
 }
 
 
@@ -399,3 +401,61 @@ body {
     transform: scale(1.1); /* Slight zoom effect */
     box-shadow: 0 0 20px rgba(126, 200, 227, 0.8), 0 0 40px rgba(126, 200, 227, 0.6);
 }
+
+
+
+.hover-info {
+  position: relative;
+  left: 17%;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+
+
+
+
+ /************************************************************
+ * Media Query for Mobile Devices
+ ************************************************************/
+
+@media only screen and (max-width: 768px) {
+      .icon-container i {
+        margin-top: 2.3rem;
+    }
+
+    .scrolling-list {
+    width: 92%;
+    }
+
+    .summary-popup {
+    width: 245px;
+
+    }
+
+    /* Book image styling */
+.summary-popup img {
+    width: 40%; /* Adjust size as needed */
+    }
+
+    #loginBtn {
+    display: none;
+    pointer-events: none;
+
+    }
+
+
+/* Text container styling */
+.summary-popup .text-content {
+    font-size: 0.7rem;
+    line-height: 1.1;
+}
+

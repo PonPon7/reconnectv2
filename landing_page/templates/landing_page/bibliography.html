@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="{% static 'css/bibliography.css' %}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+
   <style>
 
     /* Background Image Container */
@@ -48,38 +50,6 @@
     {
     display: none;
     }
-
- /************************************************************
- * Media Query for Mobile Devices
- ************************************************************/
-
-@media only screen and (max-width: 768px) {
-      .icon-container i {
-        margin-top: 2.3rem;
-    }
-
-    .scrolling-list {
-    width: 92%;
-    }
-
-    .summary-popup {
-    width: 245px;
-
-    }
-
-    /* Book image styling */
-.summary-popup img {
-    width: 40%; /* Adjust size as needed */
-    }
-
-    #loginBtn {
-    display: none;
-    pointer-events: none;
-
-    }
-
-}
-
 
 
   </style>
@@ -121,6 +91,10 @@
       </p>
     </div>
 
+    <div class="hover-info">
+  <i data-feather="info"></i>
+  <span class="info-text">&nbsp Hover over a book for details</span>
+</div>
 
     <!-- Scrolling list of bibliography items -->
     <div class="scrolling-list">
@@ -498,7 +472,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
         clearInterval(interval);
       }
-    }, 33);
+    }, 3);
   }
 
   function showPopup(item) {
@@ -514,8 +488,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    const popupWidth = Math.min(windowWidth * 0.8, 470);
-    const popupHeight = Math.min(windowHeight * 0.6, 300);
+    const popupWidth = Math.min(windowWidth, 570);
+    const popupHeight = Math.min(windowHeight * 0.6, 325);
     const top = windowHeight / 3 + window.scrollY;
     const left = windowWidth / 2 - popupWidth * 1.5;
     if(!isMobile) {
@@ -525,8 +499,8 @@ document.addEventListener('DOMContentLoaded', function () {
     summaryPopup.style.left = left + 'px';
     }
     else {
-    summaryPopup.style.width = popupWidth*0.8 + 'px';
-    summaryPopup.style.height = popupHeight*0.9 + 'px';
+    summaryPopup.style.width = popupWidth*0.9 + 'px';
+    summaryPopup.style.height = popupHeight*0.77 + 'px';
     summaryPopup.style.top = (windowHeight / 4.2) + document.body.scrollTop + 'px';
     summaryPopup.style.left = 10 + 'px';
     }
@@ -777,6 +751,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 </script>
+
+    <!-- Feather Icons Library -->
+<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+<script>
+  feather.replace(); // Replace the icons after the DOM is fully loaded
+</script>
+
 
     <script src="{% static 'scroll_behavior.js' %}"></script>
 

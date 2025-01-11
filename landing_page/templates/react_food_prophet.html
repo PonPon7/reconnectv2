@@ -34,7 +34,7 @@
       <h2>What is The Food Prophet?</h2>
       <p>
         <strong>A tool powered by <em>Machine Learning</em> to simulate your Digestion, revealing Patterns and Insights.</strong><br>By combining user inputs and
-        natural digestion patterns, it provides a personalized journey into <br>better
+        natural digestion patterns, it provides a personalized journey into better
         Eating and Health habits.
       </p>
     </div>
@@ -81,7 +81,7 @@
 
       <p>
         <br>The Result? <br>A detailed, interactive model that reflects how your body processes
-        <strong>food</strong> and responds to your lifestyle.
+        <strong>food</strong> and responds to your Unique lifestyle.
       </p>
     </div>
 
@@ -306,6 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define logic for mobile, skip incremental zoom in/outs as Mobile Browsers do not handle well
     if(isMobileDevice) {
     target.style.zoom = end;
+    return;
     }
 
     function animateZoom(currentTime) {
