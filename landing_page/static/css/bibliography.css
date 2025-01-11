@@ -405,12 +405,12 @@ body {
 
 
 .hover-info {
+  font-size: 0.855rem;
   position: relative;
-  left: 17%;
+  left: 17.5%;
   margin-bottom: 5px;
   display: flex;
   align-items: center;
-  background: rgba(0, 0, 0, 0.1);
   color: white;
   padding: 5px 10px;
   border-radius: 8px;
@@ -458,4 +458,4 @@ body {
     font-size: 0.7rem;
     line-height: 1.1;
 }
-
+}
