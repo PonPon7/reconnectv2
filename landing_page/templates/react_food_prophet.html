@@ -40,6 +40,7 @@
     </div>
 
     <!-- How It Works Section -->
+
     <div class="fade-in-section delay-2">
       <h2>How It Works:</h2>
       <p>
@@ -50,6 +51,8 @@
         The Digestive Balance with our <em>Mood, Feelings and Sufferings</em> - is enough for an
         effortless change to begin to happen.
       </p>
+    </div>
+      <div class="fade-in-section delay-21">
       <p>
         <br>Our Algorithm integrates:
       </p>
@@ -190,52 +193,97 @@
   const hoverEffects = document.querySelectorAll(".hover-effect pre");
 
   hoverEffects.forEach((hoverEffect, index) => {
-    const parent = hoverEffect.closest("li");
-    let typingInterval; // Store the interval reference to clear properly
-    let lineIndex = 0; // Track the current line being written
-    let charIndex = 0; // Track the current character being written
-    let lines = []; // Dynamically add lines
+const parent = hoverEffect.closest("li");
+let typingInterval; // Store the interval reference to clear properly
+let lineIndex = 0; // Track the current line being written
+let charIndex = 0; // Track the current character being written
+let lines = []; // Dynamically add lines
 
-   parent.addEventListener("mouseover", () => {
-  if (typingInterval) clearInterval(typingInterval); // Clear any previous intervals
-  hoverEffect.textContent = ""; // Clear any residual text
-  lineIndex = 0;
-  charIndex = 0;
-  lines = [""]; // Start with one empty line
+parent.addEventListener("mouseover", () => {
+if (typingInterval) clearInterval(typingInterval); // Clear any previous intervals
+hoverEffect.textContent = ""; // Clear any residual text
+lineIndex = 0;
+charIndex = 0;
+lines = [""]; // Start with one empty line
 
-  typingInterval = setInterval(() => {
-    if (charIndex < textData[index].length) {
-      const char = textData[index][charIndex];
-      if (char === "\n" || lines[lineIndex]?.length >= 50) {
-        // Move to the next line only when necessary
-        if (lines[lineIndex]?.trim().length > 0) {
-          lineIndex++;
-          lines.push(""); // Add a new line
-          hoverEffect.appendChild(document.createElement("br")); // Add a break
-        }
-        charIndex++; // Skip the newline character
-      } else {
-        lines[lineIndex] += char;
-        let currentLineElement = hoverEffect.querySelectorAll(".matrix-line")[lineIndex];
-        if (!currentLineElement) {
-          currentLineElement = document.createElement("span");
-          currentLineElement.className = "matrix-line";
-          hoverEffect.appendChild(currentLineElement);
-        }
-        currentLineElement.textContent = lines[lineIndex];
-        charIndex++;
-      }
-    } else {
-      clearInterval(typingInterval); // Stop once all text is written
-    }
-  }, 11); // Typing speed
+typingInterval = setInterval(() => {
+if (charIndex < textData[index].length) {
+const char = textData[index][charIndex];
+if (char === "\n" || lines[lineIndex]?.length >= 50) {
+// Move to the next line only when necessary
+if (lines[lineIndex]?.trim().length > 0) {
+lineIndex++;
+lines.push(""); // Add a new line
+hoverEffect.appendChild(document.createElement("br")); // Add a break
+}
+charIndex++; // Skip the newline character
+} else {
+lines[lineIndex] += char;
+let currentLineElement = hoverEffect.querySelectorAll(".matrix-line")[lineIndex];
+if (!currentLineElement) {
+currentLineElement = document.createElement("span");
+currentLineElement.className = "matrix-line";
+hoverEffect.appendChild(currentLineElement);
+}
+currentLineElement.textContent = lines[lineIndex];
+charIndex++;
+}
+} else {
+clearInterval(typingInterval); // Stop once all text is written
+}
+}, 11); // Typing speed
 });
 
-    parent.addEventListener("mouseout", () => {
-      clearInterval(typingInterval); // Ensure interval is stopped
-      hoverEffect.textContent = ""; // Clear text on hover out
-    });
-  });
+parent.addEventListener("mouseout", () => {
+clearInterval(typingInterval); // Ensure interval is stopped
+hoverEffect.textContent = ""; // Clear text on hover out
+});
+
+// Add touch events for mobile
+parent.addEventListener("touchstart", (e) => {
+e.stopPropagation(); // Prevent bubbling to other listeners
+if (typingInterval) clearInterval(typingInterval); // Clear any previous intervals
+hoverEffect.textContent = ""; // Clear any residual text
+lineIndex = 0;
+charIndex = 0;
+lines = [""]; // Start with one empty line
+
+typingInterval = setInterval(() => {
+if (charIndex < textData[index].length) {
+const char = textData[index][charIndex];
+if (char === "\n" || lines[lineIndex]?.length >= 50) {
+if (lines[lineIndex]?.trim().length > 0) {
+lineIndex++;
+lines.push(""); // Add a new line
+hoverEffect.appendChild(document.createElement("br")); // Add a break
+}
+charIndex++; // Skip the newline character
+} else {
+lines[lineIndex] += char;
+let currentLineElement = hoverEffect.querySelectorAll(".matrix-line")[lineIndex];
+if (!currentLineElement) {
+currentLineElement = document.createElement("span");
+currentLineElement.className = "matrix-line";
+hoverEffect.appendChild(currentLineElement);
+}
+currentLineElement.textContent = lines[lineIndex];
+charIndex++;
+}
+} else {
+clearInterval(typingInterval); // Stop once all text is written
+}
+}, 11); // Typing speed
+});
+
+document.addEventListener("touchstart", (e) => {
+if (!parent.contains(e.target)) {
+clearInterval(typingInterval); // Stop typing
+hoverEffect.textContent = ""; // Clear text
+}
+});
+
+});
+
 });
 
 
@@ -440,25 +488,6 @@ let isZoomedIn = false;
 
 </script>
 
-
-
-<!-- Dynamic Login Button - JS scroll tracking to adjust position -->
-<!-- WindowY (Document) Scroll Triggered -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const loginBtn = document.getElementById("loginBtn");
-   const contentWrapper = document.querySelector('.content-wrapper');
-
-  container.addEventListener("scroll", () => {
-    // Get the container's scroll position
-    const scrollTop = contentWrapper.getBoundingClientRect().top + window.scrollY;
-
-    // Dynamically update the button's top position based on scroll
-    loginBtn.style.transform = `translateY(${scrollTop}px)`;
-  });
-});
-
-</script>
 
 
 <!-- Trouble-shooting scroll behavior on different elements -->

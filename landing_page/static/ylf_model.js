@@ -162,11 +162,11 @@ setupPage();
 //        </svg>
 //      `;
 //
-// ... your existing sendMessage function ...
+// Circle Spinning option
 
+// Logo option
 const logoContainer = document.createElement('div');
 logoContainer.classList.add('logo-container');
-
 // Use img tag and set src attribute dynamically with a fallback
 const logo = new Image();
 logo.src = "/static/images/ylf_first_logo.png"; // Use the /static/ prefix
@@ -178,7 +178,6 @@ logo.onload = function() { // Handle image load success
   loadingBubble.insertBefore(logoContainer, loadingBubble.firstChild);
   logoContainer.style.marginRight = '5px';
 };
-
 // Optional: Handle potential error loading the image
 logo.onerror = function() {
   console.error("Failed to load logo image.");
@@ -192,7 +191,7 @@ logo.onerror = function() {
       chatMessages.removeChild(loadingBubble);
       loadingBubble = addChatBubble('Analyzing Context...', 'llm'); // Change the text of the bubble
         loadingBubble.insertBefore(logoContainer, loadingBubble.firstChild);
-    }, 7000);
+    }, 5000);
 
 
     // Set a timeout to change the bubble text after 5 seconds
@@ -257,6 +256,7 @@ logo.onerror = function() {
 
 // Handles adding new user & LLM responses to chat
 function addChatBubble(message, sender) {
+  let processing_phase = false;
   // Create the bubble container
   const bubble = document.createElement('div');
   bubble.classList.add('chat-bubble', sender);
@@ -277,8 +277,16 @@ function addChatBubble(message, sender) {
 
   console.log(`Rendered HTML before adding chat message: ${renderedHtml}`);
 
-  // If it's an LLM message, add a copy button
-  if (sender === 'llm') {
+    // Check if the message indicates a processing phase
+    if (
+      message.includes("Formatting & Processing response...") ||
+      message.includes("Analyzing Context...") ||
+      message.includes("Thinking...")
+    ) {
+      processing_phase = true;
+    }
+  // If it's an LLM message and processing phase finished, add copy & flag buttons
+  if (sender === 'llm' && !processing_phase) {
     const copyBtn = document.createElement('button');
     copyBtn.classList.add('copy-btn');
     copyBtn.innerHTML = `
@@ -286,6 +294,7 @@ function addChatBubble(message, sender) {
         <path d="M19 21H9c-1.1 0-2-.9-2-2V7h2v12h10v2zm2-16h-8c-1.1 0-2 .9-2 2v8
                  c0 1.1.9 2 2 2h8c-1.1.0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 10h-8V7h8v8z"/>
       </svg>
+              <span class="tooltip-text-copy">Copy</span>
     `;
     contentContainer.appendChild(copyBtn);
 
@@ -293,8 +302,40 @@ function addChatBubble(message, sender) {
     copyBtn.addEventListener('click', () => {
       navigator.clipboard.writeText(message).then(() => {
         console.log("Copied to clipboard!");
+
+         // Temporarily show "Copied!" message
+      const tooltip = copyBtn.querySelector('.tooltip-text-copy');
+      const originalText = tooltip.textContent;
+      tooltip.textContent = "Copied!";
+
+      // Reset back to original message after a delay
+      setTimeout(() => {
+        tooltip.textContent = originalText;
+      }, 1500); // Display "Copied!" for 1.5 seconds
+
       });
     });
+
+      // Adding Flag-as-Innapropriate Button
+     // Create the flag button
+  const flagBtn = document.createElement('button');
+  flagBtn.classList.add('flag-btn');
+        flagBtn.innerHTML = `
+        <div class="flag-icon">
+            <svg viewBox="0 0 24 24" width="16" height="16" style="vertical-align: top;">
+                <path d="M6 2c-1.1 0-2 .9-2 2v16c0 .55.45 1 1 1s1-.45 1-1V14h11c.82 0 1.54-.5 1.85-1.22L22 7c.25-.57.16-1.2-.25-1.65C21.37 5 20.8 4.88 20.27 5L16 7H6V4c0-1.1-.9-2-2-2z"/>
+            </svg>
+        </div>
+        <span class="tooltip-text">Flag this response as inappropriate</span>
+      `;
+  contentContainer.appendChild(flagBtn);
+
+  // Add functionality to handle flagging the message
+  flagBtn.addEventListener('click', () => {
+    console.log("Message flagged as inappropriate!");
+    // Add your logic here to handle flagging the message
+  });
+
   }
 
   // Append the content container to the bubble

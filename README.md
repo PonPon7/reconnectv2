@@ -1,4 +1,4 @@
-## Guide
+## Re-Connect V2 - Project Overview
 
 **Install requirements**
 python 

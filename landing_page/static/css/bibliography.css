@@ -420,7 +420,10 @@ body {
 }
 
 
-
+.small-icon {
+    width: 18px; /* Adjust the size as needed */
+    height: 18px;
+}
 
 
  /************************************************************
@@ -458,4 +461,15 @@ body {
     font-size: 0.7rem;
     line-height: 1.1;
 }
+
+        p {
+        margin: 0.3rem 1rem;
+    }
+
+
+.small-icon {
+    width: 16px; /* Adjust the size as needed */
+    height: 16px;
+}
+
 }
