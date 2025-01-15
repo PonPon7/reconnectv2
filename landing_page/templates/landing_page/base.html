@@ -170,6 +170,37 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   ttq.page();
 }(window, document, 'ttq');
 </script>
+
+  <script>
+    ttq.track('ViewContent', {
+        "contents": [
+            {
+                "content_id": "reconnect_course_v2", // A unique ID for your content
+                "content_type": "product", // or "product_group" if it’s a collection
+                "content_name": "Reconnect V2 Course" // Name of the content or product
+            }
+        ],
+        "value": 0, // No monetary value for just viewing
+        "currency": "USD" // Currency code
+    });
+</script>
+
+  <script>
+    document.querySelector('.buy-button').addEventListener('click', function() {
+        ttq.track('AddToCart', {
+            "contents": [
+                {
+                    "content_id": "reconnect_course_v2",
+                    "content_type": "product",
+                    "content_name": "Reconnect V2 Course"
+                }
+            ],
+            "value": 377, // Cart value
+            "currency": "LEI" // Currency code
+        });
+    });
+</script>
+
 <!-- TikTok Pixel Code End -->
 
   <!-- Link to Font Awesome (CDN) -->
