@@ -16,7 +16,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 from landing_page.utils.util import split_into_paragraphs, format_message_in_markdown, call_ylf_model, \
-    rate_and_filter_message
+    rate_and_filter_message, send_add_to_cart_event, hash_data
 from firebase_config import db
 
 
@@ -376,3 +376,45 @@ def log_scroll(request):
             logger.error(f"Error processing scroll data: {e}")
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+
+# Tik-Tok advertising server side events Pixel setup
+
+
+def add_to_cart_server_event(request):
+    if request.method == "POST":
+        # Extract user and cart details from the request
+        user_email = request.POST.get("email")  # Get user email
+        user_ip = request.META.get("REMOTE_ADDR")  # Get user IP address
+        user_agent = request.META.get("HTTP_USER_AGENT")  # Get user agent
+
+        # Hash user email
+        hashed_email = hash_data(user_email)
+
+        # Prepare TikTok server-side event data
+        user_data = {
+            "email": hashed_email,
+            "ip": user_ip,
+            "user_agent": user_agent,
+        }
+
+        contents = [
+            {
+                "content_id": "reconnect_course_v2",
+                "content_type": "product",
+                "content_name": "Reconnect V2 Course",
+            }
+        ]
+
+        value = 377  # Cart value
+        currency = "RON"  # Currency code
+
+        # Send event to TikTok
+        status_code, response = send_add_to_cart_event(user_data, contents, value, currency)
+
+        # Return the response as JSON
+        return JsonResponse({"status_code": status_code, "response": response})
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+

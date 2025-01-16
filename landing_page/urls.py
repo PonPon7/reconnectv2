@@ -38,6 +38,8 @@ urlpatterns = [
 
     path('log-scroll/', views.log_scroll, name='log_scroll'),
 
+    path("add-to-cart/", views.add_to_cart_server_event, name="add_to_cart"),
+
 ]
 
 

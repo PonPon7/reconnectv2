@@ -1,6 +1,68 @@
 # Function to split text after every 2-3 punctuation marks
 import random
 import re
+import hashlib
+import json
+import time
+import requests
+
+
+TIKTOK_PIXEL_ID = "CU4HDPBC77UAI9RJ1GL0"  # Replace with your TikTok Pixel ID
+ACCESS_TOKEN = "73905fd946e2c7b34b0dbfcd9cfc71f23e8a4e47"  # Replace with your TikTok Access Token
+EVENT_API_URL = "https://business-api.tiktok.com/open_api/v1.3/pixel/track/"
+
+
+def send_add_to_cart_event(user_data, contents, value, currency):
+    """
+    Sends an AddToCart event to TikTok's Events API.
+
+    :param user_data: Dict containing user data (hashed emails, IP, user agent, etc.)
+    :param contents: List of products added to the cart.
+    :param value: Cart value.
+    :param currency: Currency code (e.g., USD, RON).
+    """
+    # Get the current Unix timestamp in seconds
+    timestamp = int(time.time())
+
+    payload = {
+        "pixel_code": TIKTOK_PIXEL_ID,
+        "event": "AddToCart",
+        "event_time": timestamp,
+        "event_id": "unique-event-id",  # Optionally use a unique identifier
+        "context": {
+            "user": user_data,  # Hashed user data
+            "ip": user_data.get("ip"),
+            "user_agent": user_data.get("user_agent"),
+        },
+        "properties": {
+            "contents": contents,
+            "value": value,
+            "currency": currency,
+        },
+    }
+
+    headers = {
+        "Access-Token": ACCESS_TOKEN,
+        "Content-Type": "application/json",
+    }
+
+    response = requests.post(EVENT_API_URL, data=json.dumps(payload), headers=headers)
+
+    # Log response for debugging
+    return response.status_code, response.json()
+
+
+
+def hash_data(data):
+    """
+    Hash data (e.g., email) using SHA-256.
+
+    :param data: The string data to be hashed.
+    :return: Hashed data in hexadecimal format.
+    """
+    if data:
+        return hashlib.sha256(data.encode("utf-8")).hexdigest()
+    return None
 
 
 def split_into_paragraphs(text):
@@ -24,7 +86,6 @@ def split_into_paragraphs(text):
         paragraphs_processing.append(temp_paragraph.strip())  # Add the last paragraph if not empty
 
     return paragraphs_processing
-
 
 
 def call_ylf_model(openai_client, user_prompt) -> str:
@@ -58,12 +119,7 @@ def call_ylf_model(openai_client, user_prompt) -> str:
     model_response = completion.choices[0].message.content
     print(f"Model response: {model_response}")
 
-
     return model_response
-
-
-
-
 
 
 def format_message_in_markdown(openai_client, message_text: str) -> str:
@@ -91,7 +147,7 @@ def format_message_in_markdown(openai_client, message_text: str) -> str:
     ]
 
     response = openai_client.chat.completions.create(
-        model="gpt-4o-mini-2024-07-18",    # or use "gpt-3.5-turbo" if GPT-4 is not available
+        model="gpt-4o-mini-2024-07-18",  # or use "gpt-3.5-turbo" if GPT-4 is not available
         messages=messages,
         temperature=0.1,  # Keep it deterministic for consistent formatting
         max_tokens=2222
@@ -123,7 +179,6 @@ def rate_and_filter_message(openai_client, message_text: str, initial_prompt) ->
                 "- If prompt is vague and empty, we should not be rating the model too low"
                 "* Make sure to always output strictly only the JSON object formatted properly"
 
-
             )
         },
         {
@@ -145,5 +200,3 @@ def rate_and_filter_message(openai_client, message_text: str, initial_prompt) ->
     print(f"GPT-4o mini scoring: {scoring_response}")
 
     return scoring_response
-
-
