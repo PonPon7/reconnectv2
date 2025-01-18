@@ -67,3 +67,8 @@ we are using "./startup.sh" to sync the databases & start web app using Gunicorn
 
 
 **We're all set up**
+Checkout before merge
+
+
+
+***Contributions are welcomed but noted that contributions related to YLF and Food Prophet should be done in their stand-alone repos***
