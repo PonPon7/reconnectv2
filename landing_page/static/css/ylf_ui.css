@@ -1174,6 +1174,270 @@ nav {
 }
 
 
+/* Flag Modal */
+
+/* Flag Modal Background */
+.flag-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.flag-modal-content {
+    background: rgba(162, 210, 255, 0.73); /* Semi-transparent with blue tint */
+    backdrop-filter: blur(10px); /* Adds a nice blur effect */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Light border for contrast */
+    border-radius: 15px; /* Slightly more rounded corners */
+    max-width: 600px;
+    margin: 10% auto;
+    padding: 25px; /* Increased padding for better spacing */
+    position: relative;
+    animation: flagFadeIn 1s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+    font-family: 'Poppins', sans-serif
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    opacity: 0.95; /* Slightly less transparent for better readability */
+    color: #333; /* Darker text color for contrast */
+    text-align: center; /* Center text alignment for a balanced look */
+}
+
+/* Modal Heading */
+.flag-modal-content #ylf_feedback_h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #004578; /* Deep blue for emphasis */
+    font-weight: bold;
+    background: none;
+    text-shadow: none;
+    animation: none !important;
+    -webkit-text-fill-color: #004578;
+
+}
+
+
+/* Modal Paragraph */
+.flag-modal-content p {
+    font-size: 1rem;
+    color: #444; /* Slightly lighter for subtlety */
+    line-height: 1.44; /* Increased line height for readability */
+}
+
+
+/* Close Button */
+.flag-close-btn {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: antiquewhite;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.flag-close-btn:hover {
+  color: #333;
+}
+
+/* Modal Buttons */
+.flag-modal-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.flag-modal-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+/* Button styles for "Close" */
+.flag-modal-btn.flag-close-modal {
+    background: #f0f0f0;
+    color: #666;
+    border: 1px solid #ddd; /* Slight border for definition */
+}
+
+.flag-modal-btn.flag-close-modal:hover {
+    background: #e0e0e0;
+    color: #444;
+    transform: scale(1.05); /* Slight scaling on hover */
+}
+
+/* Button styles for "Yes, I'm in!" */
+.flag-modal-btn.flag-participate-modal {
+    background: linear-gradient(135deg, #4facfe, #00f2fe); /* Gradient button */
+    color: #fff;
+    border: none;
+}
+
+.flag-modal-btn.flag-participate-modal:hover {
+    background: linear-gradient(135deg, #3c9fea, #00cffe);
+    transform: scale(1.05); /* Slight scaling on hover */
+}
+
+/* Flag Modal Animation */
+@keyframes flagFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/*******************/
+/** Rating Modal **/
+/******************/
+
+.rating-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* Prevent background scrolling */
+
+}
+
+.rating-modal-content {
+    background: rgba(162, 210, 255, 0.85); /* Semi-transparent with blue tint */
+    backdrop-filter: blur(10px); /* Adds a nice blur effect */
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 5% auto;
+  padding: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1s ease;
+  overflow-y: auto; /* Make modal content scrollable */
+    max-height: 90vh; /* Ensure modal doesn't exceed viewport height */
+
+
+}
+
+.rating-modal-content h2, h3
+{
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #004578; /* Deep blue for emphasis */
+    font-weight: bold;
+    background: none;
+    text-shadow: none;
+    animation: none !important;
+    -webkit-text-fill-color: #004578;
+}
+
+.rating-modal-content p
+{
+    color: #004578;
+    font-size: 1rem;
+}
+
+
+.rating-section {
+  margin-bottom: 20px;
+}
+
+.rating-scale {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.rating-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 0.7rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
+  border-radius: 5px;
+  background: #003049;
+}
+
+.rating-box:hover {
+  background: #007bff;
+  color: white;
+  transform: scale(1.1);
+}
+
+.rating-box.selected {
+  background: #007bff; /* Same as hover */
+  color: white;
+  transform: scale(1.1); /* Slightly larger to indicate selection */
+  border: 2px solid #0056b3; /* Add a border for emphasis */
+}
+
+
+.justification {
+  width: 100%;
+  font-size: 0.82rem;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.rating-actions {
+  text-align: center;
+}
+
+.rating-submit-btn {
+  background: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.rating-submit-btn:hover {
+  background: #218838;
+}
+
+
+/* Close button */
+.rating-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.rating-close-btn:hover {
+  color: #007bff;
+}
+
+
+
+
+
+
+
 /* Copy Button */
 
     .copy-btn {

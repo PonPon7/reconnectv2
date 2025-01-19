@@ -334,6 +334,7 @@ function addChatBubble(message, sender) {
   flagBtn.addEventListener('click', () => {
     console.log("Message flagged as inappropriate!");
     // Add your logic here to handle flagging the message
+    handleFlagFeedback(flagBtn);
   });
 
   }
@@ -541,6 +542,77 @@ function saveConversationsToBackend(username, updatedConversations) {
         .catch(error => console.error('Fetch error:', error));
 }
 
+function handleFlagFeedback(flagBtn) {
+// Get Flag Modal Elements
+const flagModal = document.getElementById('flagModal');
+const flagCloseModal = document.getElementById('flagCloseModal');
+const flagParticipateModal = document.getElementById('flagParticipateModal');
+const flagCloseBtn = document.querySelector('.flag-close-btn');
+
+// Show Flag Modal on Flag Button Click
+flagModal.style.display = 'block';
+
+
+// Close Flag Modal on Close Button Click
+flagCloseModal.addEventListener('click', () => {
+  flagModal.style.display = 'none';
+});
+
+// Close Flag Modal on Top Right 'X' Button
+flagCloseBtn.addEventListener('click', () => {
+  flagModal.style.display = 'none';
+});
+
+// Open Rating Modal
+flagParticipateModal.addEventListener('click', () => {
+  flagModal.style.display = 'none';
+  ratingModal.style.display = 'block';
+});
+
+// Close Rating Modal
+document.querySelector('.rating-close-btn').addEventListener('click', () => {
+  ratingModal.style.display = 'none';
+});
+
+// Handle Rating Selection
+document.querySelectorAll('.rating-box').forEach((box) => {
+  box.addEventListener('click', (e) => {
+    // Remove "selected" class from all siblings
+    const allBoxes = box.parentElement.querySelectorAll('.rating-box');
+    allBoxes.forEach((item) => item.classList.remove('selected'));
+
+    // Add "selected" class to the clicked rectangle
+    box.classList.add('selected');
+  });
+});
+
+// Submit Feedback
+document.querySelector('.rating-submit-btn').addEventListener('click', () => {
+  const feedback = {};
+  document.querySelectorAll('.rating-section').forEach((section) => {
+    const rating = section.querySelector('.selected');
+    const justification = section.querySelector('.justification').value;
+    if (rating) {
+      feedback[section.querySelector('p ').textContent] = {
+        rating: rating.dataset.value,
+        justification: justification.trim() || null,
+      };
+    }
+  });
+  console.log(feedback); // Replace this with actual submission logic
+  alert('Thank you for your feedback!');
+  ratingModal.style.display = 'none';
+});
+
+
+// Close Flag Modal When Clicking Outside of Modal
+window.addEventListener('click', (e) => {
+  if (e.target === flagModal) {
+    flagModal.style.display = 'none';
+  }
+});
+
+}
 
 });
 

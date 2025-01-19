@@ -152,6 +152,141 @@
   </div>
   Thinking...
 </template>
+
+    <!-- Flag Modal -->
+<div id="flagModal" class="flag-modal">
+  <div class="flag-modal-content">
+    <span class="flag-close-btn">&times;</span>
+    <h2 id="ylf_feedback_h2">Thank you for your feedback!</h2>
+    <p>
+      Our team will carefully review the Model's response.
+      <br><br>
+      Please note that we're merely at the beginning, operating with a small-scale team and budgeting - while still we're doing the best we can to deliver a stable, safe, and appropriate model.
+      <br><br>
+      <em>
+        * For advanced users, we offer the possibility to provide a full-scale feedback with rating & justifications on multiple dimensions, which will be used to further train the Model for future Releases.
+      </em>
+      <br><br>
+      Would you like to participate?
+    </p>
+    <div class="flag-modal-actions">
+      <button id="flagCloseModal" class="flag-modal-btn flag-close-modal">Close</button>
+      <button id="flagParticipateModal" class="flag-modal-btn flag-participate-modal">Yes, I'm in!</button>
+    </div>
+  </div>
+</div>
+
+    <!-- Detailed Rating Modal -->
+<div id="ratingModal" class="rating-modal">
+  <div class="rating-modal-content">
+    <span class="rating-close-btn">&times;</span>
+    <h2>Detailed Feedback</h2>
+    <p>Please rate the response based on the following dimensions:</p>
+
+    <div class="rating-section">
+      <h3>I. Completeness</h3>
+      <p>How complete and thorough was the response?</p>
+      <div class="rating-scale" id="completeness-rating">
+        <div class="rating-box" data-value="1">1: Incomplete or Hallucinating</div>
+        <div class="rating-box" data-value="2">2: Lacked deeper explanations</div>
+        <div class="rating-box" data-value="3">3: Reasonably complete</div>
+        <div class="rating-box" data-value="4">4: Detailed and accurate</div>
+        <div class="rating-box" data-value="5">5: Fully comprehensive</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <div class="rating-section">
+      <h3>II. Accuracy</h3>
+      <p>How accurate and factually correct was the response?</p>
+      <div class="rating-scale" id="accuracy-rating">
+        <div class="rating-box" data-value="1">1: Completely inaccurate</div>
+        <div class="rating-box" data-value="2">2: Major inaccuracies</div>
+        <div class="rating-box" data-value="3">3: Mostly accurate</div>
+        <div class="rating-box" data-value="4">4: Highly accurate</div>
+        <div class="rating-box" data-value="5">5: Flawless accuracy</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Add sections for III - VI following the same structure -->
+    <!-- Instruction Following -->
+    <div class="rating-section">
+      <h3>III. Instruction Following</h3>
+      <p>Did the response follow the instructions provided?</p>
+      <div class="rating-scale" id="instruction-rating">
+        <div class="rating-box" data-value="1">1: Ignored instructions</div>
+        <div class="rating-box" data-value="2">2: Partial adherence</div>
+        <div class="rating-box" data-value="3">3: Mostly followed</div>
+        <div class="rating-box" data-value="4">4: Followed thoroughly</div>
+        <div class="rating-box" data-value="5">5: Perfectly followed</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Contextual Awareness -->
+    <div class="rating-section">
+      <h3>IV. Contextual Awareness</h3>
+      <p>Was the response contextually aware and relevant?</p>
+      <div class="rating-scale" id="contextual-awareness-rating">
+        <div class="rating-box" data-value="1">1: Completely off-topic</div>
+        <div class="rating-box" data-value="2">2: Partially relevant</div>
+        <div class="rating-box" data-value="3">3: Mostly relevant</div>
+        <div class="rating-box" data-value="4">4: Very relevant</div>
+        <div class="rating-box" data-value="5">5: Perfect contextual match</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Writing & Tonality Quality -->
+    <div class="rating-section">
+      <h3>V. Writing & Tonality Quality</h3>
+      <p>Was the response well-written and appropriate in tone?</p>
+      <div class="rating-scale" id="writing-quality-rating">
+        <div class="rating-box" data-value="1">1: Poorly written</div>
+        <div class="rating-box" data-value="2">2: Needs improvement</div>
+        <div class="rating-box" data-value="3">3: Adequate</div>
+        <div class="rating-box" data-value="4">4: Well-written</div>
+        <div class="rating-box" data-value="5">5: Excellent</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Creativity -->
+    <div class="rating-section">
+      <h3>VI. Creativity</h3>
+      <p>How creative and innovative was the response?</p>
+      <div class="rating-scale" id="creativity-rating">
+        <div class="rating-box" data-value="1">1: No creativity</div>
+        <div class="rating-box" data-value="2">2: Minimal creativity</div>
+        <div class="rating-box" data-value="3">3: Somewhat creative</div>
+        <div class="rating-box" data-value="4">4: Very creative</div>
+        <div class="rating-box" data-value="5">5: Highly innovative</div>
+      </div>
+      <textarea class="justification" placeholder="Justification (Optional)"></textarea>
+    </div>
+
+    <!-- Overall Final Score -->
+    <div class="rating-section">
+      <h3>VII. Overall Final Score</h3>
+      <p>Provide an overall score for the response.</p>
+      <div class="rating-scale" id="final-score-rating">
+        <div class="rating-box" data-value="1">1: Very poor</div>
+        <div class="rating-box" data-value="2">2: Below average</div>
+        <div class="rating-box" data-value="3">3: Average</div>
+        <div class="rating-box" data-value="4">4: Good</div>
+        <div class="rating-box" data-value="5">5: Excellent</div>
+      </div>
+      <textarea class="justification" placeholder="Justification"></textarea>
+    </div>
+
+    <div class="rating-actions">
+      <button class="rating-submit-btn">Submit Feedback</button>
+    </div>
+  </div>
+</div>
+
+
   </div>
 
   <!-- Bootstrap JS (if needed) -->
