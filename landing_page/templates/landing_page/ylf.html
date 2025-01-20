@@ -10,7 +10,9 @@
   <title>YLF Chat with History</title>
   <meta name="csrf-token" content="{{ csrf_token }}">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Modifying viewport for mobile behavior-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 
 
   <!-- Include Bootstrap (CDN or local) -->
@@ -286,6 +288,13 @@
   </div>
 </div>
 
+    <!-- Custom Alert Modal -->
+<div id="customAlertModal" class="custom-alert-modal">
+  <div class="custom-alert-content">
+    <p class="custom-alert-message">Thank you for your feedback!</p>
+  </div>
+</div>
+
 
   </div>
 
@@ -372,15 +381,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 LoginButton.style.opacity = '1';
             }
 
-            // Log scroll data to the backend
-            fetch('/log-scroll/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken'), // Django CSRF token
-                },
-                body: JSON.stringify({ scrollTop, threshold }),
-            }).catch(error => console.error('Error logging scroll:', error));
+<!--            // Log scroll data to the backend-->
+<!--            fetch('/log-scroll/', {-->
+<!--                method: 'POST',-->
+<!--                headers: {-->
+<!--                    'Content-Type': 'application/json',-->
+<!--                    'X-CSRFToken': getCookie('csrftoken'), // Django CSRF token-->
+<!--                },-->
+<!--                body: JSON.stringify({ scrollTop, threshold }),-->
+<!--            }).catch(error => console.error('Error logging scroll:', error));-->
+
         }
 
         // Continue monitoring scroll changes

@@ -202,6 +202,9 @@ logo.onerror = function() {
     }, 9000);
 
 
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    console.log('CSRF Token:', csrfToken);
+
     // 5) POST to server
     fetch(ylfUrl, {
       method: 'POST',
@@ -330,12 +333,48 @@ function addChatBubble(message, sender) {
       `;
   contentContainer.appendChild(flagBtn);
 
-  // Add functionality to handle flagging the message
-  flagBtn.addEventListener('click', () => {
-    console.log("Message flagged as inappropriate!");
-    // Add your logic here to handle flagging the message
-    handleFlagFeedback(flagBtn);
-  });
+// Add functionality to handle flagging the message
+flagBtn.addEventListener('click', () => {
+  // Find the corresponding prompt and prepare the JSON object
+  const prompt = activeConversation.messages.find(
+    (msg) => msg.role === "user"
+  )?.content || "Unknown Prompt";
+
+  const flaggedData = {
+    prompt: prompt,
+    response: message, // Flagged LLM response
+  };
+
+  console.log("Flagged Data:", JSON.stringify(flaggedData, null, 2));
+
+  // Send flagged data to the backend
+  fetch('/store-feedback/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken, // Add CSRF token for secure requests
+    },
+    body: JSON.stringify(flaggedData), // Send data as JSON
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.message) {
+        console.log('Feedback stored successfully:', data.message);
+        // Functionality for post-feedback trigger - asking user if he wants to provide detailed feedback for Model's RLHF.
+        handleFlagFeedback(flagBtn, flaggedData);
+        // alert('Thank you for your feedback!'); Commented out since we're handling success message in handleFeedBack function
+      } else {
+        console.error('Error storing feedback:', data.error);
+        alert('Failed to store feedback.');
+      }
+    })
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      alert('An error occurred while storing feedback.');
+    });
+
+});
+
 
   }
 
@@ -542,12 +581,14 @@ function saveConversationsToBackend(username, updatedConversations) {
         .catch(error => console.error('Fetch error:', error));
 }
 
-function handleFlagFeedback(flagBtn) {
+function handleFlagFeedback(flagBtn, flaggedData) {
 // Get Flag Modal Elements
 const flagModal = document.getElementById('flagModal');
 const flagCloseModal = document.getElementById('flagCloseModal');
 const flagParticipateModal = document.getElementById('flagParticipateModal');
 const flagCloseBtn = document.querySelector('.flag-close-btn');
+const customAlertModal = document.getElementById('customAlertModal');
+
 
 // Show Flag Modal on Flag Button Click
 flagModal.style.display = 'block';
@@ -574,6 +615,13 @@ document.querySelector('.rating-close-btn').addEventListener('click', () => {
   ratingModal.style.display = 'none';
 });
 
+// Close Rating Modal on Escape key press
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && ratingModal.style.display === 'block') {
+    ratingModal.style.display = 'none';
+  }
+});
+
 // Handle Rating Selection
 document.querySelectorAll('.rating-box').forEach((box) => {
   box.addEventListener('click', (e) => {
@@ -586,31 +634,96 @@ document.querySelectorAll('.rating-box').forEach((box) => {
   });
 });
 
-// Submit Feedback
+ // Submit Feedback
 document.querySelector('.rating-submit-btn').addEventListener('click', () => {
   const feedback = {};
+  const requiredFields = [
+    "I. Completeness",
+    "II. Accuracy",
+    "III. Instruction Following",
+    "IV. Contextual Awareness",
+    "V. Writing & Tonality Quality",
+    "VI. Creativity",
+    "VII. Overall Final Score",
+  ];
+
+  let missingFields = []; // To track missing fields
+
   document.querySelectorAll('.rating-section').forEach((section) => {
-    const rating = section.querySelector('.selected');
-    const justification = section.querySelector('.justification').value;
-    if (rating) {
-      feedback[section.querySelector('p ').textContent] = {
-        rating: rating.dataset.value,
-        justification: justification.trim() || null,
+    const dimensionName = section.querySelector('h3')?.textContent.trim(); // Get the dimension name
+    const rating = section.querySelector('.selected')?.dataset.value; // Get selected rating
+    const justification = section.querySelector('.justification')?.value.trim() || null; // Get justification
+
+    if (dimensionName && rating) {
+      feedback[dimensionName] = {
+        rating: rating,
+        justification: justification,
       };
+    } else if (dimensionName) {
+      missingFields.push(dimensionName); // Track dimensions without ratings
     }
   });
-  console.log(feedback); // Replace this with actual submission logic
-  alert('Thank you for your feedback!');
-  ratingModal.style.display = 'none';
-});
 
-
-// Close Flag Modal When Clicking Outside of Modal
-window.addEventListener('click', (e) => {
-  if (e.target === flagModal) {
-    flagModal.style.display = 'none';
+  // Validate if all required fields are present
+  missingFields = requiredFields.filter((field) => !(field in feedback));
+  if (missingFields.length > 0) {
+    console.error("Missing feedback fields:", missingFields.join(", "));
+    showCustomAlert(`Please complete the following fields: ${missingFields.join(", ")}`);
+    return; // Stop submission if any fields are missing
   }
-});
+
+  console.log("Feedback Object:", feedback); // Debugging
+
+  // Send feedback to the backend
+  fetch('/submit-rlhf-feedback/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken, // Add CSRF token for secure requests
+    },
+    body: JSON.stringify({
+      prompt: activeConversation.messages.find((msg) => msg.role === 'user')?.content || 'Unknown Prompt',
+      response: flaggedData['response'], // Flagged response
+      feedback: feedback,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.message) {
+        console.log('RLHF Feedback stored successfully:', data.message);
+        showCustomAlert('Thank you for your detailed feedback!');
+      } else {
+        console.error('Error storing RLHF feedback:', data.error);
+        showCustomAlert('Failed to store feedback. Please try again.');
+      }
+    })
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      showCustomAlert('An error occurred while submitting feedback.');
+    });
+
+  // Close the rating modal
+  ratingModal.style.display = 'none';
+
+  });
+
+  // Close Flag Modal When Clicking Outside of Modal
+  window.addEventListener('click', (e) => {
+    if (e.target === flagModal) {
+      flagModal.style.display = 'none';
+    }
+  });
+
+  // Function to show a custom alert
+  function showCustomAlert(message) {
+    customAlertModal.querySelector('.custom-alert-message').textContent = message;
+    customAlertModal.style.display = 'flex';
+
+    setTimeout(() => {
+      customAlertModal.style.display = 'none';
+    }, 3000); // Display the alert for 3 seconds
+  }
+
 
 }
 

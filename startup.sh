@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Copying database to /tmp/..."
 cp db.sqlite3 /tmp/db.sqlite3
-# Storing into temp to allow seamingless workflow between Cloud and Local -
+# Storing into temp to allow seamingless workflow between Cloud and Local
 
 echo "Applying database migrations..."
 python manage.py migrate

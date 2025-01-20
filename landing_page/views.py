@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 from openai import OpenAI
 import os
-from .models import CustomUser
+from .models import CustomUser, Feedback, RLHFFeedback
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 
@@ -378,7 +378,6 @@ def log_scroll(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-
 # Tik-Tok advertising server side events Pixel setup
 
 
@@ -418,3 +417,79 @@ def add_to_cart_server_event(request):
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
 
+
+# Storing YLF Model user feedbacks
+
+def store_feedback(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            user = request.user if request.user.is_authenticated else None
+            prompt = data.get('prompt', '')
+            response = data.get('response', '')
+
+            feedback = Feedback.objects.create(
+                user=user,
+                prompt=prompt,
+                response=response,
+            )
+            return JsonResponse({'message': 'Feedback stored successfully!'}, status=201)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+
+def submit_rlhf_feedback(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+
+            user = request.user if request.user.is_authenticated else None
+            prompt = data.get('prompt', '').strip()
+            response = data.get('response', '').strip()
+            feedback_details = data.get('feedback', {})
+
+            # Check for missing fields
+            required_fields = [
+                "I. Completeness",
+                "II. Accuracy",
+                "III. Instruction Following",
+                "IV. Contextual Awareness",
+                "V. Writing & Tonality Quality",
+                "VI. Creativity",
+                "VII. Overall Final Score",
+            ]
+
+            missing_fields = [field for field in required_fields if field not in feedback_details]
+            if missing_fields:
+                return JsonResponse({'error': f"Missing feedback fields: {', '.join(missing_fields)}"}, status=400)
+
+            # Create RLHF_Feedback object
+            RLHFFeedback.objects.create(
+                user=user,
+                prompt=prompt,
+                response=response,
+                completeness_rating=int(feedback_details.get('I. Completeness', {}).get('rating', 0)),
+                completeness_justification=feedback_details.get('I. Completeness', {}).get('justification', ''),
+                accuracy_rating=int(feedback_details.get('II. Accuracy', {}).get('rating', 0)),
+                accuracy_justification=feedback_details.get('II. Accuracy', {}).get('justification', ''),
+                instruction_following_rating=int(feedback_details.get('III. Instruction Following', {}).get('rating', 0)),
+                instruction_following_justification=feedback_details.get('III. Instruction Following', {}).get('justification', ''),
+                contextual_awareness_rating=int(feedback_details.get('IV. Contextual Awareness', {}).get('rating', 0)),
+                contextual_awareness_justification=feedback_details.get('IV. Contextual Awareness', {}).get('justification', ''),
+                writing_quality_rating=int(feedback_details.get('V. Writing & Tonality Quality', {}).get('rating', 0)),
+                writing_quality_justification=feedback_details.get('V. Writing & Tonality Quality', {}).get('justification', ''),
+                creativity_rating=int(feedback_details.get('VI. Creativity', {}).get('rating', 0)),
+                creativity_justification=feedback_details.get('VI. Creativity', {}).get('justification', ''),
+                final_score=int(feedback_details.get('VII. Overall Final Score', {}).get('rating', 0)),
+                final_score_justification=feedback_details.get('VII. Overall Final Score', {}).get('justification', ''),
+            )
+
+            return JsonResponse({'message': 'RLHF Feedback stored successfully!'}, status=201)
+
+        except KeyError as e:
+            return JsonResponse({'error': f"Missing key: {str(e)}"}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)

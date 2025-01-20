@@ -1,11 +1,23 @@
 # Register your models here.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .models import CustomUser, Feedback, RLHFFeedback
 from django.contrib.admin.widgets import AdminTextareaWidget
 from django.db import models
 
 
+@admin.register(RLHFFeedback)
+class RLHF_FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('user', 'prompt', 'response', 'final_score', 'timestamp')
+    list_filter = ('timestamp', 'final_score')
+    search_fields = ('prompt', 'response')
+
+
+@admin.register(Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('user', 'prompt', 'response', 'timestamp')  # Fields to display in the admin list
+    search_fields = ('prompt', 'response')  # Enable search for these fields
+    list_filter = ('timestamp',)  # Add filtering options
 
 
 class CustomUserAdmin(UserAdmin):

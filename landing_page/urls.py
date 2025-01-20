@@ -40,6 +40,10 @@ urlpatterns = [
 
     path("add-to-cart/", views.add_to_cart_server_event, name="add_to_cart"),
 
+    path('store-feedback/', views.store_feedback, name='store_feedback'),
+
+    path('submit-rlhf-feedback/', views.submit_rlhf_feedback, name='submit_rlhf_feedback'),
+
 ]
 
 

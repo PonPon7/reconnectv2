@@ -9,7 +9,7 @@
 
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
       background: #1f1f1f;
       color: #fefefe;
       min-height: 173vh; /* just to allow scrolling for demo */
@@ -1216,7 +1216,7 @@ nav {
     background: none;
     text-shadow: none;
     animation: none !important;
-    -webkit-text-fill-color: #004578;
+    -webkit-text-fill-color: #004507;
 
 }
 
@@ -1246,7 +1246,7 @@ nav {
 
 /* Modal Buttons */
 .flag-modal-actions {
-  margin-top: 20px;
+    margin-top: 2rem;
   text-align: center;
 }
 
@@ -1262,10 +1262,11 @@ nav {
 
 /* Button styles for "Close" */
 .flag-modal-btn.flag-close-modal {
-    background: #f0f0f0;
-    color: #666;
-    border: 1px solid #ddd; /* Slight border for definition */
+    background: cadetblue;
+    color: whitesmoke;
+    border: 1px solid cadetblue;
 }
+
 
 .flag-modal-btn.flag-close-modal:hover {
     background: #e0e0e0;
@@ -1331,7 +1332,7 @@ nav {
 
 }
 
-.rating-modal-content h2, h3
+.rating-modal-content h2
 {
     font-size: 1.3rem;
     margin-bottom: 15px;
@@ -1340,13 +1341,25 @@ nav {
     background: none;
     text-shadow: none;
     animation: none !important;
-    -webkit-text-fill-color: #004578;
+    -webkit-text-fill-color: #004507;
+}
+
+.rating-modal-content h3
+{
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #004578; /* Deep blue for emphasis */
+    font-weight: bold;
+    background: none;
+    text-shadow: none;
+    animation: none !important;
+    -webkit-text-fill-color: #004507;
 }
 
 .rating-modal-content p
 {
     color: #004578;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 
@@ -1433,8 +1446,31 @@ nav {
 }
 
 
+/* Custom Alert Modal Styles */
+.custom-alert-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
 
-
+.custom-alert-content {
+  background: #ffffff;
+  color: #333333;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
 
 
 
@@ -1485,4 +1521,6 @@ nav {
   transition: opacity 0.3s;
   white-space: nowrap; /* Prevent text from wrapping */
 }
+
+
 

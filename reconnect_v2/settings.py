@@ -21,13 +21,18 @@ import environ
 # CSRF Setup
 CSRF_TRUSTED_ORIGINS = [
     'https://reconnectv2.com',
-    'https://www.reconnectv2.com'
+    'https://www.reconnectv2.com',
+    'http://192.168.0.196:8000'
 ]
 
 # Secure cookies
-CSRF_COOKIE_SECURE = True  # Ensures CSRF cookies are sent only over HTTPS
+CSRF_COOKIE_SECURE = False  # Ensures CSRF cookies are sent only over HTTPS - use True for Production Env.
 CSRF_USE_SESSIONS = False  # Or True if you want to store in session
 # SESSION_COOKIE_SECURE = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://192.168.0.196:8000',
+]
 
 
 # SSL Certificate
@@ -90,6 +95,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'landing_page',
+    'corsheaders',  # For internal dev with front-end differetn than back-end mobile testing
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -105,6 +111,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # For internal dev with front-end differetn than back-end mobile testing
     'django.middleware.security.SecurityMiddleware',  # Security & SSL
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
