@@ -90,23 +90,39 @@ initializeConversations();
   const sidebarHistory = document.getElementById('sidebarHistory');
 
 
+
   // Page load setup wrapped in an async-await functions
 async function setupPage() {
     // Wait for conversations to be initialized
     await initializeConversations();
 
-  // -------------------------------------------------
-  // 3. Page Load Setup
-  // -------------------------------------------------
-  // Create the initial conversation, add to array, render.
-  activeConversation = createNewConversation(getNewChatTitle());
-  conversations.push(activeConversation);
-  console.log(`All Conversations: ${conversations}`)
-  renderSidebarHistory();
-  console.log("Initial conversations:", conversations); // debug log
+    // Check if there's already a "New Chat" conversation
+    const existingNewChat = conversations.find(c => c.title === "New Chat");
 
+    if (existingNewChat) {
+        // Load the existing "New Chat" as the active conversation
+        activeConversation = existingNewChat;
+        console.log(`Loaded existing conversation: ${activeConversation.title}`);
+    } else {
+        // Create a new conversation with the title "New Chat"
+        activeConversation = createNewConversation("New Chat");
+        conversations.push(activeConversation);
+        console.log("Created a new conversation: New Chat");
+    }
 
+    // Render the sidebar history and active conversation
+    renderSidebarHistory();
+
+    // Render the active conversation's messages (if any)
+    chatMessages.innerHTML = '';
+    activeConversation.messages.forEach(msgObj => {
+        const sender = msgObj.role === "assistant" ? "llm" : msgObj.role;
+        addChatBubble(msgObj.content, sender);
+    });
+
+    console.log("Initial conversations:", conversations); // Debug log
 }
+
 
 // Call setupPage to handle page initialization
 setupPage();
