@@ -106,7 +106,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'django.contrib.sites',  # Add this line
+    'django.contrib.sites',
 
 ]
 
@@ -226,7 +226,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'landing_page.CustomUser'
 
-
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': '1070422657763-30i53p4k8k5lm8vjf340erae39kba0e1.apps.googleusercontent.com',
+#             'secret': 'GOCSPX-7sjG0aHXl0NRVc6Q7XJJ5ImIA6i',
+#             'key': ''
+#         }
+#     }
+# }
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -246,8 +254,8 @@ SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': ['profile', 'email'],
         'AUTH_PARAMS': {'access_type': 'online'},
-        'CLIENT_ID': os.getenv("GOOGLE_CLIENT_ID"),
-        'SECRET': os.getenv("GOOGLE_CLIENT_SECRET"),
+        'CLIENT_ID': env("GOOGLE_CLIENT_ID"),
+        'SECRET': env("GOOGLE_CLIENT_SECRET"),
     }
 }
 
