@@ -22,7 +22,9 @@ import environ
 CSRF_TRUSTED_ORIGINS = [
     'https://reconnectv2.com',
     'https://www.reconnectv2.com',
-    'http://192.168.0.196:8000'
+    'http://192.168.0.196:8000',
+    'http://127.0.0.1:8000/',
+
 ]
 
 # Secure cookies
@@ -83,8 +85,9 @@ STATIC_URL = '/static/'  # Already present
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-oxq8+vn*7^wamua)%^=3zer^dlf3ttioh68rg)f+c0uwndjx5*'
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.0.196', '*', '100.94.146.172']
@@ -95,7 +98,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'landing_page',
-    'corsheaders',  # For internal dev with front-end differetn than back-end mobile testing
+    'corsheaders',  # For internal dev with front-end different than back-end mobile testing
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -111,7 +114,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # For internal dev with front-end differetn than back-end mobile testing
+    'corsheaders.middleware.CorsMiddleware',  # For internal dev with front-end different than back-end mobile testing
     'django.middleware.security.SecurityMiddleware',  # Security & SSL
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -119,7 +122,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # Add this line
+    'allauth.account.middleware.AccountMiddleware',  # Removed temporary for trying downgraded version of AllAuth
 
 ]
 
@@ -128,7 +131,7 @@ ROOT_URLCONF = 'reconnect_v2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -226,15 +229,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'landing_page.CustomUser'
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'APP': {
-#             'client_id': '1070422657763-30i53p4k8k5lm8vjf340erae39kba0e1.apps.googleusercontent.com',
-#             'secret': 'GOCSPX-7sjG0aHXl0NRVc6Q7XJJ5ImIA6i',
-#             'key': ''
-#         }
-#     }
-# }
+
+SOCIALACCOUNT_ADAPTER = "allauth.socialaccount.adapter.DefaultSocialAccountAdapter"
+ACCOUNT_ADAPTER = "allauth.account.adapter.DefaultAccountAdapter"
+
+# SOCIALACCOUNT_ADAPTER = "reconnect_v2.adapters.CustomSocialAccountAdapter"
+# ACCOUNT_ADAPTER = "reconnect_v2.adapters.CustomAccountAdapter"
+
+
+# Google OAuth Configuration
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
+
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+
+
+# The ID of the current site in the django_site table.
+# Ensure this matches the site used for authentication, callbacks, and redirects.
+SITE_ID = 2
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -244,43 +264,35 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
 
 
-# Google OAuth Configuration
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-        'CLIENT_ID': env("GOOGLE_CLIENT_ID"),
-        'SECRET': env("GOOGLE_CLIENT_SECRET"),
-    }
-}
 
 
-# The ID of the current site in the django_site table.
-# Ensure this matches the site used for authentication, callbacks, and redirects.
-SITE_ID = 1
+
+
 
 
 ##########################
 ###### Debugging ########
 ##########################
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'WARNING',
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         },
+#         'allauth': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         },
+#     },
+# }

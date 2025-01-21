@@ -28,7 +28,7 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True, null=True)
-    email = models.EmailField(blank=True, null=True)  # Optional email
+    email = models.EmailField(blank=True, null=True, unique=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     is_active = models.BooleanField(default=True)
@@ -42,6 +42,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+    # Add the required method
+    def get_short_name(self):
+        """Return the short name for the user."""
+        return self.first_name or self.username
+
+    def get_full_name(self):
+        """Return the full name for the user."""
+        return f"{self.first_name} {self.last_name}".strip() or self.username
 
 
 class Feedback(models.Model):
