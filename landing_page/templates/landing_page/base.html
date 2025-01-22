@@ -85,6 +85,19 @@ font-size: 1rem;
         }
 
        /* Loading Screen Styles */
+
+       /* Grey Overlay */
+#loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Slight grey effect */
+  z-index: 9998; /* Below the loading screen but above everything else */
+  display: none; /* Initially hidden */
+}
+
         #loading-screen {
             position: fixed;
             top: 0;
@@ -96,7 +109,7 @@ font-size: 1rem;
             flex-direction: column; /* Align items vertically */
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 99991;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -152,6 +165,9 @@ font-size: 1rem;
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 </head>
 <body>
+
+    <!-- Grey Background Overlay -->
+<div id="loading-overlay" style="display: none;"></div>
   <!-- Loading Screen -->
     <div id="loading-screen">
         <img src="{% static 'images/logo.png' %}" alt="Loading...">
@@ -269,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
     </nav>
 
 
-
+{% load socialaccount %}
 <div class="custom-modal">
     <div id="loginModal" class="modal hidden">
         <div class="modal-content">
@@ -287,6 +303,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     <input type="password" id="loginPassword" name="password" required>
                     <button type="submit" class="form-btn">Login</button>
                 </form>
+            <!-- OR Divider -->
+            <div class="or-divider text-center my-3">
+              <span>OR</span>
+            </div>
+
+            <!-- Google Login Button -->
+            <a href="#" class="google-btn" onclick="openGoogleLogin(event)">
+              <i class="fab fa-google google-icon"></i>
+              <span class="google-text">Sign in with Google</span>
+            </a>
+
+
             </div>
             <div id="registerForm" class="form hidden">
                 <form id="registerAjaxForm" method="post" action="/ajax/register/">
@@ -323,6 +351,86 @@ document.addEventListener('DOMContentLoaded', function () {
         <source src="{% static 'audio/background-music.mp3' %}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
+
+
+
+<!------------------------------------------------------->
+<!-- Google Login Animation & Handling -->
+<!------------------------------------------------------->
+
+
+<script>
+
+function openGoogleLogin(event) {
+    event.preventDefault();
+
+    // Open Google login in a new tab
+    const googleLoginUrl = "{% provider_login_url 'google' %}";
+    let loginWindow = window.open(googleLoginUrl, "_blank", "width=500,height=600");
+
+    // Update and show the loading screen
+    const loadingScreen = document.getElementById("loading-screen");
+    const loadingText = loadingScreen.querySelector("p");
+    const overlay = document.getElementById("loading-overlay");
+    loadingText.textContent = "Logging in with Google...";
+    loadingScreen.style.display = "flex";
+    overlay.style.display = "block"; // Show the grey background overlay
+
+    // Polling for login status and tracking the window
+    let pollingAttempts = 0;
+    const maxPollingAttempts = 60; // Wait for up to 60 seconds
+
+
+    console.log(loginWindow);
+
+    const pollLoginStatus = () => {
+
+           // Check login status on our server
+           console.log(loginWindow);
+           fetch('/ajax/check-login/') // Use your existing endpoint
+                .then(response => response.json())
+
+                .then(data => {
+                    if (data.logged_in) {
+                        // Login successful
+                        loadingText.textContent = `Welcome, ${data.username.charAt(0).toUpperCase() + data.username.slice(1)}! Redirecting...`;
+                        setTimeout(() => {
+                            loadingScreen.style.display = "none";
+                            overlay.style.display = "none";
+                            window.location.reload(); // Refresh to update logged-in state
+                        }, 1000);
+                    }
+                })
+                .catch(() => {
+                    // Handle unexpected errors
+                    loadingText.textContent = "An error occurred. Please try again.";
+                    setTimeout(() => {
+                        loadingScreen.style.display = "none";
+                        overlay.style.display = "none";
+                    }, 2000);
+                });
+        };
+
+    // Start polling every second
+    const loginCheck = setInterval(() => {
+        pollLoginStatus();
+
+        // Timeout logic if the login takes too long
+        pollingAttempts++;
+        if (pollingAttempts >= maxPollingAttempts) {
+            clearInterval(loginCheck);
+            loadingText.textContent = "Login timed out. Please try again.";
+            setTimeout(() => {
+                loadingScreen.style.display = "none";
+                overlay.style.display = "none";
+            }, 2000);
+        }
+    }, 1000);
+}
+
+</script>
+
+
 
 
 

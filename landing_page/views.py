@@ -2,7 +2,7 @@ import logging
 
 from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse, HttpResponseForbidden
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -328,6 +328,7 @@ def ajax_logout(request):
 
 
 def check_login_status(request):
+    print(f"User authenticated: {request.user.is_authenticated}")
     if request.user.is_authenticated:
         return JsonResponse({'logged_in': True, 'username': request.user.username})
     return JsonResponse({'logged_in': False})
@@ -473,12 +474,16 @@ def submit_rlhf_feedback(request):
                 completeness_justification=feedback_details.get('I. Completeness', {}).get('justification', ''),
                 accuracy_rating=int(feedback_details.get('II. Accuracy', {}).get('rating', 0)),
                 accuracy_justification=feedback_details.get('II. Accuracy', {}).get('justification', ''),
-                instruction_following_rating=int(feedback_details.get('III. Instruction Following', {}).get('rating', 0)),
-                instruction_following_justification=feedback_details.get('III. Instruction Following', {}).get('justification', ''),
+                instruction_following_rating=int(
+                    feedback_details.get('III. Instruction Following', {}).get('rating', 0)),
+                instruction_following_justification=feedback_details.get('III. Instruction Following', {}).get(
+                    'justification', ''),
                 contextual_awareness_rating=int(feedback_details.get('IV. Contextual Awareness', {}).get('rating', 0)),
-                contextual_awareness_justification=feedback_details.get('IV. Contextual Awareness', {}).get('justification', ''),
+                contextual_awareness_justification=feedback_details.get('IV. Contextual Awareness', {}).get(
+                    'justification', ''),
                 writing_quality_rating=int(feedback_details.get('V. Writing & Tonality Quality', {}).get('rating', 0)),
-                writing_quality_justification=feedback_details.get('V. Writing & Tonality Quality', {}).get('justification', ''),
+                writing_quality_justification=feedback_details.get('V. Writing & Tonality Quality', {}).get(
+                    'justification', ''),
                 creativity_rating=int(feedback_details.get('VI. Creativity', {}).get('rating', 0)),
                 creativity_justification=feedback_details.get('VI. Creativity', {}).get('justification', ''),
                 final_score=int(feedback_details.get('VII. Overall Final Score', {}).get('rating', 0)),

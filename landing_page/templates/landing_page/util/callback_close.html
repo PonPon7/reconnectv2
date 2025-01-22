@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logging In</title>
+</head>
+<body>
+    <script>
+        // Notify the opener (parent) window that login was successful
+        if (window.opener) {
+            // Optionally, you can call a function on the opener
+            // or simply reload the parent window:
+            window.opener.location.reload();
+        }
+        // Close this popup
+        window.close();
+    </script>
+</body>
+</html>

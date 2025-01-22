@@ -87,7 +87,8 @@ STATIC_URL = '/static/'  # Already present
 SECRET_KEY = 'django-insecure-oxq8+vn*7^wamua)%^=3zer^dlf3ttioh68rg)f+c0uwndjx5*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# If DEBUG is False, Django won’t serve static files, and you’ll need to configure a web server like Nginx or Apache for production.
+DEBUG = True
 
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.0.196', '*', '100.94.146.172']
@@ -242,6 +243,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': ['profile', 'email'],
         'AUTH_PARAMS': {'access_type': 'online'},
+        "REDIRECT_URI": "http://localhost:8000/ylf/",  # Explicitly set the redirect URI
     }
 }
 
@@ -261,8 +263,12 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/ylf/'  # Redirect after login
 LOGOUT_REDIRECT_URL = '/'
+
+
+SOCIALACCOUNT_LOGIN_ON_GET = True  # Initiate the social login process as soon as the user visits the /accounts/google/login/ URL, skipping the intermediate confirmation step.
+
 
 
 
