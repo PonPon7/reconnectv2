@@ -791,196 +791,6 @@ text-indent: 0em;
 
 
 
- /************************************************************
- * Media Query for Mobile Devices
- ************************************************************/
-
-@media only screen and (max-width: 768px) {
-  /* Body adjustments */
-  body {
-    font-size: 17px; /* Reduce base font size */
-    min-height: max-content;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-
-  }
-
-
-  /* Chat Container */
-  .page-container {
-    flex-direction: column; /* Stack sidebar and chat vertically */
-  }
-
-  /* Sidebar */
-  .sidebar {
-    width: 100%; /* Sidebar takes full width */
-    box-shadow: none; /* Remove shadow for simplicity */
-  }
-.sidebar-header {
-    display: flex; /* Use flexbox to align items horizontally */
-    justify-content: space-between; /* Space out text and button */
-    align-items: center; /* Center items vertically */
-        margin-top: 1.3rem;
-}
-
-.sidebar-header h2 {
-    margin: 0; /* Ensure no extra space around the heading */
-    font-size: 1rem; /* Adjust font size if needed */
-    margin-top: 1rem;
-}
-
-.new-chat-btn {
-    font-size: 0.85rem; /* Maintain reduced button size */
-    padding: 0.3rem 0.6rem;
-    margin: 0; /* Remove any default margin */
-}
-  .sidebar-content {
-    padding: 0.25rem;
-  }
-
-  /* Chat Outer Container */
-  .chat-outer-container {
-    flex: 1;
-    width: 100%; /* Ensure full width */
-    height: auto; /* Adjust height to content */
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-      background: rgba(32, 32, 32, 0.85);
-      backdrop-filter: unset;
-  }
-
-  /* Chat Header */
-  .chat-header h4 {
-    font-size: 1rem; /* Reduce header font size */
-  }
-
-  /* Chat Messages */
-  .chat-messages {
-    padding: 0.5rem; /* Reduce padding */
-    max-height: 65vh; /* Restrict the height to 60% of the viewport */
-
-  }
-  .chat-bubble {
-    font-size: 0.85rem; /* Reduce font size of messages */
-    padding: 0.5rem 1.5rem; /* Adjust padding */
-  }
-
-  /* Chat Input */
-  .chat-input {
-    flex-direction: column; /* Stack input and button vertically */
-    padding: 0.5rem;
-  }
-  .chat-input textarea {
-    width: 100%; /* Full width for text area */
-    height: 40px; /* Reduce height */
-    font-size: 0.9rem;
-    padding: 0.65rem 1rem;
-    margin-right: 0rem;
-  }
-  .chat-input button {
-    margin-top: 0.5rem;
-    padding: 0.5rem; /* Smaller button */
-    width: 100%; /* Full width button */
-  }
-
-  /* Adjust Scroll Indicator */
-  .scroll-indicator {
-    bottom: -0.5rem; /* Adjust bottom positioning */
-  }
-  .scroll-indicator span {
-    font-size: 0.75rem; /* Smaller text */
-  }
-  .scroll-indicator svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Presentation Section */
-  .presentation-container {
-    padding: 3rem 1rem; /* Reduce padding */
-  }
-    .presentation-title {
-        font-size: 1.5rem;
-        margin-top: 2.8rem;
-    }
-  .presentation-subtitle {
-    font-size: 0.9rem; /* Adjust subtitle size */
-    margin-top: 0.25rem;
-  }
-  .presentation-details {
-    font-size: 0.8rem; /* Adjust details font size */
-  }
-
-    .presentation-details2 {
-    font-size: 0.8rem; /* Adjust details font size */
-  }
-
-
-  /* Second Section */
-  .second-section {
-    padding: 1rem; /* Adjust padding */
-    text-align: left; /* Align text left */
-  }
-
-  /* Sidebar Chat Entry */
-  .sidebar-chat-entry {
-    font-size: 0.85rem; /* Smaller entry font */
-    padding: 0.3rem 0.6rem; /* Adjust padding */
-  }
-
-  /* Neural Sparkles */
-  .neural-sparkles {
-    top: 5rem; /* Adjust for better positioning */
-    left: 3rem;
-  }
-
-  /* Audio Controls */
-  #audio-controls {
-    bottom: 16px;
-    left: 8px; /* Keep it compact */
-    transform: scale(0.8); /* Make smaller */
-  }
-
-  .pulse-grid {
-  pointer-events: none; /* Prevent interaction */
-  position: absolute; /* Ensure it covers the screen */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%; /* Fullscreen coverage */
-  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 2px);
-  background-size: 60px 60px;
-  opacity: 0.07;
-  z-index: 10; /* Ensure it’s below content but above background */
-  animation: pulse-grid 8s ease-in-out infinite;
-}
-
-
-    .chat-options-dropdown {
-      position: absolute;
-      top: 0px;
-      right: 8px;
-      background: #2e2e2e;
-      border: 1px solid #444;
-      border-radius: 4px;
-      display: none;
-      flex-direction: row;
-      min-width: 100px;
-      z-index: 999;
-    }
-
-    .chat-bubble .content-container {
-    display: block; }
-
-    .copy-btn svg {
-    display: none;
-    }
-
-
-
-}
-
-
 
 /* Some Final Fine-Tuning adjustments */
 nav {
@@ -1320,7 +1130,7 @@ nav {
 .rating-modal-content {
     background: rgba(162, 210, 255, 0.85); /* Semi-transparent with blue tint */
     backdrop-filter: blur(10px); /* Adds a nice blur effect */
-  border-radius: 10px;
+  border-radius: 20px;
   max-width: 800px;
   margin: 5% auto;
   padding: 20px;
@@ -1383,6 +1193,8 @@ nav {
   transition: transform 0.2s, background-color 0.3s;
   border-radius: 5px;
   background: #003049;
+  font-family: cursive;
+
 }
 
 .rating-box:hover {
@@ -1469,7 +1281,7 @@ nav {
   font-family: Arial, sans-serif;
   font-size: 16px;
   text-align: center;
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }
 
 
@@ -1520,6 +1332,247 @@ nav {
   opacity: 0;
   transition: opacity 0.3s;
   white-space: nowrap; /* Prevent text from wrapping */
+}
+
+
+
+
+
+
+
+
+
+
+ /************************************************************
+ * Media Query for Mobile Devices
+ ************************************************************/
+
+@media only screen and (max-width: 768px) {
+  /* Body adjustments */
+  body {
+    font-size: 17px; /* Reduce base font size */
+    min-height: max-content;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+
+  }
+
+
+  /* Chat Container */
+  .page-container {
+    flex-direction: column; /* Stack sidebar and chat vertically */
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 100%; /* Sidebar takes full width */
+    box-shadow: none; /* Remove shadow for simplicity */
+  }
+.sidebar-header {
+    display: flex; /* Use flexbox to align items horizontally */
+    justify-content: space-between; /* Space out text and button */
+    align-items: center; /* Center items vertically */
+        margin-top: 1.3rem;
+}
+
+.sidebar-header h2 {
+    margin: 0; /* Ensure no extra space around the heading */
+    font-size: 1rem; /* Adjust font size if needed */
+    margin-top: 1rem;
+}
+
+.new-chat-btn {
+    font-size: 0.85rem; /* Maintain reduced button size */
+    padding: 0.3rem 0.6rem;
+    margin: 0; /* Remove any default margin */
+}
+  .sidebar-content {
+    padding: 0.25rem;
+  }
+
+  /* Chat Outer Container */
+  .chat-outer-container {
+    flex: 1;
+    width: 100%; /* Ensure full width */
+    height: auto; /* Adjust height to content */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      background: rgba(32, 32, 32, 0.85);
+      backdrop-filter: unset;
+  }
+
+  /* Chat Header */
+  .chat-header h4 {
+    font-size: 1rem; /* Reduce header font size */
+  }
+
+  /* Chat Messages */
+  .chat-messages {
+    padding: 0.5rem; /* Reduce padding */
+    max-height: 65vh; /* Restrict the height to 60% of the viewport */
+
+  }
+  .chat-bubble {
+    font-size: 0.85rem; /* Reduce font size of messages */
+    padding: 0.5rem 1.5rem; /* Adjust padding */
+  }
+
+  /* Chat Input */
+  .chat-input {
+    flex-direction: column; /* Stack input and button vertically */
+    padding: 0.5rem;
+  }
+  .chat-input textarea {
+    width: 100%; /* Full width for text area */
+    height: 40px; /* Reduce height */
+    font-size: 0.9rem;
+    padding: 0.65rem 1rem;
+    margin-right: 0rem;
+  }
+  .chat-input button {
+    margin-top: 0.5rem;
+    padding: 0.5rem; /* Smaller button */
+    width: 100%; /* Full width button */
+  }
+
+  /* Adjust Scroll Indicator */
+  .scroll-indicator {
+    bottom: -0.5rem; /* Adjust bottom positioning */
+  }
+  .scroll-indicator span {
+    font-size: 0.75rem; /* Smaller text */
+  }
+  .scroll-indicator svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Presentation Section */
+  .presentation-container {
+    padding: 3rem 1rem; /* Reduce padding */
+  }
+    .presentation-title {
+        font-size: 1.5rem;
+        margin-top: 2.8rem;
+    }
+  .presentation-subtitle {
+    font-size: 0.9rem; /* Adjust subtitle size */
+    margin-top: 0.25rem;
+  }
+  .presentation-details {
+    font-size: 0.8rem; /* Adjust details font size */
+  }
+
+    .presentation-details2 {
+    font-size: 0.8rem; /* Adjust details font size */
+  }
+
+
+  /* Second Section */
+  .second-section {
+    padding: 1rem; /* Adjust padding */
+    text-align: left; /* Align text left */
+  }
+
+  /* Sidebar Chat Entry */
+  .sidebar-chat-entry {
+    font-size: 0.85rem; /* Smaller entry font */
+    padding: 0.3rem 0.6rem; /* Adjust padding */
+  }
+
+  /* Neural Sparkles */
+  .neural-sparkles {
+    top: 5rem; /* Adjust for better positioning */
+    left: 3rem;
+  }
+
+  /* Audio Controls */
+  #audio-controls {
+    bottom: 16px;
+    left: 8px; /* Keep it compact */
+    transform: scale(0.8); /* Make smaller */
+  }
+
+  .pulse-grid {
+  pointer-events: none; /* Prevent interaction */
+  position: absolute; /* Ensure it covers the screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Fullscreen coverage */
+  background: radial-gradient(circle, transparent, #08c 1.5px, transparent 2px);
+  background-size: 60px 60px;
+  opacity: 0.07;
+  z-index: 10; /* Ensure it’s below content but above background */
+  animation: pulse-grid 8s ease-in-out infinite;
+}
+
+
+    .chat-options-dropdown {
+      position: absolute;
+      top: 0px;
+      right: 8px;
+      background: #2e2e2e;
+      border: 1px solid #444;
+      border-radius: 4px;
+      display: none;
+      flex-direction: row;
+      min-width: 100px;
+      z-index: 999;
+    }
+
+    .chat-bubble .content-container {
+    display: block; }
+
+    .copy-btn svg {
+    display: none;
+    }
+
+
+
+
+/* Flag Modal Background */
+.flag-modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+.flag-modal-content {
+  width: 83%;
+}
+
+.flag-modal-content p {
+    font-size: 0.88rem;
+    line-height: 1.33;
+}
+
+.flag-modal-content #ylf_feedback_h2 {
+    font-size: 1.3rem;
+}
+
+
+.rating-box {
+  font-size: 0.53rem;
+
+}
+
+.rating-modal-content {
+padding: 10px;
+
+}
+
+.custom-alert-content {
+width: 85%;
+font-size: 14px;
+}
+
 }
 
 

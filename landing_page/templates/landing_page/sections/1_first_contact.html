@@ -53,13 +53,14 @@
 
 <script>
 
-<!-- Dynamic Login Button -->
+<!-- Dynamic Login Button: Mobile -->
 <!-- Body Scroll Triggered -->
 document.addEventListener("DOMContentLoaded", () => {
     // Check for mobile screen size (<768px)
     if (window.matchMedia("(max-width: 768px)").matches) {
         const loginBtn = document.getElementById('loginBtn');
-
+        const nav = document.querySelector('nav');
+        const nav_threshold = 1300
         // Ensure the login button is hidden initially
         loginBtn.style.display = 'none';
 
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.addEventListener("scroll", () => {
             const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
 
-            if (scrollPosition >= 1200 && scrollPosition <= 2800) {
+            if (scrollPosition >= 200 && scrollPosition <= 2300) {
                 loginBtn.style.display = 'block'; // Ensure the button is displayed
                                 setTimeout(() => {
                     loginBtn.style.opacity = '1'; // Fade in (CSS transition applies)
@@ -75,6 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 loginBtn.style.opacity = '0'; // Fade out
             }
+
+            if (scrollPosition > nav_threshold) {
+                nav.classList.remove('visible');
+                nav.classList.add('invisible');
+            } else {
+                nav.classList.remove('invisible');
+                nav.classList.add('visible');
+            }
+
+
+
         });
     }
 });

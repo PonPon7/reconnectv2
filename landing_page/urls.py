@@ -1,4 +1,5 @@
 from django.urls import path, include
+from django.views.generic import TemplateView
 from . import views  # Current Directory
 
 urlpatterns = [
@@ -43,6 +44,8 @@ urlpatterns = [
     path('store-feedback/', views.store_feedback, name='store_feedback'),
 
     path('submit-rlhf-feedback/', views.submit_rlhf_feedback, name='submit_rlhf_feedback'),
+
+    path('empty-close/', TemplateView.as_view(template_name='landing_page/util/empty_close.html'), name='empty-close'),
 
 ]
 

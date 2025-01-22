@@ -360,6 +360,7 @@ canvas {
           .dropdown-content {
             left: 0;
             min-width: 100%;
+            font-size: 1rem;
 
         }
 }
@@ -1205,44 +1206,6 @@ canvas {
 
 
 
-
-
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .newsletter-container {
-        transform: scale(0.9); /* Scales down the entire container */
-        max-width: calc(600px * 0.9); /* Adjust width proportionally */
-    }
-    .newsletter-container * {
-        font-size: inherit;
-    }
-
-        #a2 {
-     margin-left: 0;
-  }
-    .dropdown {
-        right: 1%;
-}
-
-#loginBtn {
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    font-size: 10px; /* Slightly larger text */
-    opacity: 0; /* Initial state */
-    transition: opacity 3s ease; /* Smooth fade effect */
-}
-
-
-
-.custom-modal .modal {
-    width: 80% !important;
-}
-}
-
-
-
 /* Additions post first lanuch */
 
 hr {
@@ -1302,4 +1265,72 @@ hr {
 /* Google Text */
 .google-text {
   font-weight: 500; /* Slightly bold */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .newsletter-container {
+        transform: scale(0.9); /* Scales down the entire container */
+        max-width: calc(600px * 0.9); /* Adjust width proportionally */
+    }
+    .newsletter-container * {
+        font-size: inherit;
+    }
+
+        #a2 {
+     margin-left: 0;
+  }
+    .dropdown {
+        right: 1%;
+}
+
+
+.custom-modal .tab-btn {
+    font-size: 12.3px;
+}
+
+/* Submit button */
+.custom-modal .form-btn {
+    font-size: 12.3px;
+}
+
+.google-btn {
+font-size: 12.3px;
+}
+
+.google-icon {
+left: 0.88rem;
+
+}
+
+#loginBtn {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    font-size: 10px; /* Slightly larger text */
+    opacity: 0; /* Initial state */
+    transition: opacity 3s ease; /* Smooth fade effect */
+}
+
+
+
+.custom-modal .modal {
+    width: 80% !important;
+}
 }

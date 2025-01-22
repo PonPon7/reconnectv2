@@ -263,7 +263,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-LOGIN_REDIRECT_URL = '/ylf/'  # Redirect after login
+LOGIN_REDIRECT_URL = '/empty-close/'
 LOGOUT_REDIRECT_URL = '/'
 
 

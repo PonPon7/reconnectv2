@@ -638,7 +638,7 @@ padding: 0.3rem 2rem;
 /* Fine-Tuning */
 
 .custom-modal .modal {
-    top: 17%;
+    top: 40%; /* Back to Initial 40%, why did i change it to 17% ? */
     }
 
 

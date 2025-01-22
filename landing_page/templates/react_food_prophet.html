@@ -11,6 +11,7 @@
   <title>React Page - Food Prophet</title>
   <link rel="stylesheet" href="{{ react_assets.css }}">
   <meta name="csrf-token" content="{{ csrf_token }}">
+    <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}">
 
   {% csrf_token %}
 
@@ -169,11 +170,12 @@
 
   </div>
 
-  <!-- React App Mount Point -->
+  <!-- React App Mount Point - Entry Point -->
   <div id="root" class="invisible"></div>
   <script src="{{ react_assets.js }}"></script>
-
+  <!-- Re-load CSS so it over-writes incoming app -->
   <link rel="stylesheet" href="{% static 'css/food_prophet.css' %}">
+
 
 <script>
 <!----------------------------------->
