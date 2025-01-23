@@ -404,3 +404,99 @@
         top: 75%; /* Adjust proportionally */
     }
 }
+
+
+
+
+
+
+
+
+/* Scroll back top */
+
+
+/* Scroll-to-Top Button */
+#scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 60px; /* Circular button size */
+    height: 60px;
+    display: none; /* Initially hidden */
+    opacity: 0; /* Fade-in on visibility */
+    cursor: pointer;
+    z-index: 9999;
+    background: rgba(30, 30, 30, 0.8); /* Semi-transparent dark circle */
+    border-radius: 50%; /* Makes it a perfect circle */
+    box-shadow: 0 0 15px rgba(255, 60, 60, 0.4); /* Glowing effect */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto; /* Ensure it's clickable */
+
+}
+
+/* Hover Effect for the Circle */
+#scrollToTop:hover {
+    transform: scale(1.1); /* Slightly enlarges the button */
+    box-shadow: 0 0 20px rgba(255, 60, 60, 0.6); /* Intensifies glow */
+
+}
+
+/* Lines Inside the Button */
+#scrollToTop .line {
+    position: absolute;
+    background: rgba(255, 60, 60, 1); /* Glowing red lines */
+    height: 4px;
+    border-radius: 2px; /* Smooth edges */
+    box-shadow: 0 0 5px rgba(255, 60, 60, 0.8); /* Burning glow */
+    animation: burn 1.5s linear infinite; /* Continuous glow effect */
+    transform-origin: center center;
+}
+
+/* Line 1 (Left Slash) */
+#scrollToTop .line-1 {
+    width: 0; /* Starts with no width */
+    bottom: 30px; /* Centered vertically */
+    left: 25.4px; /* Positioned on the left */
+    transform: rotate(45deg); /* Rotated to form a slash leaning right */
+    animation: drawLine1 0.5s forwards ease-out, burn 1.5s linear infinite;
+}
+
+/* Line 2 (Right Slash) */
+#scrollToTop .line-2 {
+    width: 0; /* Starts with no width */
+    bottom: 30px;
+    left: 5.2px;
+    transform: rotate(-45deg); /* Rotated to form a slash leaning left */
+    animation: drawLine2 0.5s forwards ease-out 0.3s, burn 1.5s linear infinite;
+}
+
+/* Animations for Drawing Lines */
+@keyframes drawLine1 {
+    0% { width: 0; }
+    100% { width: 30px; } /* Fully drawn left slash */
+}
+@keyframes drawLine2 {
+    0% { width: 0; }
+    100% { width: 30px; } /* Fully drawn right slash */
+}
+
+/* Burning Effect Animation */
+@keyframes burn {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 60, 60, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 60, 60, 1);
+    }
+}
+
+/* Smoothly Show and Hide the Button */
+#scrollToTop.show {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+#scrollToTop.hide {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
