@@ -204,6 +204,10 @@ logo.onerror = function() {
 
     // Set a timeout to change the bubble text after 5 seconds
     let timeoutId = setTimeout(() => {
+    // Check if loadingBubble exists and is a child of chatMessages
+    if (!loadingBubble || !chatMessages.contains(loadingBubble)) {
+      return; // Exit if the loading bubble doesn't exist
+    }
       chatMessages.removeChild(loadingBubble);
       loadingBubble = addChatBubble('Analyzing Context...', 'llm'); // Change the text of the bubble
         loadingBubble.insertBefore(logoContainer, loadingBubble.firstChild);
@@ -212,6 +216,10 @@ logo.onerror = function() {
 
     // Set a timeout to change the bubble text after 5 seconds
     timeoutId = setTimeout(() => {
+    // Check if loadingBubble exists and is a child of chatMessages
+    if (!loadingBubble || !chatMessages.contains(loadingBubble)) {
+      return; // Exit if the loading bubble doesn't exist
+    }
       chatMessages.removeChild(loadingBubble);
       loadingBubble = addChatBubble('Formatting & Processing response...', 'llm'); // Change the text of the bubble
         loadingBubble.insertBefore(logoContainer, loadingBubble.firstChild);
@@ -507,11 +515,16 @@ flagBtn.addEventListener('click', () => {
     const foundConv = conversations.find(c => c.id === convoId);
     if (!foundConv) return;
 
-    const newTitle = prompt("Enter a new name:", foundConv.title);
-    if (newTitle) {
-      foundConv.title = newTitle.trim();
-      renderSidebarHistory();
-    }
+    showCustomPrompt(foundConv.title, (newTitle) => {
+      if (newTitle) {
+        foundConv.title = newTitle.trim();
+        renderSidebarHistory();
+
+        // Save the updated conversation immediately
+        updateConversationInArray(foundConv);
+      }
+    });
+
   }
 
   function deleteConversation(convoId) {
@@ -741,6 +754,145 @@ document.querySelector('.rating-submit-btn').addEventListener('click', () => {
   }
 
 
+} /* End of Handle Feedback Flag */
+
+/* Create Custom Prompt For conversation Rename */
+
+
+function showCustomPrompt(initialValue, callback) {
+  // Create the overlay
+  const overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+  overlay.style.display = 'flex';
+  overlay.style.justifyContent = 'center';
+  overlay.style.alignItems = 'center';
+  overlay.style.opacity = '0';
+  overlay.style.transition = 'opacity 0.3s ease';
+
+  // Create the modal container
+  const modal = document.createElement('div');
+  modal.style.backgroundColor = '#ffffff';
+  modal.style.padding = '25px';
+  modal.style.borderRadius = '12px';
+  modal.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.3)';
+  modal.style.width = '350px';
+  modal.style.textAlign = 'center';
+  modal.style.animation = 'fadeIn 0.4s ease';
+  modal.style.transform = 'scale(0.95)';
+  modal.style.transition = 'transform 0.2s ease';
+
+  // Add modal open animation
+  setTimeout(() => {
+    modal.style.transform = 'scale(1)';
+  }, 10);
+
+  // Create the title
+  const title = document.createElement('p');
+  title.innerText = 'Rename Conversation';
+  title.style.marginBottom = '20px';
+  title.style.fontFamily = `'Poppins', sans-serif`;
+  title.style.fontSize = '20px';
+  title.style.color = '#333';
+
+  // Create the input
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = initialValue || '';
+  input.style.width = '100%';
+  input.style.padding = '10px';
+  input.style.border = '1px solid #ccc';
+  input.style.borderRadius = '8px';
+  input.style.marginBottom = '20px';
+  input.style.fontSize = '14px';
+  input.style.fontFamily = `'Poppins', sans-serif`;
+  input.style.outline = 'none';
+  input.style.transition = 'border-color 0.2s ease';
+
+  // Input hover and focus styles
+  input.addEventListener('focus', () => {
+    input.style.borderColor = '#4CAF50';
+  });
+  input.addEventListener('blur', () => {
+    input.style.borderColor = '#ccc';
+  });
+
+  // Create the buttons container
+  const buttonsContainer = document.createElement('div');
+  buttonsContainer.style.display = 'flex';
+  buttonsContainer.style.justifyContent = 'space-between';
+  buttonsContainer.style.gap = '10px';
+
+  // Create the OK button
+  const okButton = document.createElement('button');
+  okButton.innerText = 'Save';
+  okButton.style.flex = '1';
+  okButton.style.padding = '10px 15px';
+  okButton.style.backgroundColor = '#388E3C';
+  okButton.style.color = '#ffffff';
+  okButton.style.border = 'none';
+  okButton.style.borderRadius = '8px';
+  okButton.style.cursor = 'pointer';
+  okButton.style.fontFamily = `'Poppins', sans-serif`;
+  okButton.style.transition = 'background-color 0.2s ease';
+
+  okButton.addEventListener('mouseover', () => {
+    okButton.style.backgroundColor = '#45a049';
+  });
+  okButton.addEventListener('mouseout', () => {
+    okButton.style.backgroundColor = '#4CAF50';
+  });
+
+  okButton.addEventListener('click', () => {
+    if (callback) callback(input.value.trim()); // Pass the new value to the callback
+    document.body.removeChild(overlay);
+  });
+
+  // Create the Cancel button
+  const cancelButton = document.createElement('button');
+  cancelButton.innerText = 'Cancel';
+  cancelButton.style.flex = '1';
+  cancelButton.style.padding = '10px 15px';
+  cancelButton.style.backgroundColor = '#D32F2F';
+  cancelButton.style.color = '#ffffff';
+  cancelButton.style.border = 'none';
+  cancelButton.style.borderRadius = '8px';
+  cancelButton.style.cursor = 'pointer';
+  cancelButton.style.fontFamily = `'Poppins', sans-serif`;
+  cancelButton.style.transition = 'background-color 0.2s ease';
+
+  cancelButton.addEventListener('mouseover', () => {
+    cancelButton.style.backgroundColor = '#d7372f';
+  });
+  cancelButton.addEventListener('mouseout', () => {
+    cancelButton.style.backgroundColor = '#f44336';
+  });
+
+  cancelButton.addEventListener('click', () => {
+    document.body.removeChild(overlay);
+  });
+
+  // Append elements to the modal
+  buttonsContainer.appendChild(okButton);
+  buttonsContainer.appendChild(cancelButton);
+  modal.appendChild(title);
+  modal.appendChild(input);
+  modal.appendChild(buttonsContainer);
+
+  // Append modal to overlay
+  overlay.appendChild(modal);
+
+  // Append overlay to the body
+  document.body.appendChild(overlay);
+
+  // Trigger fade-in effect
+  setTimeout(() => {
+    overlay.style.opacity = '1';
+  }, 10);
 }
 
 });

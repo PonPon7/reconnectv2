@@ -1238,13 +1238,16 @@ hr {
   font-weight: bold;
   transition: all 0.3s ease;
   margin-top: 10px;
-  border: none;
+  border: 2px solid transparent; /* Initial transparent border */
+
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
 /* On hover: Add layout effect with a border */
 .google-btn:hover {
+  color: white;
+
   background-color: #357ae8; /* Darker blue for hover */
   box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
