@@ -1,8 +1,8 @@
 <p align="center">
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/LaoWater/reconnectv2/main/reconnect_v2/landing_page/static/images/logo-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/LaoWater/reconnectv2/main/reconnect_v2/landing_page/static/images/logo.png">
-    <img src="https://raw.githubusercontent.com/LaoWater/reconnectv2/main/reconnect_v2/landing_page/static/images/logo.png" style="width: 40%; height: 40%;" alt="Re-Connect Logo">
+    <source media="(prefers-color-scheme: dark)" srcset="reconnect_v2/landing_page/static/images/logo-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="reconnect_v2/landing_page/static/images/logo.png">
+    <img src="reconnect_v2/landing_page/static/images/logo.png" style="width: 40%; height: 40%;" alt="Re-Connect Logo">
 </picture>
 <br>
 <a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
