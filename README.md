@@ -1,6 +1,5 @@
 <p align="center">
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="landing_page/static/images/logo.png">
     <img src="reconnect_v2/landing_page/static/images/logo.png" style="width: 10%; height: 10%;" alt="Re-Connect Logo">
 </picture>
 <br>
