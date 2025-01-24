@@ -10,8 +10,7 @@ And prepares the ground for safer, smooth scaling once the demand of users & com
 ## I. Online Course Landing Page
 ### The Secrets Of the Alchemy
 RO/EN Versions of Online Course Landing page.
-Contains combinations of self-generated CSS & JS animations - together with leveraging popular modern libraries - All customized towards Website's Theme.
-
+Contains combinations of self-generated CSS & JS animations - together with leveraging popular modern libraries - All customized towards Website's Theme.  
 
 
 ## II. Project YLF
