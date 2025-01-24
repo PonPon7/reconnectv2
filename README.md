@@ -29,9 +29,18 @@ If user clicks, he is also presented with the option to provide more complex fee
 If user enters feedback workflow - he is presented with YLF Feedback Modal - A mediumly complex LLM rating form built on multiple Rating Dimensions & Justifications & Expected Response.
 
 
-III. Food Prophet
-Stand-Alone React application built & Deployed in Django framework.
-[href]github.com
+## III. Food Prophet
+### Stand-Alone React Application
+
+This project is a **Stand-Alone React application** built and deployed within the **Django framework**.
+
+### Repository Link
+[![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
+
+Click [here](https://github.com/LaoWater/LLM-Create-Process-Train) to explore the repository.
+
+---
+
 ML Model developed on Dataset analysis & probabilistic distribution towards accurately Simulating an Archtype(person specific body&lifestyle) Digestion.
 React graph continous representation & Responsiveness, allowing async manipulation of Time Dimensions or Custom Meals.
 Also offers possibility to Simulate an Empty Archtype and Manually simulate.
