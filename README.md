@@ -43,7 +43,7 @@ This app has been **integrated** into the Web App's framework to align with **bu
 4. **RLHF (Reinforcement Learning with Human Feedback) Integration**  
    - **Feedback Workflow**:
      - Each response can be flagged as **inappropriate** or **unsatisfactory**.
-     - Users have the option to provide **complex feedback** via a feedback workflow. This feedback is collected and used for RLHF in future model iterations.
+     - Users have the option to provide **complex feedback** via a feedback workflow.  This feedback is collected and used for RLHF in future model iterations.
    - **YLF Feedback Modal**:
      - A **medium-complex LLM rating form** built with:
        - Multiple **rating dimensions**
@@ -52,10 +52,8 @@ This app has been **integrated** into the Web App's framework to align with **bu
 
 ---
 
-### Repository Link
+### Explore the full project on
 [![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
-
-Explore the full project on [GitHub](https://github.com/LaoWater/LLM-Create-Process-Train).
 
 
 ## III. Food Prophet
