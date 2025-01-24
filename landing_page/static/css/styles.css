@@ -1192,7 +1192,7 @@ canvas {
   opacity: 1; /* Fully visible */
   visibility: visible; /* Allow interaction */
   pointer-events: auto; /* Allow clicks */
-  transition: opacity 0.5s ease, visibility 0.5s ease; /* Smooth transition */
+  transition: opacity 1.3s ease, visibility 1.3s ease; /* Smooth transition */
 }
 
 

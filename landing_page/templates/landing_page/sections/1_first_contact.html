@@ -116,6 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const scrollPosition = document.body.scrollTop; // Recalculate scroll position on each scroll event
 
             if (scrollPosition == 0) {
+                // Hide button after if manual scrolling reaches top
+                scrollToTopBtn.classList.add("hide");
+                scrollToTopBtn.classList.remove("show");
                 isAutoScrolling = false;
             }
 

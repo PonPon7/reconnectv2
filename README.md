@@ -5,15 +5,15 @@ It is designed on an Architecture which allows start-ups to host with absolute m
 Leveraging components as safe-exchange of SQLite databases & retrieving to sync - using Google & Env Secrets - it showcases how to implement & host a Production App for small scale,
 And prepares the ground for safer, smooth scaling once the demand of users & computational power increases.
 
-Main Components:
+### Main Components:
 
-I. Online Course Landing Page
-## The Secrets Of the Alchemy
+## I. Online Course Landing Page
+### The Secrets Of the Alchemy
 RO/EN Versions of Online Course Landing page.
 Contains combinations of self-generated CSS & JS animations - together with leveraging popular modern libraries - All customized towards Website's Theme.
 
 
-II. Project YLF
+## II. Project YLF
 Starting point is the Stand-Alone Python app [href]YLF.
 This has been integrated in this Web App's Framework to properly match business needs & Context.
 LLM Trained on Processed Company's dataset, integrated in multi-agent orchestration pipeline for rating & processing.
