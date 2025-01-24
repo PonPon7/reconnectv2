@@ -1,4 +1,4 @@
-# [![Re-Connect Logo](reconnect_v2/landing_page/static/images/logo.png)](https://reconnectv2.com)
+# Re-Connect 🔗 [![Logo](https://raw.githubusercontent.com/LaoWater/reconnectv2/main/reconnect_v2/landing_page/static/images/logo.png)](https://reconnectv2.com)
 
 ---
 
