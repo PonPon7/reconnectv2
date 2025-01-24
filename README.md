@@ -1,7 +1,7 @@
 <p align="center">
 <picture>
     <source media="(prefers-color-scheme: dark)" srcset="landing_page/static/images/logo.png">
-    <img src="reconnect_v2/landing_page/static/images/logo.png" style="width: 40%; height: 40%;" alt="Re-Connect Logo">
+    <img src="reconnect_v2/landing_page/static/images/logo.png" style="width: 10%; height: 10%;" alt="Re-Connect Logo">
 </picture>
 <br>
 <a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
