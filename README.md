@@ -14,19 +14,48 @@ Contains combinations of self-generated CSS & JS animations - together with leve
 
 
 ## II. Project YLF
-Starting point is the Stand-Alone Python app [href]YLF.
-This has been integrated in this Web App's Framework to properly match business needs & Context.
-LLM Trained on Processed Company's dataset, integrated in multi-agent orchestration pipeline for rating & processing.
-Architecture: Trained Model Receives prompt and answer.
-First-layer LLM: Considering user prompt, rates Model's Answers on different dimensions such as Safety, Context Awareness, Helping sentiment.
-If Scoring is below threshold - calls again YLF Model - until either threshold or attempts limit is met.
-Second-Layer LLM: Final Review & Markdown formatting of response.
 
-Friendly-UI, smooth experience on both PC & Mobile.
-RLHF Integration:
-Each Response can be flagged as innapropriate/unsatisfacatory. 
-If user clicks, he is also presented with the option to provide more complex feedback which is gathered and later used for RLHF on future Models.
-If user enters feedback workflow - he is presented with YLF Feedback Modal - A mediumly complex LLM rating form built on multiple Rating Dimensions & Justifications & Expected Response.
+Starting point: **Stand-Alone Python App** [YLF](https://github.com/LaoWater/LLM-Create-Process-Train).  
+This app has been **integrated** into the Web App's framework to align with **business needs and context**.
+
+---
+
+### Key Features
+1. **LLM Integration**  
+   - **Dataset**: Trained on the company's processed dataset.  
+   - **Multi-Agent Orchestration Pipeline**: Designed for **rating** and **processing** model responses.
+   
+2. **Architecture**  
+   - **Trained Model**:
+     - Receives a prompt and generates an answer.
+   - **First-Layer LLM**:
+     - Rates the model's answers based on:
+       - **Safety**
+       - **Context Awareness**
+       - **Helping Sentiment**
+     - If scoring is below the threshold, it calls the YLF model again, repeating the process until the **threshold is met** or the **attempt limit is reached**.
+   - **Second-Layer LLM**:
+     - Performs a **final review** and applies **Markdown formatting** to the response.
+
+3. **User-Friendly Design**  
+   - A **smooth and responsive UI** for both PC and mobile platforms.
+
+4. **RLHF (Reinforcement Learning with Human Feedback) Integration**  
+   - **Feedback Workflow**:
+     - Each response can be flagged as **inappropriate** or **unsatisfactory**.
+     - Users have the option to provide **complex feedback** via a feedback workflow. This feedback is collected and used for RLHF in future model iterations.
+   - **YLF Feedback Modal**:
+     - A **medium-complex LLM rating form** built with:
+       - Multiple **rating dimensions**
+       - **Justifications** for scores
+       - **Expected responses**
+
+---
+
+### Repository Link
+[![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
+
+Explore the full project on [GitHub](https://github.com/LaoWater/LLM-Create-Process-Train).
 
 
 ## III. Food Prophet
@@ -36,8 +65,6 @@ This project is a **Stand-Alone React application** built and deployed within th
 
 ### Repository Link
 [![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
-
-Click [here](https://github.com/LaoWater/LLM-Create-Process-Train) to explore the repository.
 
 ---
 
