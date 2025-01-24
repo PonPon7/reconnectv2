@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://reconnectv2.com">
-    <img src="landing_page/static/images/logo.png" width="150" alt="Re-Connect Logo">
+    <img src="landing_page/static/images/logo.png" width="200" alt="Re-Connect Logo">
   </a>
 
 <br>
@@ -24,6 +24,22 @@
 
 ---
 
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Main Components](#main-components)
+  - [I. Online Course Landing Page](#i-online-course-landing-page)
+  - [II. Project YLF](#ii-project-ylf)
+  - [III. Food Prophet](#iii-food-prophet)
+  - [IV. Bibliography](#iv-bibliography)
+- [Installation Requirements](#installation-requirements)
+- [Environment Requirements](#environment-requirements)
+- [Deployment Requirements](#deployment-requirements)
+- [Contributions](#contributions)
+
+---
+
 ### Key Features
 1. **Cost-Effective Hosting**  
    - Designed to help start-ups **host a full web application** with **minimal cost** while maintaining great performance.
@@ -40,8 +56,7 @@
 
 ---
 
-### Why Re-Connect?
-Re-Connect demonstrates how start-ups can:
+### Re-Connect demonstrates how start-ups can:
 - Build a **production-ready application** with low upfront hosting costs.
 - Create a secure, reliable system for **database storage and exchange**.
 - Transition easily into larger-scale deployments as the need arises.
@@ -52,7 +67,7 @@ Re-Connect demonstrates how start-ups can:
 [![Visit Re-Connect V2](https://img.shields.io/badge/Website-Re--ConnectV2-blue?style=for-the-badge&logo=react)](https://reconnectv2.com)
 
 ---
-
+<br>
 ### Main Components:
 
 ## I. Online Course Landing Page
