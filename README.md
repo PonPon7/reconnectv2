@@ -1,15 +1,15 @@
 <p align="center">
 <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="reconnect_v2/landing_page/static/images/logo-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="reconnect_v2/landing_page/static/images/logo.png">
+    <source media="(prefers-color-scheme: dark)" srcset="landing_page/static/images/logo.png">
+    <source media="(prefers-color-scheme: light)" srcset="landing_page/static/images/logo.png">
     <img src="reconnect_v2/landing_page/static/images/logo.png" style="width: 40%; height: 40%;" alt="Re-Connect Logo">
 </picture>
 <br>
 <a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
 <br>
-<a href=""><img src="https://img.shields.io/badge/built_with-React,_Django,_Tailwind-blue.svg?logo=react" /></a>
+<a href=""><img src="https://img.shields.io/badge/built_with-React,_Django,_Python-blue.svg?logo=react" /></a>
 &nbsp;
-<a href="https://twitter.com/YourTwitterHandle"><img src="https://img.shields.io/twitter/follow/YourTwitterHandle?style=social" alt="Follow on Twitter" /></a>
+<a href="https://twitter.com/Re-Connect"><img src="https://img.shields.io/twitter/follow/YourTwitterHandle?style=social" alt="Follow on Twitter" /></a>
 </p>
 
 ---
