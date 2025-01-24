@@ -1,7 +1,7 @@
 <p align="center">
-<a href="https://reconnectv2.com">
-    <img src="landing_page/static/images/logo.png" style="max-width: 150px; height: auto;" alt="Re-Connect Logo">
-</a>
+  <a href="https://reconnectv2.com">
+    <img src="landing_page/static/images/logo.png" width="150" alt="Re-Connect Logo">
+  </a>
 
 <br>
 <a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
