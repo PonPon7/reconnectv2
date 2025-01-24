@@ -13,6 +13,7 @@ RO/EN Versions of Online Course Landing page.
 Contains combinations of self-generated CSS & JS animations - together with leveraging popular modern libraries - All customized towards Website's Theme.
 
 
+
 ## II. Project YLF
 Starting point is the Stand-Alone Python app [href]YLF.
 This has been integrated in this Web App's Framework to properly match business needs & Context.
