@@ -1,9 +1,46 @@
-## Re-Connect V2 - Project Overview
+# [![Re-Connect Logo](reconnectv2/landing_page/static/images/logo.png)](https://reconnectv2.com)
 
-Re-Connect is a full-stack Web Application with a combination of React, Python ML scripts, Django, javascript, CSS & Tailwind - 
-It is designed on an Architecture which allows start-ups to host with absolute minimal cost a Full Web Application with Database storage and good performance.
-Leveraging components as safe-exchange of SQLite databases & retrieving to sync - using Google & Env Secrets - it showcases how to implement & host a Production App for small scale,
-And prepares the ground for safer, smooth scaling once the demand of users & computational power increases.
+---
+
+### Project Overview
+
+**Re-Connect** is a **full-stack web application** built with a powerful combination of modern technologies:
+
+- **React**: Provides a fast, responsive, and interactive front-end experience.
+- **Python ML Scripts**: Powers intelligent and data-driven backend features.
+- **Django**: Robust backend framework to ensure scalability and reliability.
+- **JavaScript, CSS, and Tailwind**: Delivers a polished, smooth, and consistent user interface.
+
+---
+
+### Key Features
+1. **Cost-Effective Hosting**  
+   - Designed to help start-ups **host a full web application** with **minimal cost** while maintaining great performance.
+
+2. **Performance-Oriented Architecture**  
+   - Combines **SQLite database exchange and syncing** with **Google and environment secrets** for secure data handling.  
+   - Optimized for **small-scale production apps**.
+
+3. **Future-Ready Scalability**  
+   - Built to **prepare for growth**, ensuring seamless scaling as demand for users and computational resources increases.
+
+4. **Responsive Design**  
+   - A **friendly UI** that provides a smooth experience on both desktop and mobile devices.
+
+---
+
+### Why Re-Connect?
+Re-Connect demonstrates how start-ups can:
+- Build a **production-ready application** with low upfront hosting costs.
+- Create a secure, reliable system for **database storage and exchange**.
+- Transition easily into larger-scale deployments as the need arises.
+
+---
+
+### Visit the Website
+[![Visit Re-Connect V2](https://img.shields.io/badge/Website-Re--ConnectV2-blue?style=for-the-badge&logo=react)](https://reconnectv2.com)
+
+---
 
 ### Main Components:
 
@@ -15,7 +52,7 @@ Contains combinations of self-generated CSS & JS animations - together with leve
 
 ## II. Project YLF
 
-Starting point: **Stand-Alone Python App** [YLF](https://github.com/LaoWater/LLM-Create-Process-Train).  
+Starting point: **Stand-Alone Python trained Large Language Model** [Project YLF](https://github.com/LaoWater/LLM-Create-Process-Train).  
 
 ### Explore the full project on
 [![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
