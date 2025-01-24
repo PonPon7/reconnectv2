@@ -1,8 +1,8 @@
-# [![Re-Connect Logo](reconnectv2/landing_page/static/images/logo.png)](https://reconnectv2.com)
+# [![Re-Connect Logo](reconnect_v2/landing_page/static/images/logo.png)](https://reconnectv2.com)
 
 ---
 
-### Project Overview
+### <u>Project Overview</u>
 
 **Re-Connect** is a **full-stack web application** built with a powerful combination of modern technologies:
 
