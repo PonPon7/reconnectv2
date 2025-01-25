@@ -4,6 +4,7 @@
   </a>
 
 <br>
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 <a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
 <br>
 <a href=""><img src="https://img.shields.io/badge/built_with-Python,_Django,_React-blue.svg?logo=react" /></a>
@@ -111,12 +112,7 @@ This app has been **integrated** into the Web App's framework to align with **bu
 4. **RLHF (Reinforcement Learning with Human Feedback) Integration**  
    - **Feedback Workflow**:
      - Each response can be flagged as **inappropriate** or **unsatisfactory**.
-     - Users have the option to provide **complex feedback** via a multi-Dimensions Rating workflow. This feedback is collected and used for RLHF in future model iterations.
-   - ***YLF Feedback Modal***:
-     - A **medium-complex LLM rating form** built with:
-       - Multiple **rating dimensions**
-       - **Justifications** for scores
-       - **Expected responses**
+     - Users have the option to provide **complex feedback** via a multi-Dimensions Rating workflow. This feedback is collected & stored - used for RLHF in future model iterations.
 
 ---
 
@@ -135,6 +131,7 @@ ML Model developed on Dataset analysis & probabilistic distribution towards accu
 React graph continous representation & Responsiveness, allowing async manipulation of Time Dimensions or Custom Meals.
 Also offers possibility to Simulate an Empty Archtype and Manually simulate.
 Built upon syncronized multiple Web Workers.
+
 
 IV. Bibliography
 
@@ -169,5 +166,16 @@ we are using "./startup.sh" to sync the databases & start web app using Gunicorn
 Checkout before merge
 
 
+## License
 
-***Contributions are welcomed but noted that contributions related to YLF and Food Prophet should be done in their stand-alone repos***
+This project is licensed under the [MIT License](LICENSE).
+
+## Contributing
+
+We welcome contributions! Check out the [Contributing Guidelines](CONTRIBUTING.md).
+
+## Code of Conduct
+
+Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+
