@@ -70,9 +70,6 @@
 
 # Main Components
 
-
----
-
 ## I. Online Course Landing Page
 
 ### The Secrets of Alchemy
