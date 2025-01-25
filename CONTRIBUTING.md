@@ -2,7 +2,8 @@
 
 Thank you for your interest in contributing! Here’s how you can help:
 
-***Contributions are welcomed but noted that contributions related to YLF and Food Prophet should be done in their stand-alone repos***
+> [!NOTE]
+> Contributions related to **YLF** and **Food Prophet** should be made in their **stand-alone repositories**.
 
 ## How to Contribute
 1. Fork the repository.
