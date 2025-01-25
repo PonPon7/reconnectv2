@@ -3,10 +3,10 @@
     <img src="landing_page/static/images/logo.png" width="200" alt="Re-Connect Logo">
   </a>
 <br>
+<a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
 <a href="https://github.com/LaoWater/reconnectv2/blob/main/LICENSE">
 <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License" />
 </a>
-<a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
 <br>
 <a href=""><img src="https://img.shields.io/badge/built_with-Python,_Django,_React-blue.svg?logo=react" /></a>
 &nbsp;
@@ -121,51 +121,91 @@ This app has been **integrated** into the Web App's framework to align with **bu
 ## III. Food Prophet
 ### Stand-Alone React Application
 
-This project is a **Stand-Alone React application** built and deployed within the **Django framework**.
+**Food Prophet** is a **stand-alone React application** integrated within this Django Project. 
+It uses a probabilistic digestion simulation model to visually represent archetype-based patterns on an interactive graph.
 
 ### Repository Link
 [![GitHub Repository](https://img.shields.io/badge/Repository-Visit-blue?logo=github)](https://github.com/LaoWater/LLM-Create-Process-Train)
 
 ---
 
-ML Model developed on Dataset analysis & probabilistic distribution towards accurately Simulating an Archtype(person specific body&lifestyle) Digestion.
-React graph continous representation & Responsiveness, allowing async manipulation of Time Dimensions or Custom Meals.
-Also offers possibility to Simulate an Empty Archtype and Manually simulate.
-Built upon syncronized multiple Web Workers.
+### Key Features
+- **Archetype Simulation**: Simulates digestion for predefined or custom archetypes using probabilistic models.
+- **Interactive Graph**: Real-time updates with meal additions and adjustable simulation speed.
+- **Async Web Worker Integration**: Offloads heavy computations to ensure smooth performance.
 
+---
 
-IV. Bibliography
+## IV. Bibliography
 
+### Overview
 
+The **Bibliography** section offers a curated collection of influential works that explore the intricate connections between the body, mind, and nature. This compilation serves as a resource for those seeking to deepen their understanding of holistic well-being and personal transformation.
 
-**Install requirements**
-python 
-```
+> [!NOTE]
+> The summaries are crafted from our personal experiences and reflections on each work.
+
+For a comprehensive list and detailed insights, please visit our [Bibliography Page](https://reconnectv2.com/bibliography/).
+
+---
+
+## **Installation and Deployment Guide**
+
+**1. Install Requirements**
+
+```bash
 pip install -r requirements.txt
 ```
 
-**Environment Requirements**
-*Variables:*
-Open AI Key - OPENAI_API_KEY
-Secret key used for fetching database from cloud - SECRET_KEY_DB_EXPORT
-For Django Email-Exchange User-submitted form - EMAIL_HOST_USER & EMAIL_HOST_PASSWORD
+**2. Environment Variables**
 
-**If planning on local development env, you're all set up!**
+Set up the following environment variables:
 
+- `OPENAI_API_KEY`: Your OpenAI API key.
+- `SECRET_KEY_DB_EXPORT`: Secret key for fetching the database from cloud. 
+- `EMAIL_HOST_USER`: Email address for Django's email exchange.
+- `EMAIL_HOST_PASSWORD`: Password for the above email address.
 
-**Deployment Requirements**
-###Current Architecture deploys the app on Google Cloud AppEngine, Firebase for storing user models data, Internal Pipeline for sync-inc Databases.
-##This allows a safe & smooth UX availability for low to medium scaling.
-Once the App scales, consider changing database to a Server-Side one.
+**For Local Development:**
 
-app.yaml - Gcloud deployment file. Load needed environment variables here or set up using Google Secrets.
-entrypoint Scripts - This script will run as soon as app is deployed. In the current framework of continous dbsql lite deployment and sync,
-we are using "./startup.sh" to sync the databases & start web app using Gunicorn.
+With the environment variables configured, you're ready to proceed with local development.
 
+**3. Deployment Requirements**
 
-**We're all set up**
-Checkout before merge
+The current architecture deploys the app on Google Cloud App Engine, utilizes Firebase for storing user model data, and includes an internal pipeline for synchronizing databases. 
+This setup ensures a safe and smooth user experience suitable for low to medium scaling. As the application grows, consider transitioning to a server-side database for enhanced performance.
 
+**Key Deployment Files:**
+
+- `app.yaml`: Configuration file for Google App Engine deployment. Load the necessary environment variables here or set them up using Google Secrets.
+- `entrypoint` Scripts: These scripts run upon deployment. In the current framework of continuous SQLite deployment and synchronization, we use `./startup.sh` to sync the databases and start the web app using Gunicorn.
+
+**Deployment Steps:**
+
+1. **Set Up Google Cloud Project:**
+
+   - Create a new project in the [Google Cloud Console](https://console.cloud.google.com/).
+   - Enable the App Engine and related APIs.
+
+2. **Configure `app.yaml`:**
+
+   ```yaml
+   runtime: python39
+   entrypoint: ./startup.sh
+   ...
+    ```
+   
+3**Deploy the Application:**
+
+   ```bash
+   gcloud app deploy
+   ```
+
+   For a detailed walkthrough, refer to this [tutorial on deploying a Django app to Google App Engine](https://testdriven.io/blog/django-gae/).
+
+**Note:** Ensure that all environment variables are securely managed.
+
+---
 
 ## License
 

@@ -1,3 +1,11 @@
+########################################################
+### This script connects to a Firestore database,    ###
+### retrieves all documents from the 'newsletter_    ###
+### subscribers' collection, and saves the data      ###
+### (email, phone, timestamp) to a local JSON file.  ###
+########################################################
+
+
 import firebase_admin
 from firebase_admin import credentials, firestore
 import json
