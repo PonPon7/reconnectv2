@@ -35,10 +35,8 @@
   - [II. Project YLF](#ii-project-ylf)
   - [III. Food Prophet](#iii-food-prophet)
   - [IV. Bibliography](#iv-bibliography)
-- [Installation Requirements](#installation-requirements)
-- [Environment Requirements](#environment-requirements)
-- [Deployment Requirements](#deployment-requirements)
-- [Contributions](#contributions)
+- [Installation and Deployment Guide](#installation-and-deployment-guide)
+- [Contributions](#contributing)
 
 ---
 
@@ -73,10 +71,16 @@
 # Main Components
 
 
+---
+
 ## I. Online Course Landing Page
-### The Secrets Of the Alchemy
-RO/EN Versions of Online Course Landing page.
-Contains combinations of self-generated CSS & JS animations - together with leveraging popular modern libraries - All customized towards Website's Theme.  
+
+### The Secrets of Alchemy
+
+Our Online Course Landing Page, available in both Romanian and English versions, showcases a harmonious blend of self-crafted CSS and JavaScript animations. 
+By leveraging modern libraries such as Animate.css and GSAP, we've tailored these animations to align seamlessly with the website's theme, providing users with an engaging and immersive experience.
+
+---
 
 
 ## II. Project YLF
@@ -129,7 +133,7 @@ It uses a probabilistic digestion simulation model to visually represent archety
 
 ---
 
-### Key Features
+### Features
 - **Archetype Simulation**: Simulates digestion for predefined or custom archetypes using probabilistic models.
 - **Interactive Graph**: Real-time updates with meal additions and adjustable simulation speed.
 - **Async Web Worker Integration**: Offloads heavy computations to ensure smooth performance.
@@ -145,7 +149,7 @@ The **Bibliography** section offers a curated collection of influential works th
 > [!NOTE]
 > The summaries are crafted from our personal experiences and reflections on each work.
 
-For a comprehensive list and detailed insights, please visit our [Bibliography Page](https://reconnectv2.com/bibliography/).
+For a comprehensive list and detailed insights, please visit [Bibliography Page](https://reconnectv2.com/bibliography/).
 
 ---
 
@@ -195,7 +199,7 @@ This setup ensures a safe and smooth user experience suitable for low to medium 
    ...
     ```
    
-3**Deploy the Application:**
+3. **Deploy the Application:**
 
    ```bash
    gcloud app deploy
