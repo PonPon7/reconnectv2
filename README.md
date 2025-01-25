@@ -6,7 +6,7 @@
 <br>
 <a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
 <br>
-<a href=""><img src="https://img.shields.io/badge/built_with-React,_Django,_Python-blue.svg?logo=react" /></a>
+<a href=""><img src="https://img.shields.io/badge/built_with-Python,_Django,_React-blue.svg?logo=react" /></a>
 &nbsp;
 <a href="https://twitter.com/Re-Connect"><img src="https://img.shields.io/twitter/follow/Re-Connect?style=social" alt="Follow on Twitter" /></a>
 </p>
@@ -111,8 +111,8 @@ This app has been **integrated** into the Web App's framework to align with **bu
 4. **RLHF (Reinforcement Learning with Human Feedback) Integration**  
    - **Feedback Workflow**:
      - Each response can be flagged as **inappropriate** or **unsatisfactory**.
-     - Users have the option to provide **complex feedback** via a multi-Dimensions workflow. This feedback is collected and used for RLHF in future model iterations.
-   - **YLF Feedback Modal**:
+     - Users have the option to provide **complex feedback** via a multi-Dimensions Rating workflow. This feedback is collected and used for RLHF in future model iterations.
+   - ***YLF Feedback Modal***:
      - A **medium-complex LLM rating form** built with:
        - Multiple **rating dimensions**
        - **Justifications** for scores
