@@ -3,14 +3,15 @@
     <img src="landing_page/static/images/logo.png" width="200" alt="Re-Connect Logo">
   </a>
 <br>
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/LaoWater/reconnectv2/blob/main/LICENSE)
+<a href="https://github.com/LaoWater/reconnectv2/blob/main/LICENSE">
+<img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License" />
+</a>
 <a href="https://github.com/LaoWater/reconnectv2"><img src="https://img.shields.io/github/stars/LaoWater/reconnectv2?style=social" alt="GitHub stars - Re-Connect V2" /></a>
 <br>
 <a href=""><img src="https://img.shields.io/badge/built_with-Python,_Django,_React-blue.svg?logo=react" /></a>
 &nbsp;
 <a href="https://twitter.com/Re-Connect"><img src="https://img.shields.io/twitter/follow/Re-Connect?style=social" alt="Follow on Twitter" /></a>
 </p>
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/LaoWater/reconnectv2/blob/main/LICENSE)
 
 ---
 
