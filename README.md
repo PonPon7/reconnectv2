@@ -10,6 +10,7 @@
 &nbsp;
 <a href="https://twitter.com/Re-Connect"><img src="https://img.shields.io/twitter/follow/Re-Connect?style=social" alt="Follow on Twitter" /></a>
 </p>
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/LaoWater/reconnectv2/blob/main/LICENSE)
 
 ---
 
