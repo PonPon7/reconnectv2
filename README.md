@@ -8,7 +8,7 @@
 <br>
 <a href=""><img src="https://img.shields.io/badge/built_with-React,_Django,_Python-blue.svg?logo=react" /></a>
 &nbsp;
-<a href="https://twitter.com/Re-Connect"><img src="https://img.shields.io/twitter/follow/YourTwitterHandle?style=social" alt="Follow on Twitter" /></a>
+<a href="https://twitter.com/Re-Connect"><img src="https://img.shields.io/twitter/follow/Re-Connect?style=social" alt="Follow on Twitter" /></a>
 </p>
 
 ---
